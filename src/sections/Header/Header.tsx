@@ -80,7 +80,7 @@ function Header() {
               </Tooltip>
             </FlexBox>
             <Divider orientation="vertical" flexItem />
-            <Tooltip title="It's open source" arrow>
+            <Tooltip title="Author" arrow>
               <IconButton color="info" size="large" component="a" href={repository} target="_blank">
                 <GitHubIcon />
               </IconButton>
