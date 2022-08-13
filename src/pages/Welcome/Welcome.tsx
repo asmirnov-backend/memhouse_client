@@ -1,4 +1,3 @@
-import Meta from '@/components/Meta';
 import { FullSizeCenteredFlexBox } from '@/components/styled';
 import useOrientation from '@/hooks/useOrientation';
 
@@ -19,7 +18,6 @@ function Welcome() {
 
   return (
     <>
-      <Meta title="Welcome" />
       <FullSizeCenteredFlexBox flexDirection={isPortrait ? 'column' : 'row'}>
         <Image alt="react-router" src={rrLogo} />
         <Image alt="vite" src={viteLogo} />
