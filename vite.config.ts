@@ -11,7 +11,16 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest,
-      includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+      includeAssets: [
+        'favicon.svg',
+        'favicon.ico',
+        'robots.txt',
+        'apple-touch-icon.png',
+        'logo/logo-192x192.png',
+        'logo/logo-256x256.png',
+        'logo/logo-384x384.png',
+        'logo/logo-512x512.png',
+      ],
       // switch to "true" to enable sw on development
       devOptions: {
         enabled: false,
