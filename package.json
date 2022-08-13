@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "https-preview": "serve dist",
+    "preview": "vite preview --port 3001",
+    "https-preview": "serve dist --port 3001",
     "prepare": "husky install"
   },
   "dependencies": {
