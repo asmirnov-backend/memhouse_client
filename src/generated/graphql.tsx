@@ -136,16 +136,18 @@ export type GetMemsQuery = {
     likes: number;
     rating: number;
     imgUrls: Array<string>;
+    text?: string | null;
   }>;
 };
 
 export const GetMemsDocument = gql`
-  query GetMems($offset: Int, $limit: Int = 3) {
+  query GetMems($offset: Int = 0, $limit: Int = 3) {
     mems(GetMemsInput: { take: $limit, skip: $offset }) {
       id
       likes
       rating
       imgUrls
+      text
     }
   }
 `;

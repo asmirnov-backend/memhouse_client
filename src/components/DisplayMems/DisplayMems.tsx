@@ -22,10 +22,18 @@ function DisplayMems() {
         </CenteredFlexBox>
       }
     >
-      <ImageList sx={{ width: 500 }} cols={1} gap={25}>
+      <ImageList sx={{ margin: 0 }} cols={1} gap={0}>
         {data.mems.map((mem, index) => (
           <ImageListItem key={index}>
             <img src={mem.imgUrls[0]} />
+            <div
+              style={{
+                width: '100%',
+                height: '7px',
+                margin: 'auto',
+                background: '#181955',
+              }}
+            />
           </ImageListItem>
         ))}
       </ImageList>
