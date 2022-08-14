@@ -7,7 +7,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview --port 3001",
     "https-preview": "serve dist --port 3001",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gql-generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -32,6 +33,11 @@
     "recoil": "^0.7.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.11.6",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript-operations": "2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "3.3.3",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/node": "^17.0.36",
     "@types/react": "^18.0.9",

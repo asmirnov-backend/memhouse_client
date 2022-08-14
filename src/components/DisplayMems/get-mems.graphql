@@ -1,0 +1,8 @@
+query GetMems {
+  mems(GetMemsInput: { take: 5 }) {
+    id
+    likes
+    rating
+    imgUrls
+  }
+}
