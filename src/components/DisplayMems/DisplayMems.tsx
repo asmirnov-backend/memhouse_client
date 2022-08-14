@@ -8,7 +8,7 @@ import { CenteredFlexBox } from '../styled';
 function DisplayMems() {
   const { error, data, fetchMore } = useGetMemsQuery();
 
-  if (error || !data) return <p>Error :(</p>;
+  if (error || !data) return <p>{error?.message}</p>;
 
   return (
     <InfiniteScroll

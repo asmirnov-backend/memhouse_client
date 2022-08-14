@@ -32,6 +32,7 @@ function ViewBestMemes() {
     <>
       <CenteredFlexBox flexDirection="column">
         <InfiniteScroll
+          style={{ overflowY: 'hidden' }}
           dataLength={images.length}
           next={() => fetchImages(1)}
           hasMore={true}
