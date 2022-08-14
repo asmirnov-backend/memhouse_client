@@ -1,13 +1,31 @@
-import Typography from '@mui/material/Typography';
+import { gql, useQuery } from '@apollo/client';
 
-import { FullSizeCenteredFlexBox } from '@/components/styled';
+const GET_LOCATIONS = gql`
+  query GetMems {
+    bestMems(GetBestMemsInput: { take: 1 }) {
+      id
+      likes
+      rating
+    }
+  }
+`;
+
+function DisplayLocations() {
+  const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return data.bestMems.map((mem: { id: number }) => <div key={mem.id}>{mem.id}</div>);
+}
 
 function Page2() {
+  const { loading, error, data } = useQuery(GET_LOCATIONS);
+  console.log(loading, error, data);
+
   return (
     <>
-      <FullSizeCenteredFlexBox>
-        <Typography variant="h3">Page 2</Typography>
-      </FullSizeCenteredFlexBox>
+      <DisplayLocations />
     </>
   );
 }

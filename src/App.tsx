@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
 import { withErrorHandler } from '@/error-handling';
 import AppErrorBoundaryFallback from '@/error-handling/fallbacks/App';
 import Pages from '@/routes/Pages';
@@ -12,6 +14,11 @@ import Notifications from '@/sections/Notifications';
 import SW from '@/sections/SW';
 import Sidebar from '@/sections/Sidebar';
 
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
     <Fragment>
@@ -19,11 +26,13 @@ function App() {
       <Notifications />
       <HotKeys />
       <SW />
-      <BrowserRouter>
-        <Header />
-        <Sidebar />
-        <Pages />
-      </BrowserRouter>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <Header />
+          <Sidebar />
+          <Pages />
+        </BrowserRouter>
+      </ApolloProvider>
     </Fragment>
   );
 }
