@@ -1,7 +1,7 @@
-import AddTaskIcon from '@mui/icons-material/AddTask';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import HomeIcon from '@mui/icons-material/Home';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import PreviewIcon from '@mui/icons-material/Preview';
 import TerrainIcon from '@mui/icons-material/Terrain';
 
 import asyncComponentLoader from '@/utils/loader';
@@ -15,17 +15,17 @@ const routes: Routes = {
     title: 'Welcome',
     icon: HomeIcon,
   },
+  [Pages.ViewBestMemes]: {
+    component: asyncComponentLoader(() => import('@/pages/ViewBestMemes')),
+    path: '/view-best-memes',
+    title: 'View Best Memes',
+    icon: ImageSearchIcon,
+  },
   [Pages.ViewMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewMemes')),
     path: '/view-memes',
-    title: 'ViewMemes',
-    icon: ImageSearchIcon,
-  },
-  [Pages.Page2]: {
-    component: asyncComponentLoader(() => import('@/pages/Page2')),
-    path: '/page-2',
-    title: 'Page 2',
-    icon: AddTaskIcon,
+    title: 'View Memes',
+    icon: PreviewIcon,
   },
   [Pages.Page3]: {
     component: asyncComponentLoader(() => import('@/pages/Page3')),
