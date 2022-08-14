@@ -16,7 +16,25 @@ import Sidebar from '@/sections/Sidebar';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          mems: {
+            // Don't cache separate results based on
+            // any of this field's arguments.
+            keyArgs: false,
+
+            // Concatenate the incoming list items with
+            // the existing list items.
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 function App() {

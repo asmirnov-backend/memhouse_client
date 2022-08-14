@@ -123,7 +123,10 @@ export type UserUniqueInput = {
   nickname?: InputMaybe<Scalars['String']>;
 };
 
-export type GetMemsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetMemsQueryVariables = Exact<{
+  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+}>;
 
 export type GetMemsQuery = {
   __typename?: 'Query';
@@ -137,8 +140,8 @@ export type GetMemsQuery = {
 };
 
 export const GetMemsDocument = gql`
-  query GetMems {
-    mems(GetMemsInput: { take: 5 }) {
+  query GetMems($offset: Int, $limit: Int = 3) {
+    mems(GetMemsInput: { take: $limit, skip: $offset }) {
       id
       likes
       rating
@@ -159,6 +162,8 @@ export const GetMemsDocument = gql`
  * @example
  * const { data, loading, error } = useGetMemsQuery({
  *   variables: {
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
  *   },
  * });
  */

@@ -1,12 +1,12 @@
 import DisplayMems from '../../components/DisplayMems';
-import { FullSizeCenteredFlexBox } from '../../components/styled';
+import { CenteredFlexBox } from '../../components/styled';
 
 function ViewMemes() {
   return (
     <>
-      <FullSizeCenteredFlexBox flexDirection={'column'}>
+      <CenteredFlexBox flexDirection={'column'}>
         <DisplayMems />
-      </FullSizeCenteredFlexBox>
+      </CenteredFlexBox>
     </>
   );
 }

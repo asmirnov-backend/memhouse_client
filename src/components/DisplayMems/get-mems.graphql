@@ -1,5 +1,5 @@
-query GetMems {
-  mems(GetMemsInput: { take: 5 }) {
+query GetMems($offset: Int = 0, $limit: Int = 3) {
+  mems(GetMemsInput: { take: $limit, skip: $offset }) {
     id
     likes
     rating
