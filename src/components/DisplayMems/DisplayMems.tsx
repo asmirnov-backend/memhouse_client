@@ -12,6 +12,7 @@ function DisplayMems() {
 
   return (
     <InfiniteScroll
+      style={{ overflowY: 'hidden' }}
       dataLength={data.mems.length}
       next={() => fetchMore({ variables: { limit: 3, offset: data.mems.length + 1 } })}
       hasMore={true}
@@ -21,9 +22,9 @@ function DisplayMems() {
         </CenteredFlexBox>
       }
     >
-      <ImageList sx={{ width: 500 }} cols={1}>
+      <ImageList sx={{ width: 500 }} cols={1} gap={25}>
         {data.mems.map((mem, index) => (
-          <ImageListItem key={index} style={{ marginBottom: '15px' }}>
+          <ImageListItem key={index}>
             <img src={mem.imgUrls[0]} />
           </ImageListItem>
         ))}
