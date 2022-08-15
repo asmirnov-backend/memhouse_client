@@ -17,8 +17,6 @@ function ViewBestMemes() {
     const accessKey = 'OHMi3IOXNKsIJR6Lbh9jvOtYZcZYamUdZCK94v2K0y0';
 
     axios.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=${count}`).then((res) => {
-      console.log(res.data);
-
       setImages([...images, ...res.data]);
       setIsLoaded(true);
     });
@@ -26,30 +24,28 @@ function ViewBestMemes() {
 
   useEffect(() => {
     fetchImages();
-  }, []);
+  });
 
   return (
-    <>
-      <CenteredFlexBox flexDirection="column">
-        <InfiniteScroll
-          style={{ overflowY: 'hidden' }}
-          dataLength={images.length}
-          next={() => fetchImages(1)}
-          hasMore={true}
-          loader={
-            <CenteredFlexBox>
-              <CircularProgress color="inherit" />
-            </CenteredFlexBox>
-          }
-        >
-          <ImageList sx={{ width: 500 }} cols={1}>
-            {loaded
-              ? images.map((image, index) => <UnsplashImage url={image.urls.regular} key={index} />)
-              : ''}
-          </ImageList>
-        </InfiniteScroll>
-      </CenteredFlexBox>
-    </>
+    <CenteredFlexBox flexDirection="column">
+      <InfiniteScroll
+        style={{ overflowY: 'hidden' }}
+        dataLength={images.length}
+        next={() => fetchImages(1)}
+        hasMore={true}
+        loader={
+          <CenteredFlexBox>
+            <CircularProgress color="inherit" />
+          </CenteredFlexBox>
+        }
+      >
+        <ImageList sx={{ width: 500 }} cols={1}>
+          {loaded
+            ? images.map((image, index) => <UnsplashImage url={image.urls.regular} key={index} />)
+            : ''}
+        </ImageList>
+      </InfiniteScroll>
+    </CenteredFlexBox>
   );
 }
 

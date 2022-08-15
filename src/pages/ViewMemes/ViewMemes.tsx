@@ -3,11 +3,9 @@ import { CenteredFlexBox } from '../../components/styled';
 
 function ViewMemes() {
   return (
-    <>
-      <CenteredFlexBox flexDirection={'column'}>
-        <DisplayMems />
-      </CenteredFlexBox>
-    </>
+    <CenteredFlexBox flexDirection={'column'}>
+      <DisplayMems />
+    </CenteredFlexBox>
   );
 }
 
