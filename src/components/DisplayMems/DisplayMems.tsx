@@ -9,13 +9,18 @@ import SimpleLoader from '../SimpleLoader/SimpleLoader';
 function DisplayMems() {
   const { error, data, fetchMore } = useGetMemsQuery();
 
+  // Offset must be (length + 1) after first loading data
+  const FIRST_LOAD_MEMS_CORRECTOR = 1;
+
   if (error || !data) return <Error text={error?.message} />;
 
   return (
     <InfiniteScroll
       style={{ overflowY: 'hidden' }}
       dataLength={data.mems.length}
-      next={() => fetchMore({ variables: { limit: 3, offset: data.mems.length + 1 } })}
+      next={() =>
+        fetchMore({ variables: { limit: 3, offset: data.mems.length + FIRST_LOAD_MEMS_CORRECTOR } })
+      }
       hasMore={true}
       loader={<SimpleLoader />}
     >
