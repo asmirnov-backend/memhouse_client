@@ -1,14 +1,15 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { CircularProgress, ImageList, ImageListItem } from '@mui/material';
+import { ImageList, ImageListItem } from '@mui/material';
 
 import { useGetMemsQuery } from '../../generated/graphql';
-import { CenteredFlexBox } from '../styled';
+import Error from '../Error/Error';
+import SimpleLoader from '../SimpleLoader/SimpleLoader';
 
 function DisplayMems() {
   const { error, data, fetchMore } = useGetMemsQuery();
 
-  if (error || !data) return <p>{error?.message}</p>;
+  if (error || !data) return <Error text={error?.message} />;
 
   return (
     <InfiniteScroll
@@ -16,11 +17,7 @@ function DisplayMems() {
       dataLength={data.mems.length}
       next={() => fetchMore({ variables: { limit: 3, offset: data.mems.length + 1 } })}
       hasMore={true}
-      loader={
-        <CenteredFlexBox>
-          <CircularProgress color="inherit" />
-        </CenteredFlexBox>
-      }
+      loader={<SimpleLoader />}
     >
       <ImageList sx={{ margin: 0 }} cols={1} gap={0}>
         {data.mems.map((mem, index) => (

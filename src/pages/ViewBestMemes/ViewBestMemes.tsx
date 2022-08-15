@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { CircularProgress, ImageList } from '@mui/material';
+import { ImageList } from '@mui/material';
 
 import axios from 'axios';
 
+import SimpleLoader from '../../components/SimpleLoader/SimpleLoader';
 import UnsplashImage, { IUnsplashImage } from '../../components/UnsplashImage';
 import { CenteredFlexBox } from '../../components/styled';
 
@@ -33,11 +34,7 @@ function ViewBestMemes() {
         dataLength={images.length}
         next={() => fetchImages(1)}
         hasMore={true}
-        loader={
-          <CenteredFlexBox>
-            <CircularProgress color="inherit" />
-          </CenteredFlexBox>
-        }
+        loader={<SimpleLoader />}
       >
         <ImageList sx={{ width: 500 }} cols={1}>
           {loaded
