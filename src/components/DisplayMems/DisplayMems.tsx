@@ -9,7 +9,8 @@ import SimpleLoader from '../SimpleLoader/SimpleLoader';
 function DisplayMems() {
   const { error, data, fetchMore } = useGetMemsQuery();
 
-  if (error || !data) return <Error text={error?.message} />;
+  if (error) return <Error text={error?.message} />;
+  if (!data) return <SimpleLoader />;
 
   return (
     <InfiniteScroll
