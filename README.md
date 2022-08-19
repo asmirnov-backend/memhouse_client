@@ -15,3 +15,5 @@ Prod:
 ```bash
 /Users/user/Downloads/ngrok http 443
 ```
+
+Replace 'http://localhost:3002/graphql' by ngrokUrl/graphql

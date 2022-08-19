@@ -15,7 +15,7 @@ import SW from '@/sections/SW';
 import Sidebar from '@/sections/Sidebar';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: `http://localhost:3002/graphql`,
   cache: new InMemoryCache({
     typePolicies: {
       Query: {

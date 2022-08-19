@@ -7,6 +7,7 @@ import manifest from './manifest.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // define: { SERVER_BACKEND_URL: JSON.stringify('http://localhost:3002') },
   plugins: [
     react(),
     VitePWA({
