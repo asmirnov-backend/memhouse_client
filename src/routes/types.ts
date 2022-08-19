@@ -7,8 +7,8 @@ enum Pages {
   Welcome,
   ViewBestMemes,
   ViewMemes,
-  Page3,
-  Page4,
+  SignIn,
+  SignUp,
   NotFound,
 }
 

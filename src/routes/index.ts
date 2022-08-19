@@ -2,7 +2,7 @@ import BugReportIcon from '@mui/icons-material/BugReport';
 import HomeIcon from '@mui/icons-material/Home';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import PreviewIcon from '@mui/icons-material/Preview';
-import TerrainIcon from '@mui/icons-material/Terrain';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 import asyncComponentLoader from '@/utils/loader';
 
@@ -27,16 +27,16 @@ const routes: Routes = {
     title: 'View Memes',
     icon: PreviewIcon,
   },
-  [Pages.Page3]: {
-    component: asyncComponentLoader(() => import('@/pages/Page3')),
-    path: '/page-3',
-    title: 'Page 3',
-    icon: TerrainIcon,
+  [Pages.SignIn]: {
+    component: asyncComponentLoader(() => import('@/pages/SignIn')),
+    path: '/sign-in',
+    title: 'SignIn',
+    icon: VpnKeyIcon,
   },
-  [Pages.Page4]: {
+  [Pages.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/Page4')),
-    path: '/page-4',
-    title: 'Page 4',
+    path: '/sign-up',
+    title: 'SignUp',
     icon: BugReportIcon,
   },
   [Pages.NotFound]: {
