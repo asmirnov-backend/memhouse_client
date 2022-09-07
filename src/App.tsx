@@ -16,6 +16,7 @@ import Sidebar from '@/sections/Sidebar';
 
 const client = new ApolloClient({
   uri: `http://localhost:3002/graphql`,
+  credentials: 'include',
   cache: new InMemoryCache({
     typePolicies: {
       Query: {

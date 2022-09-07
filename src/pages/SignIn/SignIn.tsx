@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 
+import { useLoginMutation } from '../../generated/graphql';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
 
@@ -24,9 +25,20 @@ function SignIn() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors: formErrors },
   } = useForm<SignIn>();
-  const onSubmit = (data: unknown) => console.log(data);
+  const [loginMutation] = useLoginMutation({ errorPolicy: 'all' });
+
+  const onSubmit = async (params: SignIn) => {
+    const { data, errors } = await loginMutation({ variables: params });
+
+    console.log(errors);
+    console.log(data);
+
+    if (errors) {
+      alert(errors[0].message);
+    }
+  };
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -52,7 +64,6 @@ function SignIn() {
             margin="normal"
             fullWidth
             label="Email Address"
-            autoFocus
             type="email"
             {...register('email', {
               required: 'Email Address is required',
@@ -62,8 +73,8 @@ function SignIn() {
                 message: 'It is not a valid email address',
               },
             })}
-            error={errors.email ? true : false}
-            helperText={errors.email?.message}
+            error={formErrors.email ? true : false}
+            helperText={formErrors.email?.message}
           />
 
           {/* include validation with required or other standard HTML validation rules */}
@@ -76,8 +87,8 @@ function SignIn() {
               required: 'Password is required',
               minLength: { value: 6, message: 'Password must be at least 6 characters' },
             })}
-            error={errors.password ? true : false}
-            helperText={errors.password?.message}
+            error={formErrors.password ? true : false}
+            helperText={formErrors.password?.message}
           />
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

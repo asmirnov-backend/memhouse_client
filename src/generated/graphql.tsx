@@ -60,12 +60,17 @@ export type MemUpdateInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createMem: Mem;
+  login: JwtToken;
   registration: JwtToken;
   updateMem: Mem;
 };
 
 export type MutationCreateMemArgs = {
   CreateMemInput: MemCreateInput;
+};
+
+export type MutationLoginArgs = {
+  LoginInput: LoginInput;
 };
 
 export type MutationRegistrationArgs = {
@@ -79,7 +84,6 @@ export type MutationUpdateMemArgs = {
 export type Query = {
   __typename?: 'Query';
   bestMems: Array<Mem>;
-  login: JwtToken;
   me: User;
   mems: Array<Mem>;
   user: User;
@@ -87,10 +91,6 @@ export type Query = {
 
 export type QueryBestMemsArgs = {
   GetMemsInput: GetMemsInput;
-};
-
-export type QueryLoginArgs = {
-  LoginInput: LoginInput;
 };
 
 export type QueryMemsArgs = {
@@ -112,7 +112,6 @@ export type User = {
   createdMems: Array<Mem>;
   email: Scalars['String'];
   id: Scalars['String'];
-  money: Scalars['Float'];
   nickname: Scalars['String'];
   viewedMemes: Array<Mem>;
 };
@@ -138,6 +137,16 @@ export type GetMemsQuery = {
     imgUrls: Array<string>;
     text?: string | null;
   }>;
+};
+
+export type LoginMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+export type LoginMutation = {
+  __typename?: 'Mutation';
+  login: { __typename?: 'JwtToken'; jwtToken: string };
 };
 
 export const GetMemsDocument = gql`
@@ -184,3 +193,42 @@ export function useGetMemsLazyQuery(
 export type GetMemsQueryHookResult = ReturnType<typeof useGetMemsQuery>;
 export type GetMemsLazyQueryHookResult = ReturnType<typeof useGetMemsLazyQuery>;
 export type GetMemsQueryResult = Apollo.QueryResult<GetMemsQuery, GetMemsQueryVariables>;
+export const LoginDocument = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(LoginInput: { email: $email, password: $password }) {
+      jwtToken
+    }
+  }
+`;
+export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
+
+/**
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useLoginMutation(
+  baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
+}
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
+export type LoginMutationOptions = Apollo.BaseMutationOptions<
+  LoginMutation,
+  LoginMutationVariables
+>;
