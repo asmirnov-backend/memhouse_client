@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import {
@@ -12,11 +14,16 @@ import {
   Typography,
 } from '@mui/material';
 
+import AlertPopup from '../../components/AlertPopup';
+import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
+import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { useLoginMutation } from '../../generated/graphql';
+import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
+import sleep from '../../utils/sleep';
 
-interface SignIn {
+interface SignInParams {
   email: string;
   password: string;
 }
@@ -26,24 +33,50 @@ function SignIn() {
     register,
     handleSubmit,
     formState: { errors: formErrors },
-  } = useForm<SignIn>();
+  } = useForm<SignInParams>();
+  const navigate = useNavigate();
   const [loginMutation] = useLoginMutation({ errorPolicy: 'all' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
+  const [loginErrorText, setLoginErrorText] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const onSubmit = async (params: SignIn) => {
+  const onSubmit = async (params: SignInParams) => {
+    setIsLoading(true);
     const { data, errors } = await loginMutation({ variables: params });
-
-    console.log(errors);
-    console.log(data);
+    setIsLoading(false);
 
     if (errors) {
-      alert(errors[0].message);
+      setIsLoginError(true);
+      const response = errors[0].extensions.response as ErrorResponse;
+      const message = Array.isArray(response.message)
+        ? response.message.join('. ')
+        : response.message;
+      setLoginErrorText(message);
     }
+
+    if (data) {
+      setIsSuccess(true);
+      localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
+      // sleep to see success popup message
+      await sleep(1200);
+      navigate(routes[Pages.Welcome].path);
+    }
+    // client.resetStore() - for logout
   };
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <BlockPageWhileLoading isLoading={isLoading} />
+      <AlertPopup
+        severity="error"
+        show={isLoginError}
+        setShow={setIsLoginError}
+        text={loginErrorText}
+      />
+      <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
       <Box
         sx={{
           marginTop: 8,
