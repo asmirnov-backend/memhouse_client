@@ -1,8 +1,9 @@
-import BugReportIcon from '@mui/icons-material/BugReport';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import LoginIcon from '@mui/icons-material/Login';
 import PreviewIcon from '@mui/icons-material/Preview';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 import asyncComponentLoader from '@/utils/loader';
 
@@ -31,13 +32,19 @@ const routes: Routes = {
     component: asyncComponentLoader(() => import('@/pages/SignIn')),
     path: '/sign-in',
     title: 'SignIn',
-    icon: VpnKeyIcon,
+    icon: LoginIcon,
   },
   [Pages.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/Page4')),
     path: '/sign-up',
     title: 'SignUp',
-    icon: BugReportIcon,
+    icon: AddCircleIcon,
+  },
+  [Pages.Profile]: {
+    component: asyncComponentLoader(() => import('@/pages/Profile')),
+    path: '/profile',
+    title: 'Profile',
+    icon: AccountCircleIcon,
   },
   [Pages.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),

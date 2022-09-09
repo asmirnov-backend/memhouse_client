@@ -3,16 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  CssBaseline,
-  Link,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mui/material';
 
 import AlertPopup from '../../components/AlertPopup';
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
@@ -60,7 +51,7 @@ function SignIn() {
       localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
       // sleep to see success popup message
       await sleep(1200);
-      navigate(routes[Pages.Welcome].path);
+      navigate(routes[Pages.Profile].path);
     }
     // client.resetStore() - for logout
   };
@@ -68,7 +59,6 @@ function SignIn() {
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <BlockPageWhileLoading isLoading={isLoading} />
       <AlertPopup
         severity="error"
