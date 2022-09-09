@@ -13,7 +13,7 @@ function ViewBestMemes() {
   const [images, setImages] = useState([] as IUnsplashImage[]);
   const [loaded, setIsLoaded] = useState(false);
 
-  const fetchImages = (count = 1) => {
+  const fetchImages = (count = 3) => {
     const apiRoot = 'https://api.unsplash.com';
     const accessKey = 'OHMi3IOXNKsIJR6Lbh9jvOtYZcZYamUdZCK94v2K0y0';
 
@@ -32,7 +32,7 @@ function ViewBestMemes() {
       <InfiniteScroll
         style={{ overflowY: 'hidden' }}
         dataLength={images.length}
-        next={() => fetchImages(1)}
+        next={() => fetchImages(3)}
         hasMore={true}
         loader={<SimpleLoader />}
       >

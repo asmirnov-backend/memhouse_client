@@ -14,6 +14,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTime: any;
 };
 
 export type GetMemsInput = {
@@ -81,6 +82,14 @@ export type MutationUpdateMemArgs = {
   UpdateMemInput: MemUpdateInput;
 };
 
+export type Profile = {
+  __typename?: 'Profile';
+  birthday?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
+  surname: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   bestMems: Array<Mem>;
@@ -103,12 +112,15 @@ export type QueryUserArgs = {
 
 export type RegistrationInput = {
   email: Scalars['String'];
+  name: Scalars['String'];
   nickname: Scalars['String'];
   password: Scalars['String'];
+  surname: Scalars['String'];
 };
 
 export type User = {
   __typename?: 'User';
+  Profile?: Maybe<Profile>;
   createdMems: Array<Mem>;
   email: Scalars['String'];
   id: Scalars['String'];
@@ -143,7 +155,17 @@ export type ProfileQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProfileQuery = {
   __typename?: 'Query';
-  me: { __typename?: 'User'; email: string; nickname: string };
+  me: {
+    __typename?: 'User';
+    email: string;
+    nickname: string;
+    Profile?: {
+      __typename?: 'Profile';
+      name: string;
+      surname: string;
+      birthday?: any | null;
+    } | null;
+  };
 };
 
 export type LoginMutationVariables = Exact<{
@@ -154,6 +176,19 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = {
   __typename?: 'Mutation';
   login: { __typename?: 'JwtToken'; jwtToken: string };
+};
+
+export type SignUpMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+  nickname: Scalars['String'];
+  name: Scalars['String'];
+  surname: Scalars['String'];
+}>;
+
+export type SignUpMutation = {
+  __typename?: 'Mutation';
+  registration: { __typename?: 'JwtToken'; jwtToken: string };
 };
 
 export const GetMemsDocument = gql`
@@ -205,6 +240,11 @@ export const ProfileDocument = gql`
     me {
       email
       nickname
+      Profile {
+        name
+        surname
+        birthday
+      }
     }
   }
 `;
@@ -277,4 +317,60 @@ export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<
   LoginMutation,
   LoginMutationVariables
+>;
+export const SignUpDocument = gql`
+  mutation SignUp(
+    $email: String!
+    $password: String!
+    $nickname: String!
+    $name: String!
+    $surname: String!
+  ) {
+    registration(
+      RegistrationInput: {
+        email: $email
+        password: $password
+        nickname: $nickname
+        name: $name
+        surname: $surname
+      }
+    ) {
+      jwtToken
+    }
+  }
+`;
+export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMutationVariables>;
+
+/**
+ * __useSignUpMutation__
+ *
+ * To run a mutation, you first call `useSignUpMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignUpMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signUpMutation, { data, loading, error }] = useSignUpMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *      nickname: // value for 'nickname'
+ *      name: // value for 'name'
+ *      surname: // value for 'surname'
+ *   },
+ * });
+ */
+export function useSignUpMutation(
+  baseOptions?: Apollo.MutationHookOptions<SignUpMutation, SignUpMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument, options);
+}
+export type SignUpMutationHookResult = ReturnType<typeof useSignUpMutation>;
+export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>;
+export type SignUpMutationOptions = Apollo.BaseMutationOptions<
+  SignUpMutation,
+  SignUpMutationVariables
 >;

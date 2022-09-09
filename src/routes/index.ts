@@ -35,7 +35,7 @@ const routes: Routes = {
     icon: LoginIcon,
   },
   [Pages.SignUp]: {
-    component: asyncComponentLoader(() => import('@/pages/Page4')),
+    component: asyncComponentLoader(() => import('@/pages/SignUp')),
     path: '/sign-up',
     title: 'SignUp',
     icon: AddCircleIcon,

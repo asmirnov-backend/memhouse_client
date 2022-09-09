@@ -1,0 +1,19 @@
+mutation SignUp(
+  $email: String!
+  $password: String!
+  $nickname: String!
+  $name: String!
+  $surname: String!
+) {
+  registration(
+    RegistrationInput: {
+      email: $email
+      password: $password
+      nickname: $nickname
+      name: $name
+      surname: $surname
+    }
+  ) {
+    jwtToken
+  }
+}

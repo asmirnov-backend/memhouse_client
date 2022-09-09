@@ -71,6 +71,33 @@ function Profile() {
             readOnly: true,
           }}
         />
+        <TextField
+          value={data.me.Profile?.name ?? 'no name'}
+          margin="normal"
+          fullWidth
+          label="Name"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+        <TextField
+          value={data.me.Profile?.surname ?? 'no surname'}
+          margin="normal"
+          fullWidth
+          label="Surname"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+        <TextField
+          value={data.me.Profile?.birthday ?? 'no birthday'}
+          margin="normal"
+          fullWidth
+          label="Birthday"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
       </Box>
     </Container>
   );

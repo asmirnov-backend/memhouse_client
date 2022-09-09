@@ -3,50 +3,60 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Divider,
+  Link,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 import AlertPopup from '../../components/AlertPopup';
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
-import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
+import { SignUpMutationVariables, useSignUpMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
 import sleep from '../../utils/sleep';
 
-function SignIn() {
+function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors: formErrors },
-  } = useForm<LoginMutationVariables>();
+  } = useForm<SignUpMutationVariables>();
   const navigate = useNavigate();
-  const [loginMutation] = useLoginMutation({ errorPolicy: 'all' });
+  const [signUpMutation] = useSignUpMutation({ errorPolicy: 'all' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [loginErrorText, setLoginErrorText] = useState('');
+  const [isSignUpError, setIsSignUpError] = useState(false);
+  const [signUpErrorText, setSignUpErrorText] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const onSubmit = async (params: LoginMutationVariables) => {
+  const onSubmit = async (params: SignUpMutationVariables) => {
     setIsLoading(true);
-    const { data, errors } = await loginMutation({ variables: params });
+    const { data, errors } = await signUpMutation({ variables: params });
     setIsLoading(false);
 
     if (errors) {
-      setIsLoginError(true);
+      setIsSignUpError(true);
       const response = errors[0].extensions.response as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
-      setLoginErrorText(message);
+      setSignUpErrorText(message);
     }
 
     if (data) {
       setIsSuccess(true);
-      localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
+      localStorage.setItem(AUTH_TOKEN, data?.registration.jwtToken);
       // sleep to see success popup message
       await sleep(1200);
       navigate(routes[Pages.Profile].path);
+      window.location.reload();
     }
     // client.resetStore() - for logout
   };
@@ -57,9 +67,9 @@ function SignIn() {
       <BlockPageWhileLoading isLoading={isLoading} />
       <AlertPopup
         severity="error"
-        show={isLoginError}
-        setShow={setIsLoginError}
-        text={loginErrorText}
+        show={isSignUpError}
+        setShow={setIsSignUpError}
+        text={signUpErrorText}
       />
       <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
       <Box
@@ -74,7 +84,7 @@ function SignIn() {
           <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          Sign Up
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
@@ -109,11 +119,52 @@ function SignIn() {
             helperText={formErrors.password?.message}
           />
 
+          <Divider sx={{ p: 1 }} />
+
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Nickname"
+            type="text"
+            {...register('nickname', {
+              required: 'Nickname is required',
+              minLength: { value: 1, message: 'Nickname must be at least 1 character' },
+            })}
+            error={formErrors.nickname ? true : false}
+            helperText={formErrors.nickname?.message}
+          />
+
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Name"
+            type="text"
+            {...register('name', {
+              required: 'Name is required',
+              minLength: { value: 1, message: 'Name must be at least 1 character' },
+            })}
+            error={formErrors.name ? true : false}
+            helperText={formErrors.name?.message}
+          />
+
+          <TextField
+            margin="normal"
+            fullWidth
+            label="Surname"
+            type="text"
+            {...register('surname', {
+              required: 'Surname is required',
+              minLength: { value: 1, message: 'Surname must be at least 1 character' },
+            })}
+            error={formErrors.surname ? true : false}
+            helperText={formErrors.surname?.message}
+          />
+
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            Sign Up
           </Button>
-          <Link href={routes[Pages.SignUp].path} variant="body2">
-            {"Don't have an account? Sign Up"}
+          <Link href={routes[Pages.SignIn].path} variant="body2">
+            {'Already have an account? Sign Ip'}
           </Link>
         </Box>
       </Box>
@@ -121,4 +172,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
