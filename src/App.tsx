@@ -14,7 +14,7 @@ import Notifications from '@/sections/Notifications';
 import SW from '@/sections/SW';
 import Sidebar from '@/sections/Sidebar';
 
-import client from './graphql.client';
+import apolloClient from './graphql.client';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       <Notifications />
       <HotKeys />
       <SW />
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apolloClient}>
         <BrowserRouter>
           <Header />
           <Sidebar />
