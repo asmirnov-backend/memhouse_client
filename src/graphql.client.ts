@@ -36,6 +36,17 @@ const apolloClient = new ApolloClient({
               return [...existing, ...incoming];
             },
           },
+          bestMems: {
+            // Don't cache separate results based on
+            // any of this field's arguments.
+            keyArgs: false,
+
+            // Concatenate the incoming list items with
+            // the existing list items.
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          },
         },
       },
     },

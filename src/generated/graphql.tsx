@@ -191,6 +191,23 @@ export type SignUpMutation = {
   registration: { __typename?: 'JwtToken'; jwtToken: string };
 };
 
+export type GetBestMemsQueryVariables = Exact<{
+  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type GetBestMemsQuery = {
+  __typename?: 'Query';
+  bestMems: Array<{
+    __typename?: 'Mem';
+    id: string;
+    likes: number;
+    rating: number;
+    imgUrls: Array<string>;
+    text?: string | null;
+  }>;
+};
+
 export const GetMemsDocument = gql`
   query GetMems($offset: Int = 0, $limit: Int = 3) {
     mems(GetMemsInput: { take: $limit, skip: $offset }) {
@@ -373,4 +390,54 @@ export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>;
 export type SignUpMutationOptions = Apollo.BaseMutationOptions<
   SignUpMutation,
   SignUpMutationVariables
+>;
+export const GetBestMemsDocument = gql`
+  query GetBestMems($offset: Int = 0, $limit: Int = 3) {
+    bestMems(GetMemsInput: { take: $limit, skip: $offset }) {
+      id
+      likes
+      rating
+      imgUrls
+      text
+    }
+  }
+`;
+
+/**
+ * __useGetBestMemsQuery__
+ *
+ * To run a query within a React component, call `useGetBestMemsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBestMemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBestMemsQuery({
+ *   variables: {
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
+ *   },
+ * });
+ */
+export function useGetBestMemsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetBestMemsQuery, GetBestMemsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetBestMemsQuery, GetBestMemsQueryVariables>(GetBestMemsDocument, options);
+}
+export function useGetBestMemsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetBestMemsQuery, GetBestMemsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetBestMemsQuery, GetBestMemsQueryVariables>(
+    GetBestMemsDocument,
+    options,
+  );
+}
+export type GetBestMemsQueryHookResult = ReturnType<typeof useGetBestMemsQuery>;
+export type GetBestMemsLazyQueryHookResult = ReturnType<typeof useGetBestMemsLazyQuery>;
+export type GetBestMemsQueryResult = Apollo.QueryResult<
+  GetBestMemsQuery,
+  GetBestMemsQueryVariables
 >;

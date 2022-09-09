@@ -73,18 +73,20 @@ function Sidebar() {
             <ListItemText>{routes.ViewMemes.title}</ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem sx={{ p: 0 }} key={routes.ViewBestMemes.path}>
-          <ListItemButton
-            onClick={sidebarActions.close}
-            component={Link}
-            to={routes.ViewBestMemes.path}
-          >
-            <ListItemIcon>
-              {routes.ViewBestMemes.icon ? <routes.ViewBestMemes.icon /> : <DefaultIcon />}
-            </ListItemIcon>
-            <ListItemText>{routes.ViewBestMemes.title}</ListItemText>
-          </ListItemButton>
-        </ListItem>
+        {localStorage.getItem(AUTH_TOKEN) && (
+          <ListItem sx={{ p: 0 }} key={routes.ViewBestMemes.path}>
+            <ListItemButton
+              onClick={sidebarActions.close}
+              component={Link}
+              to={routes.ViewBestMemes.path}
+            >
+              <ListItemIcon>
+                {routes.ViewBestMemes.icon ? <routes.ViewBestMemes.icon /> : <DefaultIcon />}
+              </ListItemIcon>
+              <ListItemText>{routes.ViewBestMemes.title}</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
         <Divider />
         {!localStorage.getItem(AUTH_TOKEN) && (
           <ListItem

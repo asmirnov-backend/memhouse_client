@@ -1,0 +1,9 @@
+query GetBestMems($offset: Int = 0, $limit: Int = 3) {
+  bestMems(GetMemsInput: { take: $limit, skip: $offset }) {
+    id
+    likes
+    rating
+    imgUrls
+    text
+  }
+}
