@@ -4,7 +4,7 @@ import { ImageList, ImageListItem } from '@mui/material';
 
 import { isEmpty } from 'lodash';
 
-import Error from '../../components/Error';
+import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
 import { CenteredFlexBox } from '../../components/styled';
 import { useGetBestMemsQuery } from '../../generated/graphql';
@@ -17,7 +17,7 @@ function ViewBestMemes() {
   if (error) {
     return (
       <CenteredFlexBox flexDirection={'column'}>
-        <Error text={error?.message} />
+        <SimpleError text={error?.message} />
       </CenteredFlexBox>
     );
   }
@@ -31,7 +31,7 @@ function ViewBestMemes() {
   if (isEmpty(data.bestMems)) {
     return (
       <CenteredFlexBox flexDirection={'column'}>
-        <Error text="Мемы кончились 🥲" />
+        <SimpleError text="Мемы кончились 🥲" />
       </CenteredFlexBox>
     );
   }

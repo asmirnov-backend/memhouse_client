@@ -3,7 +3,7 @@ import { Avatar, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import { Box } from '@mui/system';
 
-import Error from '../../components/Error';
+import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
 import { useProfileQuery } from '../../generated/graphql';
 
@@ -20,7 +20,7 @@ function Profile() {
           alignItems: 'center',
         }}
       >
-        <Error text={error?.message} />
+        <SimpleError text={error?.message} />
       </Box>
     );
   if (!data)
