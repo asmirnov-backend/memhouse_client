@@ -2,7 +2,7 @@ query Profile {
   me {
     email
     nickname
-    Profile {
+    profile {
       name
       surname
       birthday

@@ -34,11 +34,8 @@ export type LoginInput = {
 
 export type Mem = {
   __typename?: 'Mem';
-  dislikes: Scalars['Int'];
   id: Scalars['String'];
   imgUrls: Array<Scalars['String']>;
-  likes: Scalars['Int'];
-  rating: Scalars['Float'];
   tags?: Maybe<Array<Scalars['String']>>;
   text?: Maybe<Scalars['String']>;
 };
@@ -49,9 +46,18 @@ export type MemCreateInput = {
   text?: InputMaybe<Scalars['String']>;
 };
 
+export type MemFull = {
+  __typename?: 'MemFull';
+  dislikes: Scalars['Int'];
+  id: Scalars['String'];
+  imgUrls: Array<Scalars['String']>;
+  likes: Scalars['Int'];
+  rating: Scalars['Float'];
+  tags?: Maybe<Array<Scalars['String']>>;
+  text?: Maybe<Scalars['String']>;
+};
+
 export type MemUpdateInput = {
-  addDislikes?: InputMaybe<Scalars['Float']>;
-  addLikes?: InputMaybe<Scalars['Float']>;
   id: Scalars['String'];
   imgUrls?: InputMaybe<Array<Scalars['String']>>;
   tags?: InputMaybe<Array<Scalars['String']>>;
@@ -60,10 +66,10 @@ export type MemUpdateInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createMem: Mem;
+  createMem: MemFull;
   login: JwtToken;
   registration: JwtToken;
-  updateMem: Mem;
+  updateMem: MemFull;
 };
 
 export type MutationCreateMemArgs = {
@@ -92,10 +98,10 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
-  bestMems: Array<Mem>;
+  bestMems: Array<MemFull>;
   me: User;
-  mems: Array<Mem>;
-  user: User;
+  mems: Array<MemFull>;
+  userById: User;
 };
 
 export type QueryBestMemsArgs = {
@@ -106,8 +112,8 @@ export type QueryMemsArgs = {
   GetMemsInput: GetMemsInput;
 };
 
-export type QueryUserArgs = {
-  UserUniqueInput: UserUniqueInput;
+export type QueryUserByIdArgs = {
+  UserByIdInput: UserByIdInput;
 };
 
 export type RegistrationInput = {
@@ -120,18 +126,16 @@ export type RegistrationInput = {
 
 export type User = {
   __typename?: 'User';
-  Profile?: Maybe<Profile>;
   createdMems: Array<Mem>;
   email: Scalars['String'];
   id: Scalars['String'];
   nickname: Scalars['String'];
+  profile?: Maybe<Profile>;
   viewedMemes: Array<Mem>;
 };
 
-export type UserUniqueInput = {
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  nickname?: InputMaybe<Scalars['String']>;
+export type UserByIdInput = {
+  id: Scalars['String'];
 };
 
 export type GetMemsQueryVariables = Exact<{
@@ -142,7 +146,7 @@ export type GetMemsQueryVariables = Exact<{
 export type GetMemsQuery = {
   __typename?: 'Query';
   mems: Array<{
-    __typename?: 'Mem';
+    __typename?: 'MemFull';
     id: string;
     likes: number;
     rating: number;
@@ -159,7 +163,7 @@ export type ProfileQuery = {
     __typename?: 'User';
     email: string;
     nickname: string;
-    Profile?: {
+    profile?: {
       __typename?: 'Profile';
       name: string;
       surname: string;
@@ -199,7 +203,7 @@ export type GetBestMemsQueryVariables = Exact<{
 export type GetBestMemsQuery = {
   __typename?: 'Query';
   bestMems: Array<{
-    __typename?: 'Mem';
+    __typename?: 'MemFull';
     id: string;
     likes: number;
     rating: number;
@@ -257,7 +261,7 @@ export const ProfileDocument = gql`
     me {
       email
       nickname
-      Profile {
+      profile {
         name
         surname
         birthday

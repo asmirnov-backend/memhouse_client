@@ -72,7 +72,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.name ?? 'no name'}
+          value={data.me.profile?.name ?? 'no name'}
           margin="normal"
           fullWidth
           label="Name"
@@ -81,7 +81,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.surname ?? 'no surname'}
+          value={data.me.profile?.surname ?? 'no surname'}
           margin="normal"
           fullWidth
           label="Surname"
@@ -90,7 +90,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.birthday ?? 'no birthday'}
+          value={data.me.profile?.birthday ?? 'no birthday'}
           margin="normal"
           fullWidth
           label="Birthday"
