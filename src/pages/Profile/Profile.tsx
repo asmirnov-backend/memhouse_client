@@ -3,7 +3,7 @@ import { Avatar, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import { Box } from '@mui/system';
 
-import Error from '../../components/Error';
+import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
 import { useProfileQuery } from '../../generated/graphql';
 
@@ -20,7 +20,7 @@ function Profile() {
           alignItems: 'center',
         }}
       >
-        <Error text={error?.message} />
+        <SimpleError text={error?.message} />
       </Box>
     );
   if (!data)
@@ -72,7 +72,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.name ?? 'no name'}
+          value={data.me.name ?? 'no name'}
           margin="normal"
           fullWidth
           label="Name"
@@ -81,7 +81,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.surname ?? 'no surname'}
+          value={data.me.surname ?? 'no surname'}
           margin="normal"
           fullWidth
           label="Surname"
@@ -90,7 +90,7 @@ function Profile() {
           }}
         />
         <TextField
-          value={data.me.Profile?.birthday ?? 'no birthday'}
+          value={data.me.birthday ?? 'no birthday'}
           margin="normal"
           fullWidth
           label="Birthday"

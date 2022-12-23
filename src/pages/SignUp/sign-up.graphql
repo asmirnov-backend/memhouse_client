@@ -4,6 +4,7 @@ mutation SignUp(
   $nickname: String!
   $name: String!
   $surname: String!
+  $birthday: String
 ) {
   registration(
     RegistrationInput: {
@@ -12,6 +13,7 @@ mutation SignUp(
       nickname: $nickname
       name: $name
       surname: $surname
+      birthday: $birthday
     }
   ) {
     jwtToken

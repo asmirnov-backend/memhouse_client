@@ -5,7 +5,7 @@ interface ErrorProps {
   text?: string;
 }
 
-export default function Error({ text }: ErrorProps) {
+export default function SimpleError({ text }: ErrorProps) {
   return (
     <>
       <ErrorIcon color="error" fontSize="large" sx={{ marginTop: 10 }} />

@@ -17,3 +17,8 @@ Prod:
 ```
 
 Replace 'http://localhost:3002/graphql' by ngrokUrl/graphql
+
+```bash
+npm run build
+firebase deploy
+```
