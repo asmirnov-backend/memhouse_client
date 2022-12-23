@@ -10,6 +10,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "ignorePatterns": ["**/generated/**/*"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -21,5 +22,10 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
