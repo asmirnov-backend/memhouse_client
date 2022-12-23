@@ -119,6 +119,7 @@ export type QueryUserByIdArgs = {
 };
 
 export type RegistrationInput = {
+  birthday?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   name: Scalars['String'];
   nickname: Scalars['String'];
@@ -172,6 +173,7 @@ export type SignUpMutationVariables = Exact<{
   nickname: Scalars['String'];
   name: Scalars['String'];
   surname: Scalars['String'];
+  birthday?: InputMaybe<Scalars['String']>;
 }>;
 
 export type SignUpMutation = {
@@ -301,6 +303,7 @@ export const SignUpDocument = gql`
     $nickname: String!
     $name: String!
     $surname: String!
+    $birthday: String
   ) {
     registration(
       RegistrationInput: {
@@ -309,6 +312,7 @@ export const SignUpDocument = gql`
         nickname: $nickname
         name: $name
         surname: $surname
+        birthday: $birthday
       }
     ) {
       jwtToken
@@ -335,6 +339,7 @@ export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMut
  *      nickname: // value for 'nickname'
  *      name: // value for 'name'
  *      surname: // value for 'surname'
+ *      birthday: // value for 'birthday'
  *   },
  * });
  */
