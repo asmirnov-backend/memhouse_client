@@ -2,10 +2,8 @@ query Profile {
   me {
     email
     nickname
-    profile {
-      name
-      surname
-      birthday
-    }
+    name
+    surname
+    birthday
   }
 }

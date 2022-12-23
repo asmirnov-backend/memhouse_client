@@ -48,7 +48,7 @@ function ViewBestMemes() {
         <ImageList sx={{ margin: 0 }} cols={1} gap={0}>
           {data.bestMems.map((mem, index) => (
             <ImageListItem key={index}>
-              <img src={mem.imgUrls[0]} />
+              <img src={mem.images[0].displayUrl} />
               <div
                 style={{
                   width: '100%',

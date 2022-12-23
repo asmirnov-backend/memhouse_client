@@ -3,7 +3,10 @@ query GetMems($offset: Int = 0, $limit: Int = 3) {
     id
     likes
     rating
-    imgUrls
     text
+    images {
+      title
+      displayUrl
+    }
   }
 }

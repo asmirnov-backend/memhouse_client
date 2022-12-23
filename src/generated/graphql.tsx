@@ -22,6 +22,17 @@ export type GetMemsInput = {
   take?: InputMaybe<Scalars['Int']>;
 };
 
+export type ImageDto = {
+  __typename?: 'ImageDto';
+  displayUrl: Scalars['String'];
+  height: Scalars['Int'];
+  id: Scalars['String'];
+  memId?: Maybe<Scalars['String']>;
+  size: Scalars['Int'];
+  title: Scalars['String'];
+  width: Scalars['Int'];
+};
+
 export type JwtToken = {
   __typename?: 'JwtToken';
   jwtToken: Scalars['String'];
@@ -32,44 +43,43 @@ export type LoginInput = {
   password: Scalars['String'];
 };
 
-export type Mem = {
-  __typename?: 'Mem';
-  id: Scalars['String'];
-  imgUrls: Array<Scalars['String']>;
-  tags?: Maybe<Array<Scalars['String']>>;
-  text?: Maybe<Scalars['String']>;
-};
-
 export type MemCreateInput = {
-  imgUrls: Array<Scalars['String']>;
+  imgsBuffers: Array<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
   text?: InputMaybe<Scalars['String']>;
 };
 
-export type MemFull = {
-  __typename?: 'MemFull';
+export type MemDto = {
+  __typename?: 'MemDto';
+  createdUserId: Scalars['String'];
+  id: Scalars['String'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type MemFullDto = {
+  __typename?: 'MemFullDto';
+  createdUserId: Scalars['String'];
   dislikes: Scalars['Int'];
   id: Scalars['String'];
-  imgUrls: Array<Scalars['String']>;
+  images: Array<ImageDto>;
   likes: Scalars['Int'];
-  rating: Scalars['Float'];
-  tags?: Maybe<Array<Scalars['String']>>;
+  rating?: Maybe<Scalars['Float']>;
+  tags: Array<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
 };
 
 export type MemUpdateInput = {
   id: Scalars['String'];
-  imgUrls?: InputMaybe<Array<Scalars['String']>>;
   tags?: InputMaybe<Array<Scalars['String']>>;
   text?: InputMaybe<Scalars['String']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createMem: MemFull;
+  createMem: MemFullDto;
   login: JwtToken;
   registration: JwtToken;
-  updateMem: MemFull;
+  updateMem: MemFullDto;
 };
 
 export type MutationCreateMemArgs = {
@@ -88,20 +98,12 @@ export type MutationUpdateMemArgs = {
   UpdateMemInput: MemUpdateInput;
 };
 
-export type Profile = {
-  __typename?: 'Profile';
-  birthday?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
-  surname: Scalars['String'];
-};
-
 export type Query = {
   __typename?: 'Query';
-  bestMems: Array<MemFull>;
-  me: User;
-  mems: Array<MemFull>;
-  userById: User;
+  bestMems: Array<MemFullDto>;
+  me: UserDto;
+  mems: Array<MemFullDto>;
+  userById: UserDto;
 };
 
 export type QueryBestMemsArgs = {
@@ -124,35 +126,20 @@ export type RegistrationInput = {
   surname: Scalars['String'];
 };
 
-export type User = {
-  __typename?: 'User';
-  createdMems: Array<Mem>;
-  email: Scalars['String'];
-  id: Scalars['String'];
-  nickname: Scalars['String'];
-  profile?: Maybe<Profile>;
-  viewedMemes: Array<Mem>;
-};
-
 export type UserByIdInput = {
   id: Scalars['String'];
 };
 
-export type GetMemsQueryVariables = Exact<{
-  offset?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-}>;
-
-export type GetMemsQuery = {
-  __typename?: 'Query';
-  mems: Array<{
-    __typename?: 'MemFull';
-    id: string;
-    likes: number;
-    rating: number;
-    imgUrls: Array<string>;
-    text?: string | null;
-  }>;
+export type UserDto = {
+  __typename?: 'UserDto';
+  birthday?: Maybe<Scalars['DateTime']>;
+  createdMems: Array<MemDto>;
+  email: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  nickname: Scalars['String'];
+  surname: Scalars['String'];
+  viewedMemes: Array<MemDto>;
 };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never }>;
@@ -160,15 +147,12 @@ export type ProfileQueryVariables = Exact<{ [key: string]: never }>;
 export type ProfileQuery = {
   __typename?: 'Query';
   me: {
-    __typename?: 'User';
+    __typename?: 'UserDto';
     email: string;
     nickname: string;
-    profile?: {
-      __typename?: 'Profile';
-      name: string;
-      surname: string;
-      birthday?: any | null;
-    } | null;
+    name: string;
+    surname: string;
+    birthday?: any | null;
   };
 };
 
@@ -203,69 +187,40 @@ export type GetBestMemsQueryVariables = Exact<{
 export type GetBestMemsQuery = {
   __typename?: 'Query';
   bestMems: Array<{
-    __typename?: 'MemFull';
+    __typename?: 'MemFullDto';
     id: string;
     likes: number;
-    rating: number;
-    imgUrls: Array<string>;
+    rating?: number | null;
     text?: string | null;
+    images: Array<{ __typename?: 'ImageDto'; title: string; displayUrl: string }>;
   }>;
 };
 
-export const GetMemsDocument = gql`
-  query GetMems($offset: Int = 0, $limit: Int = 3) {
-    mems(GetMemsInput: { take: $limit, skip: $offset }) {
-      id
-      likes
-      rating
-      imgUrls
-      text
-    }
-  }
-`;
+export type GetMemsQueryVariables = Exact<{
+  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+}>;
 
-/**
- * __useGetMemsQuery__
- *
- * To run a query within a React component, call `useGetMemsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetMemsQuery({
- *   variables: {
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *   },
- * });
- */
-export function useGetMemsQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetMemsQuery, GetMemsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetMemsQuery, GetMemsQueryVariables>(GetMemsDocument, options);
-}
-export function useGetMemsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetMemsQuery, GetMemsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetMemsQuery, GetMemsQueryVariables>(GetMemsDocument, options);
-}
-export type GetMemsQueryHookResult = ReturnType<typeof useGetMemsQuery>;
-export type GetMemsLazyQueryHookResult = ReturnType<typeof useGetMemsLazyQuery>;
-export type GetMemsQueryResult = Apollo.QueryResult<GetMemsQuery, GetMemsQueryVariables>;
+export type GetMemsQuery = {
+  __typename?: 'Query';
+  mems: Array<{
+    __typename?: 'MemFullDto';
+    id: string;
+    likes: number;
+    rating?: number | null;
+    text?: string | null;
+    images: Array<{ __typename?: 'ImageDto'; title: string; displayUrl: string }>;
+  }>;
+};
+
 export const ProfileDocument = gql`
   query Profile {
     me {
       email
       nickname
-      profile {
-        name
-        surname
-        birthday
-      }
+      name
+      surname
+      birthday
     }
   }
 `;
@@ -401,8 +356,11 @@ export const GetBestMemsDocument = gql`
       id
       likes
       rating
-      imgUrls
       text
+      images {
+        title
+        displayUrl
+      }
     }
   }
 `;
@@ -445,3 +403,50 @@ export type GetBestMemsQueryResult = Apollo.QueryResult<
   GetBestMemsQuery,
   GetBestMemsQueryVariables
 >;
+export const GetMemsDocument = gql`
+  query GetMems($offset: Int = 0, $limit: Int = 3) {
+    mems(GetMemsInput: { take: $limit, skip: $offset }) {
+      id
+      likes
+      rating
+      text
+      images {
+        title
+        displayUrl
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetMemsQuery__
+ *
+ * To run a query within a React component, call `useGetMemsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMemsQuery({
+ *   variables: {
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
+ *   },
+ * });
+ */
+export function useGetMemsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetMemsQuery, GetMemsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetMemsQuery, GetMemsQueryVariables>(GetMemsDocument, options);
+}
+export function useGetMemsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetMemsQuery, GetMemsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetMemsQuery, GetMemsQueryVariables>(GetMemsDocument, options);
+}
+export type GetMemsQueryHookResult = ReturnType<typeof useGetMemsQuery>;
+export type GetMemsLazyQueryHookResult = ReturnType<typeof useGetMemsLazyQuery>;
+export type GetMemsQueryResult = Apollo.QueryResult<GetMemsQuery, GetMemsQueryVariables>;
