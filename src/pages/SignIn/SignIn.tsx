@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mui/material';
 
-import AlertPopup from '../../components/AlertPopup';
+import { useSnackbar } from 'notistack';
+
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
-import sleep from '../../utils/sleep';
 
 function SignIn() {
   const {
@@ -21,11 +21,9 @@ function SignIn() {
     formState: { errors: formErrors },
   } = useForm<LoginMutationVariables>();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [loginMutation] = useLoginMutation({ errorPolicy: 'all' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [loginErrorText, setLoginErrorText] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const onSubmit = async (params: LoginMutationVariables) => {
     setIsLoading(true);
@@ -33,19 +31,15 @@ function SignIn() {
     setIsLoading(false);
 
     if (errors) {
-      setIsLoginError(true);
       const response = errors[0].extensions.response as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
-      setLoginErrorText(message);
+      enqueueSnackbar(message, { variant: 'error' });
     }
 
     if (data) {
-      setIsSuccess(true);
       localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
-      // sleep to see success popup message
-      await sleep(1200);
       navigate(routes[Pages.Profile].path);
     }
     // client.resetStore() - for logout
@@ -55,13 +49,6 @@ function SignIn() {
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
       <BlockPageWhileLoading isLoading={isLoading} />
-      <AlertPopup
-        severity="error"
-        show={isLoginError}
-        setShow={setIsLoginError}
-        text={loginErrorText}
-      />
-      <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
       <Box
         sx={{
           marginTop: 8,

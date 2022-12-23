@@ -14,14 +14,14 @@ import {
   Typography,
 } from '@mui/material';
 
-import AlertPopup from '../../components/AlertPopup';
+import { useSnackbar } from 'notistack';
+
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { SignUpMutationVariables, useSignUpMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
-import sleep from '../../utils/sleep';
 
 function SignUp() {
   const {
@@ -30,11 +30,9 @@ function SignUp() {
     formState: { errors: formErrors },
   } = useForm<SignUpMutationVariables>();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [signUpMutation] = useSignUpMutation({ errorPolicy: 'all' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignUpError, setIsSignUpError] = useState(false);
-  const [signUpErrorText, setSignUpErrorText] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const onSubmit = async (params: SignUpMutationVariables) => {
     setIsLoading(true);
@@ -42,21 +40,18 @@ function SignUp() {
     setIsLoading(false);
 
     if (errors) {
-      setIsSignUpError(true);
       const response = errors[0].extensions.response as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
-      setSignUpErrorText(message);
+
+      enqueueSnackbar(message, { variant: 'error' });
     }
 
     if (data) {
-      setIsSuccess(true);
       localStorage.setItem(AUTH_TOKEN, data?.registration.jwtToken);
-      // sleep to see success popup message
-      await sleep(1200);
+      enqueueSnackbar('Регистрация успешна', { variant: 'success' });
       navigate(routes[Pages.Profile].path);
-      window.location.reload();
     }
     // client.resetStore() - for logout
   };
@@ -65,13 +60,6 @@ function SignUp() {
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
       <BlockPageWhileLoading isLoading={isLoading} />
-      <AlertPopup
-        severity="error"
-        show={isSignUpError}
-        setShow={setIsSignUpError}
-        text={signUpErrorText}
-      />
-      <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
       <Box
         sx={{
           marginTop: 8,

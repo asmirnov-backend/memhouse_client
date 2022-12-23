@@ -16,7 +16,7 @@ function render(App: ComponentType) {
       <RecoilRoot>
         <HelmetProvider>
           <ThemeProvider>
-            <SnackbarProvider maxSnack={3} autoHideDuration={10000}>
+            <SnackbarProvider autoHideDuration={6000} dense={true}>
               <App />
             </SnackbarProvider>
           </ThemeProvider>
