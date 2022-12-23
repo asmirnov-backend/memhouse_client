@@ -1,5 +1,6 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import LoginIcon from '@mui/icons-material/Login';
@@ -45,6 +46,12 @@ const routes: Routes = {
     path: '/profile',
     title: 'Profile',
     icon: AccountCircleIcon,
+  },
+  [Pages.CreateMem]: {
+    component: asyncComponentLoader(() => import('@/pages/CreateMem')),
+    path: '/create-mem',
+    title: 'Create Mem',
+    icon: AddCircleOutlineIcon,
   },
   [Pages.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),

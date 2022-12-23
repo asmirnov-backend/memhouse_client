@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot } from 'recoil';
 
+import { SnackbarProvider } from 'notistack';
+
 import ThemeProvider from '@/theme/Provider';
 
 const container = document.getElementById('root') as HTMLElement;
@@ -14,7 +16,9 @@ function render(App: ComponentType) {
       <RecoilRoot>
         <HelmetProvider>
           <ThemeProvider>
-            <App />
+            <SnackbarProvider maxSnack={3} autoHideDuration={10000}>
+              <App />
+            </SnackbarProvider>
           </ThemeProvider>
         </HelmetProvider>
       </RecoilRoot>

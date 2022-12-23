@@ -87,6 +87,20 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         )}
+        {localStorage.getItem(AUTH_TOKEN) && (
+          <ListItem sx={{ p: 0 }} key={routes.CreateMem.path}>
+            <ListItemButton
+              onClick={sidebarActions.close}
+              component={Link}
+              to={routes.CreateMem.path}
+            >
+              <ListItemIcon>
+                {routes.CreateMem.icon ? <routes.CreateMem.icon /> : <DefaultIcon />}
+              </ListItemIcon>
+              <ListItemText>{routes.CreateMem.title}</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
         <Divider />
         {!localStorage.getItem(AUTH_TOKEN) && (
           <ListItem

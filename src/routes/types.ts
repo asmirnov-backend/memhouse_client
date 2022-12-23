@@ -11,6 +11,7 @@ enum Pages {
   SignUp = 'SignUp',
   Profile = 'Profile',
   NotFound = 'NotFound',
+  CreateMem = 'CreateMem',
 }
 
 type PathRouteCustomProps = {
