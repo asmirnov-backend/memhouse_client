@@ -2,20 +2,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Divider,
-  Link,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Container, Divider, Link, Typography } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
+import CustomTextField from '../../components/CustomTextField';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { SignUpMutationVariables, useSignUpMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
@@ -72,9 +64,7 @@ function SignUp() {
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
-          <TextField
-            margin="normal"
-            fullWidth
+          <CustomTextField
             label="Email Address"
             type="email"
             {...register('email', {
@@ -90,9 +80,7 @@ function SignUp() {
           />
 
           {/* include validation with required or other standard HTML validation rules */}
-          <TextField
-            margin="normal"
-            fullWidth
+          <CustomTextField
             label="Password"
             type="password"
             {...register('password', {
@@ -105,9 +93,7 @@ function SignUp() {
 
           <Divider sx={{ p: 1 }} />
 
-          <TextField
-            margin="normal"
-            fullWidth
+          <CustomTextField
             label="Nickname"
             type="text"
             {...register('nickname', {
@@ -118,9 +104,7 @@ function SignUp() {
             helperText={formErrors.nickname?.message}
           />
 
-          <TextField
-            margin="normal"
-            fullWidth
+          <CustomTextField
             label="Name"
             type="text"
             {...register('name', {
@@ -131,9 +115,7 @@ function SignUp() {
             helperText={formErrors.name?.message}
           />
 
-          <TextField
-            margin="normal"
-            fullWidth
+          <CustomTextField
             label="Surname"
             type="text"
             {...register('surname', {
