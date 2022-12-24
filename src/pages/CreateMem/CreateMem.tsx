@@ -1,13 +1,12 @@
 import { FileUploader } from 'react-drag-drop-files';
 import { Controller, useForm } from 'react-hook-form';
 
-import { Button, Typography } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
 
 import { encode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 
-import CustomTextField from '../../components/CustomTextField';
 import { FullCenteredFlexBox } from '../../components/styled';
 import { CreateMemMutationVariables, useCreateMemMutation } from '../../generated/graphql';
 
@@ -64,7 +63,9 @@ function CreateMem() {
             )}
           />
 
-          <CustomTextField
+          <TextField
+            margin="normal"
+            fullWidth
             label="Text"
             type="text"
             multiline
@@ -73,7 +74,9 @@ function CreateMem() {
             helperText={formErrors.text?.message}
           />
 
-          <CustomTextField
+          <TextField
+            margin="normal"
+            fullWidth
             label="Tags"
             type="text"
             {...register('tags')}

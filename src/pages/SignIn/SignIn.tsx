@@ -2,12 +2,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { Avatar, Box, Button, Container, Link, Typography } from '@mui/material';
+import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
-import CustomTextField from '../../components/CustomTextField';
 import { FullCenteredFlexBox } from '../../components/styled';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
@@ -57,7 +56,9 @@ function SignIn() {
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
-          <CustomTextField
+          <TextField
+            margin="normal"
+            fullWidth
             label="Email Address"
             type="email"
             {...register('email', {
@@ -73,7 +74,9 @@ function SignIn() {
           />
 
           {/* include validation with required or other standard HTML validation rules */}
-          <CustomTextField
+          <TextField
+            margin="normal"
+            fullWidth
             label="Password"
             type="password"
             {...register('password', {

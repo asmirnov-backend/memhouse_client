@@ -1,8 +1,8 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Avatar, Typography } from '@mui/material';
+import { Avatar, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
+import { Box } from '@mui/system';
 
-import CustomTextField from '../../components/CustomTextField';
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
 import { FullCenteredFlexBox } from '../../components/styled';
@@ -11,8 +11,32 @@ import { useProfileQuery } from '../../generated/graphql';
 function Profile() {
   const { data, error } = useProfileQuery();
 
-  if (error) return <SimpleError text={error?.message} />;
-  if (!data) return <SimpleLoader />;
+  if (error)
+    return (
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <SimpleError text={error?.message} />
+      </Box>
+    );
+  if (!data)
+    return (
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <SimpleLoader />
+      </Box>
+    );
 
   return (
     <Container component="main" maxWidth="xs">
@@ -23,36 +47,46 @@ function Profile() {
         <Typography component="h1" variant="h5">
           Profile
         </Typography>
-        <CustomTextField
+        <TextField
           value={data.me.email}
+          margin="normal"
+          fullWidth
           label="Email Address"
           InputProps={{
             readOnly: true,
           }}
         />
-        <CustomTextField
+        <TextField
           value={data.me.nickname}
+          margin="normal"
+          fullWidth
           label="Nickname"
           InputProps={{
             readOnly: true,
           }}
         />
-        <CustomTextField
+        <TextField
           value={data.me.name ?? 'no name'}
+          margin="normal"
+          fullWidth
           label="Name"
           InputProps={{
             readOnly: true,
           }}
         />
-        <CustomTextField
+        <TextField
           value={data.me.surname ?? 'no surname'}
+          margin="normal"
+          fullWidth
           label="Surname"
           InputProps={{
             readOnly: true,
           }}
         />
-        <CustomTextField
+        <TextField
           value={data.me.birthday ?? 'no birthday'}
+          margin="normal"
+          fullWidth
           label="Birthday"
           InputProps={{
             readOnly: true,
