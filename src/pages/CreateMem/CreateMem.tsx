@@ -57,7 +57,7 @@ function CreateMem() {
               <FileUploader
                 multiple={true}
                 handleChange={field.onChange}
-                types={['png', 'jpeg']}
+                types={['png', 'jpeg', 'jpg']}
                 maxSize={10} // in mb
               />
             )}
