@@ -11,19 +11,7 @@ function Welcome() {
     <>
       <FullSizeCenteredFlexBox flexDirection={isPortrait ? 'column' : 'row'}>
         <Typography variant="h1" m={5}>
-          😊
-        </Typography>
-        <Typography variant="h1" m={5}>
-          😆
-        </Typography>
-        <Typography variant="h1" m={5}>
-          😋
-        </Typography>
-        <Typography variant="h1" m={5}>
           😂
-        </Typography>
-        <Typography variant="h1" m={5}>
-          👍
         </Typography>
       </FullSizeCenteredFlexBox>
     </>

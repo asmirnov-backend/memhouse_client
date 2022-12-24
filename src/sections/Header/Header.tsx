@@ -3,18 +3,18 @@ import ThemeIcon from '@mui/icons-material/InvertColors';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
 import { FlexBox } from '@/components/styled';
-import { repository, title } from '@/config';
+import { repository } from '@/config';
 import useHotKeysDialog from '@/store/hotkeys';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 
+import InstallPWA from '../../components/InstallPwa';
 import { HotKeysButton } from './styled';
 
 function Header() {
@@ -37,7 +37,7 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Button color="info">{title}</Button>
+            <InstallPWA />
           </FlexBox>
           <FlexBox>
             <FlexBox>
