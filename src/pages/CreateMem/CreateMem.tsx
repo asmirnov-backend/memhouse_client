@@ -7,6 +7,7 @@ import { Box, Container } from '@mui/system';
 import { encode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 
+import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import { FullCenteredFlexBox } from '../../components/styled';
 import { CreateMemMutationVariables, useCreateMemMutation } from '../../generated/graphql';
 
@@ -21,7 +22,7 @@ function CreateMem() {
     formState: { errors: formErrors },
   } = useForm<FormInput>();
   const { enqueueSnackbar } = useSnackbar();
-  const [createMemMutation] = useCreateMemMutation({ errorPolicy: 'all' });
+  const [createMemMutation, { loading }] = useCreateMemMutation({ errorPolicy: 'all' });
 
   const onSubmit = async (params: FormInput) => {
     const imgsBuffers: string[] = [];
@@ -45,6 +46,7 @@ function CreateMem() {
 
   return (
     <Container component="main" maxWidth="xs">
+      <BlockPageWhileLoading isLoading={loading} />
       <FullCenteredFlexBox>
         <Typography component="h1" variant="h5">
           Create Mem
