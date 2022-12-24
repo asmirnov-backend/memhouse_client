@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,13 +30,10 @@ function SignUp() {
   } = useForm<SignUpMutationVariables>();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [signUpMutation] = useSignUpMutation({ errorPolicy: 'all' });
-  const [isLoading, setIsLoading] = useState(false);
+  const [signUpMutation, { loading }] = useSignUpMutation({ errorPolicy: 'all' });
 
   const onSubmit = async (params: SignUpMutationVariables) => {
-    setIsLoading(true);
     const { data, errors } = await signUpMutation({ variables: params });
-    setIsLoading(false);
 
     if (errors) {
       const response = errors[0].extensions.response as ErrorResponse;
@@ -59,7 +55,7 @@ function SignUp() {
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
-      <BlockPageWhileLoading isLoading={isLoading} />
+      <BlockPageWhileLoading isLoading={loading} />
       <Box
         sx={{
           marginTop: 8,
