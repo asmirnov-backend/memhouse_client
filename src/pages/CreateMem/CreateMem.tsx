@@ -8,6 +8,7 @@ import { encode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 
 import CustomTextField from '../../components/CustomTextField';
+import { FullCenteredFlexBox } from '../../components/styled';
 import { CreateMemMutationVariables, useCreateMemMutation } from '../../generated/graphql';
 
 type FormInput = Omit<CreateMemMutationVariables, 'imgsBuffers'> & { images: FileList };
@@ -45,14 +46,7 @@ function CreateMem() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <FullCenteredFlexBox>
         <Typography component="h1" variant="h5">
           Create Mem
         </Typography>
@@ -91,7 +85,7 @@ function CreateMem() {
             Create
           </Button>
         </Box>
-      </Box>
+      </FullCenteredFlexBox>
     </Container>
   );
 }

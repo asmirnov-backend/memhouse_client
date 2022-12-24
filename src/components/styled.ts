@@ -6,10 +6,13 @@ export const FlexBox = styled(Box)({
 });
 
 export const CenteredFlexBox = styled(FlexBox)({
-  marginTop: 8,
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
+});
+
+export const FullCenteredFlexBox = styled(CenteredFlexBox)({
+  marginTop: 80,
 });
 
 export const FullSizeCenteredFlexBox = styled(CenteredFlexBox)({

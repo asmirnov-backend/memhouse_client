@@ -8,6 +8,7 @@ import { useSnackbar } from 'notistack';
 
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import CustomTextField from '../../components/CustomTextField';
+import { FullCenteredFlexBox } from '../../components/styled';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
@@ -47,14 +48,7 @@ function SignIn() {
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
       <BlockPageWhileLoading isLoading={loading} />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <FullCenteredFlexBox>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOpenIcon />
         </Avatar>
@@ -97,7 +91,7 @@ function SignIn() {
             {"Don't have an account? Sign Up"}
           </Link>
         </Box>
-      </Box>
+      </FullCenteredFlexBox>
     </Container>
   );
 }

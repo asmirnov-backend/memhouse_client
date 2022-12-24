@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import CustomTextField from '../../components/CustomTextField';
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
-import { CenteredFlexBox } from '../../components/styled';
+import { FullCenteredFlexBox } from '../../components/styled';
 import { useProfileQuery } from '../../generated/graphql';
 
 function Profile() {
@@ -16,7 +16,7 @@ function Profile() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CenteredFlexBox>
+      <FullCenteredFlexBox>
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <AccountCircleIcon />
         </Avatar>
@@ -58,7 +58,7 @@ function Profile() {
             readOnly: true,
           }}
         />
-      </CenteredFlexBox>
+      </FullCenteredFlexBox>
     </Container>
   );
 }

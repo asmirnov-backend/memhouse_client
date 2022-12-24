@@ -1,11 +1,11 @@
 import { CircularProgress } from '@mui/material';
 
-import { CenteredFlexBox } from '../styled';
+import { FullCenteredFlexBox } from '../styled';
 
 export default function SimpleLoader() {
   return (
-    <CenteredFlexBox>
+    <FullCenteredFlexBox>
       <CircularProgress color="inherit" />
-    </CenteredFlexBox>
+    </FullCenteredFlexBox>
   );
 }
