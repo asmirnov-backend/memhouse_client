@@ -35,7 +35,8 @@ function SignIn() {
     }
 
     if (data) {
-      localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
+      localStorage.setItem(AUTH_TOKEN, data.login.jwtToken);
+      enqueueSnackbar('Вход успешен', { variant: 'success' });
       navigate(routes[Pages.Profile].path);
     }
     // client.resetStore() - for logout
