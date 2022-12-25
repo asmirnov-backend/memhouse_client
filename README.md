@@ -1,24 +1,7 @@
 # MemHouse Client
 
-## To see in Internet
-
-Set up [ngrok](https://dashboard.ngrok.com/get-started/setup)
-
-Dev:
+Replace 'http://localhost:3002' by ngrokUrl in env
 
 ```bash
-/Users/user/Downloads/ngrok http 3001
-```
-
-Prod:
-
-```bash
-/Users/user/Downloads/ngrok http 443
-```
-
-Replace 'http://localhost:3002/graphql' by ngrokUrl/graphql
-
-```bash
-npm run build
-firebase deploy
+npm run deploy
 ```
