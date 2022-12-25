@@ -39,5 +39,8 @@
     "create mem": "Создать мем",
     "settings": "Настройки"
   },
-  "logout": "Выйти"
+  "logout": "Выйти",
+  "settings": {
+    "language": "Язык"
+  }
 }

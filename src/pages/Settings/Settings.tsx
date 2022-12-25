@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
 
-import { Avatar, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Avatar, MenuItem, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 
 import { FullCenteredFlexBox } from '../../components/styled';
@@ -15,7 +15,7 @@ function Settings() {
   const { t, i18n } = useTranslation();
   const [, setMuiLocale] = useRecoilState(muiLocaleState);
 
-  const changeLanguage = async (event: SelectChangeEvent<lngs>) => {
+  const changeLanguage = async (event: any) => {
     await i18n.changeLanguage(event.target.value);
     setMuiLocale(i18nToMuiLocale[event.target.value as lngs]);
   };
@@ -29,16 +29,17 @@ function Settings() {
         <Typography component="h1" variant="h5">
           {t('pages titles.settings')}
         </Typography>
-        <Select
-          sx={{ mt: 3 }}
-          label="fwefwefew"
+        <TextField
+          margin="normal"
           fullWidth
+          select
+          label={t('settings.language')}
           value={i18n.language as lngs}
           onChange={changeLanguage}
         >
           <MenuItem value={'ru'}>Русский</MenuItem>
           <MenuItem value={'en'}>English</MenuItem>
-        </Select>
+        </TextField>
       </FullCenteredFlexBox>
     </Container>
   );

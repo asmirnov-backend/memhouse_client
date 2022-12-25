@@ -38,5 +38,8 @@
     "create mem": "Create meme",
     "settings": "Settings"
   },
-  "logout": "Log out"
+  "logout": "Log out",
+  "settings": {
+    "language": "Language"
+  }
 }
