@@ -29,7 +29,7 @@ const InstallPWA = () => {
       return;
     }
     (promptInstall as any).prompt();
-    enqueueSnackbar('Установлено', { variant: 'success' });
+    enqueueSnackbar(t('installing'), { variant: 'success' });
   };
 
   if (!supportsPWA) {
