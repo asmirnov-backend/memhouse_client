@@ -164,7 +164,7 @@ function Sidebar() {
                 sidebarActions.close();
               }}
               component={Link}
-              to={routes.Welcome.path}
+              to={routes.SignIn.path}
             >
               <ListItemIcon>
                 <LogoutIcon />
