@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
 import { CenteredFlexBox, FullSizeCenteredFlexBox } from '@/components/styled';
-import { giphy404, messages } from '@/config';
+import { giphy404 } from '@/config';
 
 function NotFound() {
+  const { t } = useTranslation();
+
   return (
     <Container sx={{ height: '100%' }}>
       <FullSizeCenteredFlexBox flexDirection="column">
@@ -19,11 +22,7 @@ function NotFound() {
         />
         <CenteredFlexBox flexDirection="column">
           <Typography sx={{ mt: 2 }} variant="h4" color="error">
-            404 Not Found
-          </Typography>
-          <Divider variant="middle" />
-          <Typography variant="h4" sx={{ color: (theme) => theme.palette.info.main }}>
-            {messages[404]}
+            {t('404')}
           </Typography>
         </CenteredFlexBox>
       </FullSizeCenteredFlexBox>

@@ -1,18 +1,19 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mui/material';
 
-import AlertPopup from '../../components/AlertPopup';
+import { useSnackbar } from 'notistack';
+
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
+import { FullCenteredFlexBox } from '../../components/styled';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
-import sleep from '../../utils/sleep';
 
 function SignIn() {
   const {
@@ -21,31 +22,24 @@ function SignIn() {
     formState: { errors: formErrors },
   } = useForm<LoginMutationVariables>();
   const navigate = useNavigate();
-  const [loginMutation] = useLoginMutation({ errorPolicy: 'all' });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [loginErrorText, setLoginErrorText] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
+  const [loginMutation, { loading }] = useLoginMutation({ errorPolicy: 'all' });
 
   const onSubmit = async (params: LoginMutationVariables) => {
-    setIsLoading(true);
     const { data, errors } = await loginMutation({ variables: params });
-    setIsLoading(false);
 
     if (errors) {
-      setIsLoginError(true);
       const response = errors[0].extensions.response as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
-      setLoginErrorText(message);
+      enqueueSnackbar(message, { variant: 'error' });
     }
 
     if (data) {
-      setIsSuccess(true);
-      localStorage.setItem(AUTH_TOKEN, data?.login.jwtToken);
-      // sleep to see success popup message
-      await sleep(1200);
+      localStorage.setItem(AUTH_TOKEN, data.login.jwtToken);
+      enqueueSnackbar('Вход успешен', { variant: 'success' });
       navigate(routes[Pages.Profile].path);
     }
     // client.resetStore() - for logout
@@ -54,34 +48,20 @@ function SignIn() {
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
-      <BlockPageWhileLoading isLoading={isLoading} />
-      <AlertPopup
-        severity="error"
-        show={isLoginError}
-        setShow={setIsLoginError}
-        text={loginErrorText}
-      />
-      <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <BlockPageWhileLoading isLoading={loading} />
+      <FullCenteredFlexBox>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          {t('sign in title')}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
           <TextField
             margin="normal"
             fullWidth
-            label="Email Address"
+            label={t('email')}
             type="email"
             {...register('email', {
               required: 'Email Address is required',
@@ -99,7 +79,7 @@ function SignIn() {
           <TextField
             margin="normal"
             fullWidth
-            label="Password"
+            label={t('password')}
             type="password"
             {...register('password', {
               required: 'Password is required',
@@ -110,13 +90,13 @@ function SignIn() {
           />
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            {t('sign in button')}
           </Button>
           <Link href={routes[Pages.SignUp].path} variant="body2">
-            {"Don't have an account? Sign Up"}
+            {t('link to sign up')}
           </Link>
         </Box>
-      </Box>
+      </FullCenteredFlexBox>
     </Container>
   );
 }

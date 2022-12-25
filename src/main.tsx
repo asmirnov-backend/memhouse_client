@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import welcome from '@/utils/welcome';
 
+import './i18n';
+
 // Root contains the main dependencies and providers of the base app
 //  - React, ReactDom, RecoilRoot, HelmetProvider, ThemeProvider, MUI-core)
 // App contains the main structure of the base app

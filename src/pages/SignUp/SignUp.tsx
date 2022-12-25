@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
@@ -14,14 +14,15 @@ import {
   Typography,
 } from '@mui/material';
 
-import AlertPopup from '../../components/AlertPopup';
+import { useSnackbar } from 'notistack';
+
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
+import { FullCenteredFlexBox } from '../../components/styled';
 import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { SignUpMutationVariables, useSignUpMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 import routes from '../../routes/index';
 import { Pages } from '../../routes/types';
-import sleep from '../../utils/sleep';
 
 function SignUp() {
   const {
@@ -30,33 +31,26 @@ function SignUp() {
     formState: { errors: formErrors },
   } = useForm<SignUpMutationVariables>();
   const navigate = useNavigate();
-  const [signUpMutation] = useSignUpMutation({ errorPolicy: 'all' });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSignUpError, setIsSignUpError] = useState(false);
-  const [signUpErrorText, setSignUpErrorText] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
+  const [signUpMutation, { loading }] = useSignUpMutation({ errorPolicy: 'all' });
 
   const onSubmit = async (params: SignUpMutationVariables) => {
-    setIsLoading(true);
     const { data, errors } = await signUpMutation({ variables: params });
-    setIsLoading(false);
 
     if (errors) {
-      setIsSignUpError(true);
       const response = errors[0].extensions.response as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
-      setSignUpErrorText(message);
+
+      enqueueSnackbar(message, { variant: 'error' });
     }
 
     if (data) {
-      setIsSuccess(true);
       localStorage.setItem(AUTH_TOKEN, data?.registration.jwtToken);
-      // sleep to see success popup message
-      await sleep(1200);
+      enqueueSnackbar('Регистрация успешна', { variant: 'success' });
       navigate(routes[Pages.Profile].path);
-      window.location.reload();
     }
     // client.resetStore() - for logout
   };
@@ -64,34 +58,20 @@ function SignUp() {
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Container component="main" maxWidth="xs">
-      <BlockPageWhileLoading isLoading={isLoading} />
-      <AlertPopup
-        severity="error"
-        show={isSignUpError}
-        setShow={setIsSignUpError}
-        text={signUpErrorText}
-      />
-      <AlertPopup severity="success" show={isSuccess} text={'Успех'} />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <BlockPageWhileLoading isLoading={loading} />
+      <FullCenteredFlexBox>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          {t('sign up title')}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
           <TextField
             margin="normal"
             fullWidth
-            label="Email Address"
+            label={t('email')}
             type="email"
             {...register('email', {
               required: 'Email Address is required',
@@ -109,7 +89,7 @@ function SignUp() {
           <TextField
             margin="normal"
             fullWidth
-            label="Password"
+            label={t('password')}
             type="password"
             {...register('password', {
               required: 'Password is required',
@@ -124,7 +104,7 @@ function SignUp() {
           <TextField
             margin="normal"
             fullWidth
-            label="Nickname"
+            label={t('user.nickname')}
             type="text"
             {...register('nickname', {
               required: 'Nickname is required',
@@ -137,7 +117,7 @@ function SignUp() {
           <TextField
             margin="normal"
             fullWidth
-            label="Name"
+            label={t('user.name')}
             type="text"
             {...register('name', {
               required: 'Name is required',
@@ -150,7 +130,7 @@ function SignUp() {
           <TextField
             margin="normal"
             fullWidth
-            label="Surname"
+            label={t('user.surname')}
             type="text"
             {...register('surname', {
               required: 'Surname is required',
@@ -161,13 +141,13 @@ function SignUp() {
           />
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign Up
+            {t('sign up button')}
           </Button>
           <Link href={routes[Pages.SignIn].path} variant="body2">
-            {'Already have an account? Sign Ip'}
+            {t('link to sign in')}
           </Link>
         </Box>
-      </Box>
+      </FullCenteredFlexBox>
     </Container>
   );
 }

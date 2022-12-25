@@ -1,7 +1,3 @@
-import isMobile from '@/utils/is-mobile';
-
-import type { Notifications } from './types';
-
 const title = 'MemHouse';
 
 const email = 'smirnov.andrew.1999@yandex.ru';
@@ -24,21 +20,9 @@ const messages = {
   images: {
     failed: 'something went wrong during image loading :(',
   },
-  404: 'Hey bro? What are you looking for?',
 };
 
 const dateFormat = 'MMMM DD, YYYY';
-
-const notifications: Notifications = {
-  options: {
-    anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'left',
-    },
-    autoHideDuration: 6000,
-  },
-  maxSnack: isMobile ? 3 : 4,
-};
 
 const loader = {
   // no more blinking in your app
@@ -48,4 +32,4 @@ const loader = {
 
 const giphy404 = 'https://giphy.com/embed/xTiN0L7EW5trfOvEk0';
 
-export { loader, notifications, dateFormat, messages, repository, email, title, giphy404 };
+export { loader, dateFormat, messages, repository, email, title, giphy404 };

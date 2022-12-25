@@ -143,6 +143,17 @@ export type UserDto = {
   viewedMemes: Array<MemDto>;
 };
 
+export type CreateMemMutationVariables = Exact<{
+  text?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  imgsBuffers: Array<Scalars['String']> | Scalars['String'];
+}>;
+
+export type CreateMemMutation = {
+  __typename?: 'Mutation';
+  createMem: { __typename?: 'MemFullDto'; id: string };
+};
+
 export type ProfileQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProfileQuery = {
@@ -215,6 +226,52 @@ export type GetMemsQuery = {
   }>;
 };
 
+export const CreateMemDocument = gql`
+  mutation CreateMem($text: String, $tags: [String!], $imgsBuffers: [String!]!) {
+    createMem(CreateMemInput: { text: $text, tags: $tags, imgsBuffers: $imgsBuffers }) {
+      id
+    }
+  }
+`;
+export type CreateMemMutationFn = Apollo.MutationFunction<
+  CreateMemMutation,
+  CreateMemMutationVariables
+>;
+
+/**
+ * __useCreateMemMutation__
+ *
+ * To run a mutation, you first call `useCreateMemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMemMutation, { data, loading, error }] = useCreateMemMutation({
+ *   variables: {
+ *      text: // value for 'text'
+ *      tags: // value for 'tags'
+ *      imgsBuffers: // value for 'imgsBuffers'
+ *   },
+ * });
+ */
+export function useCreateMemMutation(
+  baseOptions?: Apollo.MutationHookOptions<CreateMemMutation, CreateMemMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<CreateMemMutation, CreateMemMutationVariables>(
+    CreateMemDocument,
+    options,
+  );
+}
+export type CreateMemMutationHookResult = ReturnType<typeof useCreateMemMutation>;
+export type CreateMemMutationResult = Apollo.MutationResult<CreateMemMutation>;
+export type CreateMemMutationOptions = Apollo.BaseMutationOptions<
+  CreateMemMutation,
+  CreateMemMutationVariables
+>;
 export const ProfileDocument = gql`
   query Profile {
     me {

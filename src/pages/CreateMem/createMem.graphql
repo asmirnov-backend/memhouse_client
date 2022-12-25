@@ -1,0 +1,5 @@
+mutation CreateMem($text: String, $tags: [String!], $imgsBuffers: [String!]!) {
+  createMem(CreateMemInput: { text: $text, tags: $tags, imgsBuffers: $imgsBuffers }) {
+    id
+  }
+}

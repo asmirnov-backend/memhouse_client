@@ -2,6 +2,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { ImageList, ImageListItem } from '@mui/material';
 
+import { t } from 'i18next';
 import { isEmpty } from 'lodash';
 
 import SimpleError from '../../components/SimpleError';
@@ -31,7 +32,7 @@ function ViewBestMemes() {
   if (isEmpty(data.bestMems)) {
     return (
       <CenteredFlexBox flexDirection={'column'}>
-        <SimpleError text="Мемы кончились 🥲" />
+        <SimpleError text={t('mems end')} />
       </CenteredFlexBox>
     );
   }
