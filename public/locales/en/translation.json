@@ -1,0 +1,41 @@
+{
+  "title": "MemHouse",
+  "sign in title": "Login",
+  "email": "Email",
+  "password": "Password",
+  "sign in button": "Login",
+  "link to sign up": "Register",
+  "change language": "Change language",
+  "install app": "Install",
+  "error": "Error",
+  "success": "Successful",
+  "close": "Close",
+  "create mem": "Create a meme",
+  "mem text": "Meme caption",
+  "mem tags": "Tags",
+  "create": "Create",
+  "404": "Error 404. Page not found",
+  "profile title": "Profile",
+  "user": {
+    "nickname": "Nickname",
+    "name": "Name",
+    "surname": "Surname",
+    "birthday": "Birthday"
+  },
+  "sign up title": "Registration",
+  "sign up button": "Register",
+  "link to sign in": "Log in",
+  "mems end": "Memes are over",
+  "reload": "Reload",
+  "update to new version text": "New content is available, click on the reload button to update.",
+  "pages titles": {
+    "welcome": "Home",
+    "view best memes": "View best memes",
+    "view memes": "Watch memes",
+    "sign in": "Login",
+    "sign up": "Register",
+    "profile": "Profile",
+    "create mem": "Create meme"
+  },
+  "logout": "Log out"
+}
