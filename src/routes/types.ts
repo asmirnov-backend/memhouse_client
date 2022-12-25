@@ -20,7 +20,7 @@ type PathRouteCustomProps = {
   icon?: FC<SvgIconProps>;
 };
 
-type Routes = Record<Pages, PathRouteProps & PathRouteCustomProps>;
+type Routes = Record<Pages, PathRouteProps & PathRouteCustomProps & { path: string }>;
 
 export type { Routes };
 export { Pages };
