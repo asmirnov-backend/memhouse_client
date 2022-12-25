@@ -10,17 +10,14 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { FlexBox } from '@/components/styled';
 import { repository } from '@/config';
-import useHotKeysDialog from '@/store/hotkeys';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 
 import InstallPWA from '../../components/InstallPwa';
-import { HotKeysButton } from './styled';
 
 function Header() {
   const [, sidebarActions] = useSidebar();
   const [, themeActions] = useTheme();
-  const [, hotKeysDialogActions] = useHotKeysDialog();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -40,18 +37,6 @@ function Header() {
             <InstallPWA />
           </FlexBox>
           <FlexBox>
-            <FlexBox>
-              <Tooltip title="Hot keys" arrow>
-                <HotKeysButton
-                  size="small"
-                  variant="outlined"
-                  aria-label="open hotkeys dialog"
-                  onClick={hotKeysDialogActions.open}
-                >
-                  alt + /
-                </HotKeysButton>
-              </Tooltip>
-            </FlexBox>
             <Divider orientation="vertical" flexItem />
             <Tooltip title="Author" arrow>
               <IconButton color="info" size="large" component="a" href={repository} target="_blank">
