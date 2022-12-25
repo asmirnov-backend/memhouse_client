@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import LockOpenIcon from '@mui/icons-material/LockOpen';
@@ -21,6 +22,7 @@ function SignIn() {
     formState: { errors: formErrors },
   } = useForm<LoginMutationVariables>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [loginMutation, { loading }] = useLoginMutation({ errorPolicy: 'all' });
 
@@ -52,14 +54,14 @@ function SignIn() {
           <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          {t('sign in title')}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           {/* register your input into the hook by invoking the "register" function */}
           <TextField
             margin="normal"
             fullWidth
-            label="Email Address"
+            label={t('email')}
             type="email"
             {...register('email', {
               required: 'Email Address is required',
@@ -77,7 +79,7 @@ function SignIn() {
           <TextField
             margin="normal"
             fullWidth
-            label="Password"
+            label={t('password')}
             type="password"
             {...register('password', {
               required: 'Password is required',
@@ -88,10 +90,10 @@ function SignIn() {
           />
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            {t('sign in button')}
           </Button>
           <Link href={routes[Pages.SignUp].path} variant="body2">
-            {"Don't have an account? Sign Up"}
+            {t('link to sign up')}
           </Link>
         </Box>
       </FullCenteredFlexBox>
