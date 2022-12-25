@@ -49,7 +49,7 @@ function SignUp() {
 
     if (data) {
       localStorage.setItem(AUTH_TOKEN, data?.registration.jwtToken);
-      enqueueSnackbar('Регистрация успешна', { variant: 'success' });
+      enqueueSnackbar(t('success'), { variant: 'success' });
       navigate(routes[Pages.Profile].path);
     }
     // client.resetStore() - for logout
