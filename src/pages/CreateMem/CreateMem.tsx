@@ -1,5 +1,6 @@
 import { FileUploader } from 'react-drag-drop-files';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Button, TextField, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
@@ -22,6 +23,7 @@ function CreateMem() {
     formState: { errors: formErrors },
   } = useForm<FormInput>();
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   const [createMemMutation, { loading }] = useCreateMemMutation({ errorPolicy: 'all' });
 
   const onSubmit = async (params: FormInput) => {
@@ -37,10 +39,10 @@ function CreateMem() {
     });
 
     if ('errors' in creationResult) {
-      enqueueSnackbar('Ошибка', { variant: 'error' });
+      enqueueSnackbar(t('error') + creationResult.errors?.join('. '), { variant: 'error' });
     }
 
-    enqueueSnackbar('Успешно', { variant: 'success' });
+    enqueueSnackbar(t('success'), { variant: 'success' });
     reset();
   };
 
@@ -49,7 +51,7 @@ function CreateMem() {
       <BlockPageWhileLoading isLoading={loading} />
       <FullCenteredFlexBox>
         <Typography component="h1" variant="h5">
-          Create Mem
+          {t('create mem')}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <Controller
@@ -68,7 +70,7 @@ function CreateMem() {
           <TextField
             margin="normal"
             fullWidth
-            label="Text"
+            label={t('mem text')}
             type="text"
             multiline
             {...register('text')}
@@ -79,7 +81,7 @@ function CreateMem() {
           <TextField
             margin="normal"
             fullWidth
-            label="Tags"
+            label={t('mem tags')}
             type="text"
             {...register('tags')}
             error={formErrors.tags ? true : false}
@@ -87,7 +89,7 @@ function CreateMem() {
           />
 
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Create
+            {t('create')}
           </Button>
         </Box>
       </FullCenteredFlexBox>

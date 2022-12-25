@@ -5,5 +5,37 @@
   "password": "Пароль",
   "sign in button": "Войти",
   "link to sign up": "Зарегистрироваться",
-  "change language": "Изменить язык"
+  "change language": "Изменить язык",
+  "install app": "Установить",
+  "error": "Ошибка",
+  "success": "Успешно",
+  "close": "Закрыть",
+  "create mem": "Создать мем",
+  "mem text": "Подпись к мему",
+  "mem tags": "Тэги",
+  "create": "Создать",
+  "404": "Ошибка 404. Страница не найдена",
+  "profile title": "Профиль",
+  "user": {
+    "nickname": "Никнейм",
+    "name": "Имя",
+    "surname": "Фамилия",
+    "birthday": "День Рождения"
+  },
+  "sign up title": "Регистрация",
+  "sign up button": "Зарегистрироваться",
+  "link to sign in": "Войти",
+  "mems end": "Мемы заакончились",
+  "reload": "Перезагрузить",
+  "update to new version text": "New content is available, click on reload button to update.",
+  "pages titles": {
+    "welcome": "Главная",
+    "view best memes": "Смотреть лучшее мемы",
+    "view memes": "Смотреть мемы",
+    "sign in": "Вход",
+    "sign up": "Регистрация",
+    "profile": "Профиль",
+    "create mem": "Создать мем"
+  },
+  "logout": "Выйти"
 }

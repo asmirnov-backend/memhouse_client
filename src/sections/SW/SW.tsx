@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -10,6 +11,7 @@ import { useRegisterSW } from 'virtual:pwa-register/react';
 function SW() {
   const notificationKey = useRef<SnackbarKey | null>(null);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
@@ -31,21 +33,18 @@ function SW() {
         autoHideDuration: 4500,
       });
     } else if (needRefresh) {
-      notificationKey.current = enqueueSnackbar(
-        'New content is available, click on reload button to update.',
-        {
-          variant: 'warning',
-          persist: true,
-          action: (
-            <>
-              <Button onClick={() => updateServiceWorker(true)}>Reload</Button>
-              <Button onClick={close}>Close</Button>
-            </>
-          ),
-        },
-      );
+      notificationKey.current = enqueueSnackbar(t('update to new version text'), {
+        variant: 'warning',
+        persist: true,
+        action: (
+          <>
+            <Button onClick={() => updateServiceWorker(true)}>{t('reload')}</Button>
+            <Button onClick={close}>{t('close')}</Button>
+          </>
+        ),
+      });
     }
-  }, [close, needRefresh, offlineReady, enqueueSnackbar, updateServiceWorker]);
+  }, [close, needRefresh, offlineReady, enqueueSnackbar, updateServiceWorker, t]);
 
   return null;
 }

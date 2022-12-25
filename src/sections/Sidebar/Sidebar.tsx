@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import DefaultIcon from '@mui/icons-material/Deblur';
@@ -18,6 +19,7 @@ import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
+  const { t } = useTranslation();
 
   return (
     <SwipeableDrawer
@@ -159,7 +161,7 @@ function Sidebar() {
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText>Logout</ListItemText>
+              <ListItemText>{t('logout')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}

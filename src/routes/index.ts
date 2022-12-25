@@ -6,6 +6,8 @@ import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import LoginIcon from '@mui/icons-material/Login';
 import PreviewIcon from '@mui/icons-material/Preview';
 
+import i18next from 'i18next';
+
 import asyncComponentLoader from '@/utils/loader';
 
 import { Pages, Routes } from './types';
@@ -14,43 +16,43 @@ const routes: Routes = {
   [Pages.Welcome]: {
     component: asyncComponentLoader(() => import('@/pages/Welcome')),
     path: '/',
-    title: 'Welcome',
+    title: i18next.t('pages titles.welcome'),
     icon: HomeIcon,
   },
   [Pages.ViewBestMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewBestMemes')),
     path: '/view-best-memes',
-    title: 'View Best Memes',
+    title: i18next.t('pages titles.view best memes'),
     icon: ImageSearchIcon,
   },
   [Pages.ViewMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewMemes')),
     path: '/view-memes',
-    title: 'View Memes',
+    title: i18next.t('pages titles.view memes'),
     icon: PreviewIcon,
   },
   [Pages.SignIn]: {
     component: asyncComponentLoader(() => import('@/pages/SignIn')),
     path: '/sign-in',
-    title: 'SignIn',
+    title: i18next.t('pages titles.sign in'),
     icon: LoginIcon,
   },
   [Pages.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/SignUp')),
     path: '/sign-up',
-    title: 'SignUp',
+    title: i18next.t('pages titles.sign up'),
     icon: AddCircleIcon,
   },
   [Pages.Profile]: {
     component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
-    title: 'Profile',
+    title: i18next.t('pages titles.profile'),
     icon: AccountCircleIcon,
   },
   [Pages.CreateMem]: {
     component: asyncComponentLoader(() => import('@/pages/CreateMem')),
     path: '/create-mem',
-    title: 'Create Mem',
+    title: i18next.t('pages titles.create mem'),
     icon: AddCircleOutlineIcon,
   },
   [Pages.NotFound]: {

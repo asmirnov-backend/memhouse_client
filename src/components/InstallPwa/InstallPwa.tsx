@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from '@mui/material';
 
@@ -9,6 +10,7 @@ const InstallPWA = () => {
   const [supportsPWA, setSupportsPWA] = useState(false);
   const [promptInstall, setPromptInstall] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -36,7 +38,7 @@ const InstallPWA = () => {
 
   return (
     <Button color="info" onClick={onClick}>
-      Install App
+      {t('install app')}
     </Button>
   );
 };
