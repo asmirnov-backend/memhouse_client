@@ -5,55 +5,52 @@ import HomeIcon from '@mui/icons-material/Home';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import LoginIcon from '@mui/icons-material/Login';
 import PreviewIcon from '@mui/icons-material/Preview';
-
-import i18next from 'i18next';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import asyncComponentLoader from '@/utils/loader';
 
-import { Pages, Routes } from './types';
+import { Pages } from './types';
 
-const routes: Routes = {
+const routes = {
   [Pages.Welcome]: {
     component: asyncComponentLoader(() => import('@/pages/Welcome')),
     path: '/',
-    title: i18next.t('pages titles.welcome'),
     icon: HomeIcon,
   },
   [Pages.ViewBestMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewBestMemes')),
     path: '/view-best-memes',
-    title: i18next.t('pages titles.view best memes'),
     icon: ImageSearchIcon,
   },
   [Pages.ViewMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewMemes')),
     path: '/view-memes',
-    title: i18next.t('pages titles.view memes'),
     icon: PreviewIcon,
   },
   [Pages.SignIn]: {
     component: asyncComponentLoader(() => import('@/pages/SignIn')),
     path: '/sign-in',
-    title: i18next.t('pages titles.sign in'),
     icon: LoginIcon,
   },
   [Pages.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/SignUp')),
     path: '/sign-up',
-    title: i18next.t('pages titles.sign up'),
     icon: AddCircleIcon,
   },
   [Pages.Profile]: {
     component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
-    title: i18next.t('pages titles.profile'),
     icon: AccountCircleIcon,
   },
   [Pages.CreateMem]: {
     component: asyncComponentLoader(() => import('@/pages/CreateMem')),
     path: '/create-mem',
-    title: i18next.t('pages titles.create mem'),
     icon: AddCircleOutlineIcon,
+  },
+  [Pages.Settings]: {
+    component: asyncComponentLoader(() => import('@/pages/Settings')),
+    path: '/settings',
+    icon: SettingsIcon,
   },
   [Pages.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),

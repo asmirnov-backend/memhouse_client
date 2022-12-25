@@ -60,7 +60,7 @@ function Sidebar() {
             <ListItemIcon>
               {routes.Welcome.icon ? <routes.Welcome.icon /> : <DefaultIcon />}
             </ListItemIcon>
-            <ListItemText>{routes.Welcome.title}</ListItemText>
+            <ListItemText>{t('pages titles.welcome')}</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem sx={{ p: 0 }} key={routes.ViewMemes.path}>
@@ -72,7 +72,7 @@ function Sidebar() {
             <ListItemIcon>
               {routes.ViewMemes.icon ? <routes.ViewMemes.icon /> : <DefaultIcon />}
             </ListItemIcon>
-            <ListItemText>{routes.ViewMemes.title}</ListItemText>
+            <ListItemText>{t('pages titles.view memes')}</ListItemText>
           </ListItemButton>
         </ListItem>
         {localStorage.getItem(AUTH_TOKEN) && (
@@ -85,7 +85,7 @@ function Sidebar() {
               <ListItemIcon>
                 {routes.ViewBestMemes.icon ? <routes.ViewBestMemes.icon /> : <DefaultIcon />}
               </ListItemIcon>
-              <ListItemText>{routes.ViewBestMemes.title}</ListItemText>
+              <ListItemText>{t('pages titles.view best memes')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
@@ -99,7 +99,7 @@ function Sidebar() {
               <ListItemIcon>
                 {routes.CreateMem.icon ? <routes.CreateMem.icon /> : <DefaultIcon />}
               </ListItemIcon>
-              <ListItemText>{routes.CreateMem.title}</ListItemText>
+              <ListItemText>{t('pages titles.create mem')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
@@ -115,7 +115,7 @@ function Sidebar() {
               <ListItemIcon>
                 {routes.SignIn.icon ? <routes.SignIn.icon /> : <DefaultIcon />}
               </ListItemIcon>
-              <ListItemText>{routes.SignIn.title}</ListItemText>
+              <ListItemText>{t('pages titles.sign in')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
@@ -130,7 +130,7 @@ function Sidebar() {
               <ListItemIcon>
                 {routes.SignUp.icon ? <routes.SignUp.icon /> : <DefaultIcon />}
               </ListItemIcon>
-              <ListItemText>{routes.SignUp.title}</ListItemText>
+              <ListItemText>{t('pages titles.sign up')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
@@ -144,10 +144,18 @@ function Sidebar() {
               <ListItemIcon>
                 {routes.Profile.icon ? <routes.Profile.icon /> : <DefaultIcon />}
               </ListItemIcon>
-              <ListItemText>{routes.Profile.title}</ListItemText>
+              <ListItemText>{t('pages titles.profile')}</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
+        <ListItem sx={{ p: 0 }} key={routes.Settings.path}>
+          <ListItemButton onClick={sidebarActions.close} component={Link} to={routes.Settings.path}>
+            <ListItemIcon>
+              {routes.Settings.icon ? <routes.Settings.icon /> : <DefaultIcon />}
+            </ListItemIcon>
+            <ListItemText>{t('pages titles.settings')}</ListItemText>
+          </ListItemButton>
+        </ListItem>
         {localStorage.getItem(AUTH_TOKEN) && (
           <ListItem sx={{ p: 0 }} key="logout">
             <ListItemButton

@@ -35,7 +35,8 @@
     "sign in": "Вход",
     "sign up": "Регистрация",
     "profile": "Профиль",
-    "create mem": "Создать мем"
+    "create mem": "Создать мем",
+    "settings": "Настройки"
   },
   "logout": "Выйти"
 }

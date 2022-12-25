@@ -1,8 +1,3 @@
-import { FC } from 'react';
-import { PathRouteProps } from 'react-router-dom';
-
-import type { SvgIconProps } from '@mui/material/SvgIcon';
-
 enum Pages {
   Welcome = 'Welcome',
   ViewBestMemes = 'ViewBestMemes',
@@ -12,15 +7,7 @@ enum Pages {
   Profile = 'Profile',
   NotFound = 'NotFound',
   CreateMem = 'CreateMem',
+  Settings = 'Settings',
 }
 
-type PathRouteCustomProps = {
-  title?: string;
-  component: FC;
-  icon?: FC<SvgIconProps>;
-};
-
-type Routes = Record<Pages, PathRouteProps & PathRouteCustomProps & { path: string }>;
-
-export type { Routes };
 export { Pages };
