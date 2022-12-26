@@ -42,5 +42,6 @@
   "logout": "Log out",
   "settings": {
     "language": "Language"
-  }
+  },
+  "file uploader text": "Drop images here"
 }

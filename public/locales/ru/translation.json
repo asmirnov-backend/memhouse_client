@@ -43,5 +43,6 @@
   "logout": "Выйти",
   "settings": {
     "language": "Язык"
-  }
+  },
+  "file uploader text": "Прикрепить картинки"
 }
