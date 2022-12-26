@@ -41,9 +41,10 @@ function CreateMem() {
 
     if ('errors' in creationResult) {
       enqueueSnackbar(t('error') + creationResult.errors?.join('. '), { variant: 'error' });
+    } else {
+      enqueueSnackbar(t('success'), { variant: 'success' });
     }
 
-    enqueueSnackbar(t('success'), { variant: 'success' });
     reset();
   };
 
@@ -66,7 +67,7 @@ function CreateMem() {
                   handleChange={field.onChange}
                   fileOrFiles={field.value}
                   types={['png', 'jpeg', 'jpg']}
-                  maxSize={5} // in mb
+                  maxSize={10} // in mb
                 />
                 <ImagesCard images={field.value} />
               </>
