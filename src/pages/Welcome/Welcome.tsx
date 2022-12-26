@@ -7,6 +7,7 @@ import useOrientation from '@/hooks/useOrientation';
 import { FullSizeCenteredFlexBox } from '../../components/styled';
 import routes from '../../routes';
 import { Pages } from '../../routes/types';
+import isAuthorized from '../../utils/is-authorized';
 
 function Welcome() {
   const isPortrait = useOrientation();
@@ -15,18 +16,20 @@ function Welcome() {
   return (
     <Container component="main" maxWidth="xs">
       <FullSizeCenteredFlexBox flexDirection={isPortrait ? 'column' : 'row'}>
-        <Typography variant="h1" m={5}>
+        <Typography variant="h2" m={5}>
           {t('title')}
         </Typography>
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          sx={{ my: 4 }}
-          href={routes[Pages.SignIn].path}
-        >
-          {t('sign in button')}
-        </Button>
+        {isAuthorized() && (
+          <Button
+            variant="contained"
+            fullWidth
+            size="large"
+            sx={{ my: 4 }}
+            href={routes[Pages.SignIn].path}
+          >
+            {t('sign in button')}
+          </Button>
+        )}
         <Button
           variant="contained"
           fullWidth

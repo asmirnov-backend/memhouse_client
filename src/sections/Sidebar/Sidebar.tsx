@@ -15,7 +15,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import routes from '@/routes';
 import useSidebar from '@/store/sidebar';
 
-import { AUTH_TOKEN } from '../../constants/auth-token.constant';
+import isAuthorized from '../../utils/is-authorized';
 
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
@@ -75,7 +75,7 @@ function Sidebar() {
             <ListItemText>{t('pages titles.view memes')}</ListItemText>
           </ListItemButton>
         </ListItem>
-        {localStorage.getItem(AUTH_TOKEN) && (
+        {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key={routes.ViewBestMemes.path}>
             <ListItemButton
               onClick={sidebarActions.close}
@@ -89,7 +89,7 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         )}
-        {localStorage.getItem(AUTH_TOKEN) && (
+        {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key={routes.CreateMem.path}>
             <ListItemButton
               onClick={sidebarActions.close}
@@ -104,7 +104,7 @@ function Sidebar() {
           </ListItem>
         )}
         <Divider />
-        {!localStorage.getItem(AUTH_TOKEN) && (
+        {!isAuthorized() && (
           <ListItem
             sx={{
               p: 0,
@@ -119,7 +119,7 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         )}
-        {!localStorage.getItem(AUTH_TOKEN) && (
+        {!isAuthorized() && (
           <ListItem
             sx={{
               p: 0,
@@ -134,7 +134,7 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         )}
-        {localStorage.getItem(AUTH_TOKEN) && (
+        {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key={routes.Profile.path}>
             <ListItemButton
               onClick={sidebarActions.close}
@@ -156,7 +156,7 @@ function Sidebar() {
             <ListItemText>{t('pages titles.settings')}</ListItemText>
           </ListItemButton>
         </ListItem>
-        {localStorage.getItem(AUTH_TOKEN) && (
+        {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key="logout">
             <ListItemButton
               onClick={() => {
