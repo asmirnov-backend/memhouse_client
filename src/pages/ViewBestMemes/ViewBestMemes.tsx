@@ -13,29 +13,9 @@ import { useGetBestMemsQuery } from '../../generated/graphql';
 function ViewBestMemes() {
   const { error, data, fetchMore } = useGetBestMemsQuery();
 
-  console.log(data);
-
-  if (error) {
-    return (
-      <CenteredFlexBox flexDirection={'column'}>
-        <SimpleError text={error?.message} />
-      </CenteredFlexBox>
-    );
-  }
-  if (!data) {
-    return (
-      <CenteredFlexBox flexDirection={'column'}>
-        <SimpleLoader />
-      </CenteredFlexBox>
-    );
-  }
-  if (isEmpty(data.bestMems)) {
-    return (
-      <CenteredFlexBox flexDirection={'column'}>
-        <SimpleError text={t('mems end')} />
-      </CenteredFlexBox>
-    );
-  }
+  if (error) return <SimpleError text={error?.message} />;
+  if (!data) return <SimpleLoader />;
+  if (isEmpty(data.bestMems)) return <SimpleError text={t('mems end')} />;
 
   return (
     <CenteredFlexBox flexDirection={'column'}>

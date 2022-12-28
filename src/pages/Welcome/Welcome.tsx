@@ -16,7 +16,7 @@ function Welcome() {
         <Typography variant="h2" m={5}>
           {t('title')}
         </Typography>
-        {isAuthorized() && (
+        {!isAuthorized() && (
           <Button
             variant="contained"
             fullWidth
