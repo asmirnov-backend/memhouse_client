@@ -51,14 +51,14 @@ export type MemCreateInput = {
 
 export type MemDto = {
   __typename?: 'MemDto';
-  createdUserId: Scalars['String'];
+  createdUserId?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   text?: Maybe<Scalars['String']>;
 };
 
 export type MemFullDto = {
   __typename?: 'MemFullDto';
-  createdUserId: Scalars['String'];
+  createdUserId?: Maybe<Scalars['String']>;
   dislikes: Scalars['Int'];
   id: Scalars['String'];
   images: Array<ImageDto>;
@@ -220,8 +220,10 @@ export type GetMemsQuery = {
     __typename?: 'MemFullDto';
     id: string;
     likes: number;
+    dislikes: number;
     rating?: number | null;
     text?: string | null;
+    tags: Array<string>;
     images: Array<{ __typename?: 'ImageDto'; title: string; displayUrl: string }>;
   }>;
 };
@@ -470,12 +472,14 @@ export const GetMemsDocument = gql`
     mems(GetMemsInput: { take: $limit, skip: $offset }) {
       id
       likes
+      dislikes
       rating
       text
       images {
         title
         displayUrl
       }
+      tags
     }
   }
 `;

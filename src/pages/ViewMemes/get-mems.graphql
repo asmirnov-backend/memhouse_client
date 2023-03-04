@@ -2,11 +2,13 @@ query GetMems($offset: Int = 0, $limit: Int = 3) {
   mems(GetMemsInput: { take: $limit, skip: $offset }) {
     id
     likes
+    dislikes
     rating
     text
     images {
       title
       displayUrl
     }
+    tags
   }
 }

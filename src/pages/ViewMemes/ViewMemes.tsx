@@ -1,7 +1,8 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { ImageList, ImageListItem } from '@mui/material';
+import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 
+import MemActionsBar from '../../components/MemActionsBar';
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
 import { CenteredFlexBox } from '../../components/styled';
@@ -26,6 +27,7 @@ function ViewMemes() {
           {data.mems.map((mem, index) => (
             <ImageListItem key={index}>
               <img src={mem.images[0].displayUrl} />
+              <ImageListItemBar title={<MemActionsBar mem={mem} />} position="bottom" />
               <div
                 style={{
                   width: '100%',
