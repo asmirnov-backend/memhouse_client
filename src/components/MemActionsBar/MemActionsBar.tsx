@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import StarIcon from '@mui/icons-material/Star';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
@@ -12,18 +11,20 @@ import { MemFullDto, useToggleLikeMutation } from '../../generated/graphql';
 
 export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }) {
   const { enqueueSnackbar } = useSnackbar();
-  const { t } = useTranslation();
   const [toggleLikeMutation] = useToggleLikeMutation();
 
   const [likes, setLikes] = useState(props.mem.likes);
 
   const toggleLike = async () => {
-    const toggleResult = await toggleLikeMutation({ variables: { memId: props.mem.id } });
+    const { data, errors } = await toggleLikeMutation({
+      variables: { memId: props.mem.id },
+      errorPolicy: 'all',
+    });
 
-    if ('errors' in toggleResult) {
-      enqueueSnackbar(t('error') + toggleResult.errors?.join('. '), { variant: 'error' });
-    } else if (toggleResult.data?.toggleLike.likes !== undefined) {
-      setLikes(toggleResult.data.toggleLike.likes);
+    if (errors) {
+      enqueueSnackbar(errors[0].message, { variant: 'error' });
+    } else if (data?.toggleLike.likes !== undefined) {
+      setLikes(data.toggleLike.likes);
     }
   };
 
