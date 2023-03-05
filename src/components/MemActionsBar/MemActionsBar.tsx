@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import StarIcon from '@mui/icons-material/Star';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { Grid, IconButton, Typography } from '@mui/material';
 
@@ -9,11 +10,16 @@ import { useSnackbar } from 'notistack';
 
 import { MemFullDto, useToggleLikeMutation } from '../../generated/graphql';
 
-export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }) {
+export default function MemActionsBar(props: {
+  mem: Pick<MemFullDto, 'id' | 'likes' | 'dislikes' | 'rating' | 'isCurrentUserHasSetLike'>;
+}) {
   const { enqueueSnackbar } = useSnackbar();
   const [toggleLikeMutation] = useToggleLikeMutation();
 
   const [likes, setLikes] = useState(props.mem.likes);
+  const [isCurrentUserHasSetLike, setIsCurrentUserHasSetLike] = useState(
+    props.mem.isCurrentUserHasSetLike,
+  );
 
   const toggleLike = async () => {
     const { data, errors } = await toggleLikeMutation({
@@ -25,6 +31,7 @@ export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }
       enqueueSnackbar(errors[0].message, { variant: 'error' });
     } else if (data?.toggleLike.likes !== undefined) {
       setLikes(data.toggleLike.likes);
+      setIsCurrentUserHasSetLike(!isCurrentUserHasSetLike);
     }
   };
 
@@ -32,8 +39,7 @@ export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }
     <Grid container spacing={2}>
       <Grid item>
         <IconButton onClick={toggleLike}>
-          {/* TODO if user set like change icon to ThumbUpAltIcon */}
-          <ThumbUpOffAltIcon />
+          {isCurrentUserHasSetLike ? <ThumbUpAltIcon /> : <ThumbUpOffAltIcon />}
           <Typography>{likes}</Typography>
         </IconButton>
       </Grid>

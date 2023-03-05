@@ -67,6 +67,7 @@ export type MemFullDto = {
   dislikes: Scalars['Int'];
   id: Scalars['String'];
   images: Array<ImageDto>;
+  isCurrentUserHasSetLike: Scalars['Boolean'];
   likes: Scalars['Int'];
   rating?: Maybe<Scalars['Float']>;
   tags: Array<Scalars['String']>;
@@ -255,6 +256,7 @@ export type GetMemsQuery = {
     rating?: number | null;
     text?: string | null;
     tags: Array<string>;
+    isCurrentUserHasSetLike: boolean;
     images: Array<{ __typename?: 'ImageDto'; title: string; displayUrl: string }>;
   }>;
 };
@@ -555,6 +557,7 @@ export const GetMemsDocument = gql`
         displayUrl
       }
       tags
+      isCurrentUserHasSetLike
     }
   }
 `;
