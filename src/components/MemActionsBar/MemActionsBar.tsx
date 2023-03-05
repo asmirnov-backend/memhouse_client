@@ -1,18 +1,39 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import StarIcon from '@mui/icons-material/Star';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { Grid, IconButton, Typography } from '@mui/material';
 
-import { MemFullDto } from '../../generated/graphql';
+import { useSnackbar } from 'notistack';
+
+import { MemFullDto, useToggleLikeMutation } from '../../generated/graphql';
 
 export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }) {
+  const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
+  const [toggleLikeMutation] = useToggleLikeMutation();
+
+  const [likes, setLikes] = useState(props.mem.likes);
+
+  const toggleLike = async () => {
+    const toggleResult = await toggleLikeMutation({ variables: { memId: props.mem.id } });
+
+    if ('errors' in toggleResult) {
+      enqueueSnackbar(t('error') + toggleResult.errors?.join('. '), { variant: 'error' });
+    } else if (toggleResult.data?.toggleLike.likes !== undefined) {
+      setLikes(toggleResult.data.toggleLike.likes);
+    }
+  };
+
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <IconButton onClick={() => console.log(111)}>
+        <IconButton onClick={toggleLike}>
           {/* TODO if user set like change icon to ThumbUpAltIcon */}
           <ThumbUpOffAltIcon />
-          <Typography>{props.mem.likes}</Typography>
+          <Typography>{likes}</Typography>
         </IconButton>
       </Grid>
       <Grid item>
@@ -24,7 +45,7 @@ export default function MemActionsBar(props: { mem: Omit<MemFullDto, 'images'> }
       <Grid item marginLeft="auto">
         <IconButton>
           <StarIcon />
-          <Typography>{props.mem.rating?.toFixed(2)}</Typography>
+          <Typography>{props.mem.rating?.toFixed(2) ?? 0}</Typography>
         </IconButton>
       </Grid>
     </Grid>

@@ -24,12 +24,14 @@ export type GetMemsInput = {
 
 export type ImageDto = {
   __typename?: 'ImageDto';
+  createdAt: Scalars['DateTime'];
   displayUrl: Scalars['String'];
   height: Scalars['Int'];
   id: Scalars['String'];
   memId?: Maybe<Scalars['String']>;
   size: Scalars['Int'];
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
   width: Scalars['Int'];
 };
 
@@ -51,13 +53,16 @@ export type MemCreateInput = {
 
 export type MemDto = {
   __typename?: 'MemDto';
+  createdAt: Scalars['DateTime'];
   createdUserId?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   text?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
 };
 
 export type MemFullDto = {
   __typename?: 'MemFullDto';
+  createdAt: Scalars['DateTime'];
   createdUserId?: Maybe<Scalars['String']>;
   dislikes: Scalars['Int'];
   id: Scalars['String'];
@@ -66,6 +71,7 @@ export type MemFullDto = {
   rating?: Maybe<Scalars['Float']>;
   tags: Array<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
 };
 
 export type MemUpdateInput = {
@@ -79,6 +85,7 @@ export type Mutation = {
   createMem: MemFullDto;
   login: JwtToken;
   registration: JwtToken;
+  toggleLike: ToggleLikeOutputDto;
   updateMem: MemFullDto;
 };
 
@@ -92,6 +99,10 @@ export type MutationLoginArgs = {
 
 export type MutationRegistrationArgs = {
   RegistrationInput: RegistrationInput;
+};
+
+export type MutationToggleLikeArgs = {
+  ToggleLikeInputDto: ToggleLikeInputDto;
 };
 
 export type MutationUpdateMemArgs = {
@@ -127,6 +138,15 @@ export type RegistrationInput = {
   surname: Scalars['String'];
 };
 
+export type ToggleLikeInputDto = {
+  memId: Scalars['String'];
+};
+
+export type ToggleLikeOutputDto = {
+  __typename?: 'ToggleLikeOutputDto';
+  likes: Scalars['Int'];
+};
+
 export type UserByIdInput = {
   id: Scalars['String'];
 };
@@ -134,13 +154,24 @@ export type UserByIdInput = {
 export type UserDto = {
   __typename?: 'UserDto';
   birthday?: Maybe<Scalars['DateTime']>;
+  createdAt: Scalars['DateTime'];
   createdMems: Array<MemDto>;
   email: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
   nickname: Scalars['String'];
   surname: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
   viewedMemes: Array<MemDto>;
+};
+
+export type ToggleLikeMutationVariables = Exact<{
+  memId: Scalars['String'];
+}>;
+
+export type ToggleLikeMutation = {
+  __typename?: 'Mutation';
+  toggleLike: { __typename?: 'ToggleLikeOutputDto'; likes: number };
 };
 
 export type CreateMemMutationVariables = Exact<{
@@ -228,6 +259,50 @@ export type GetMemsQuery = {
   }>;
 };
 
+export const ToggleLikeDocument = gql`
+  mutation ToggleLike($memId: String!) {
+    toggleLike(ToggleLikeInputDto: { memId: $memId }) {
+      likes
+    }
+  }
+`;
+export type ToggleLikeMutationFn = Apollo.MutationFunction<
+  ToggleLikeMutation,
+  ToggleLikeMutationVariables
+>;
+
+/**
+ * __useToggleLikeMutation__
+ *
+ * To run a mutation, you first call `useToggleLikeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useToggleLikeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [toggleLikeMutation, { data, loading, error }] = useToggleLikeMutation({
+ *   variables: {
+ *      memId: // value for 'memId'
+ *   },
+ * });
+ */
+export function useToggleLikeMutation(
+  baseOptions?: Apollo.MutationHookOptions<ToggleLikeMutation, ToggleLikeMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<ToggleLikeMutation, ToggleLikeMutationVariables>(
+    ToggleLikeDocument,
+    options,
+  );
+}
+export type ToggleLikeMutationHookResult = ReturnType<typeof useToggleLikeMutation>;
+export type ToggleLikeMutationResult = Apollo.MutationResult<ToggleLikeMutation>;
+export type ToggleLikeMutationOptions = Apollo.BaseMutationOptions<
+  ToggleLikeMutation,
+  ToggleLikeMutationVariables
+>;
 export const CreateMemDocument = gql`
   mutation CreateMem($text: String, $tags: [String!], $imgsBuffers: [String!]!) {
     createMem(CreateMemInput: { text: $text, tags: $tags, imgsBuffers: $imgsBuffers }) {
