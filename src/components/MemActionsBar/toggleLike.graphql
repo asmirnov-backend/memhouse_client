@@ -1,5 +1,0 @@
-mutation ToggleLike($memId: String!) {
-  toggleLike(ToggleLikeInputDto: { memId: $memId }) {
-    likes
-  }
-}

@@ -544,6 +544,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isCurrentUserHasSetDislike",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isCurrentUserHasSetLike",
             "description": null,
             "args": [],
@@ -809,18 +825,18 @@
             "deprecationReason": null
           },
           {
-            "name": "toggleLike",
+            "name": "toggleDislike",
             "description": null,
             "args": [
               {
-                "name": "ToggleLikeInputDto",
+                "name": "ToggleReactionInputDto",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "ToggleLikeInputDto",
+                    "name": "ToggleReactionInputDto",
                     "ofType": null
                   }
                 },
@@ -834,7 +850,40 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ToggleLikeOutputDto",
+                "name": "ToggleReactionOutputDto",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toggleLike",
+            "description": null,
+            "args": [
+              {
+                "name": "ToggleReactionInputDto",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ToggleReactionInputDto",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ToggleReactionOutputDto",
                 "ofType": null
               }
             },
@@ -1137,7 +1186,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ToggleLikeInputDto",
+        "name": "ToggleReactionInputDto",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1164,11 +1213,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ToggleLikeOutputDto",
+        "name": "ToggleReactionOutputDto",
         "description": null,
         "fields": [
           {
-            "name": "likes",
+            "name": "reactionAmount",
             "description": null,
             "args": [],
             "type": {

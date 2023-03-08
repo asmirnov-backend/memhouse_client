@@ -11,5 +11,6 @@ query GetMems($offset: Int = 0, $limit: Int = 3) {
     }
     tags
     isCurrentUserHasSetLike
+    isCurrentUserHasSetDislike
   }
 }

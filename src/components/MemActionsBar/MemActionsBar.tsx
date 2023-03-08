@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import StarIcon from '@mui/icons-material/Star';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -8,17 +9,34 @@ import { Grid, IconButton, Typography } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 
-import { MemFullDto, useToggleLikeMutation } from '../../generated/graphql';
+import {
+  MemFullDto,
+  useToggleDislikeMutation,
+  useToggleLikeMutation,
+} from '../../generated/graphql';
 
 export default function MemActionsBar(props: {
-  mem: Pick<MemFullDto, 'id' | 'likes' | 'dislikes' | 'rating' | 'isCurrentUserHasSetLike'>;
+  mem: Pick<
+    MemFullDto,
+    | 'id'
+    | 'likes'
+    | 'dislikes'
+    | 'rating'
+    | 'isCurrentUserHasSetLike'
+    | 'isCurrentUserHasSetDislike'
+  >;
 }) {
   const { enqueueSnackbar } = useSnackbar();
   const [toggleLikeMutation] = useToggleLikeMutation();
+  const [toggleDislikeMutation] = useToggleDislikeMutation();
 
   const [likes, setLikes] = useState(props.mem.likes);
   const [isCurrentUserHasSetLike, setIsCurrentUserHasSetLike] = useState(
     props.mem.isCurrentUserHasSetLike,
+  );
+  const [dislikes, setDislikes] = useState(props.mem.dislikes);
+  const [isCurrentUserHasSetDislike, setIsCurrentUserHasSetDislike] = useState(
+    props.mem.isCurrentUserHasSetDislike,
   );
 
   const toggleLike = async () => {
@@ -29,9 +47,23 @@ export default function MemActionsBar(props: {
 
     if (errors) {
       enqueueSnackbar(errors[0].message, { variant: 'error' });
-    } else if (data?.toggleLike.likes !== undefined) {
-      setLikes(data.toggleLike.likes);
+    } else if (data?.toggleLike.reactionAmount !== undefined) {
+      setLikes(data.toggleLike.reactionAmount);
       setIsCurrentUserHasSetLike(!isCurrentUserHasSetLike);
+    }
+  };
+
+  const toggleDislike = async () => {
+    const { data, errors } = await toggleDislikeMutation({
+      variables: { memId: props.mem.id },
+      errorPolicy: 'all',
+    });
+
+    if (errors) {
+      enqueueSnackbar(errors[0].message, { variant: 'error' });
+    } else if (data?.toggleDislike.reactionAmount !== undefined) {
+      setDislikes(data.toggleDislike.reactionAmount);
+      setIsCurrentUserHasSetDislike(!isCurrentUserHasSetDislike);
     }
   };
 
@@ -44,9 +76,9 @@ export default function MemActionsBar(props: {
         </IconButton>
       </Grid>
       <Grid item>
-        <IconButton onClick={() => console.log(111)}>
-          <ThumbDownOffAltIcon />
-          <Typography>{props.mem.dislikes}</Typography>
+        <IconButton onClick={toggleDislike}>
+          {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
+          <Typography>{dislikes}</Typography>
         </IconButton>
       </Grid>
       <Grid item marginLeft="auto">
