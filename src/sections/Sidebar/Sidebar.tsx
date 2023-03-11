@@ -76,20 +76,6 @@ function Sidebar() {
           </ListItemButton>
         </ListItem>
         {isAuthorized() && (
-          <ListItem sx={{ p: 0 }} key={routes.ViewBestMemes.path}>
-            <ListItemButton
-              onClick={sidebarActions.close}
-              component={Link}
-              to={routes.ViewBestMemes.path}
-            >
-              <ListItemIcon>
-                {routes.ViewBestMemes.icon ? <routes.ViewBestMemes.icon /> : <DefaultIcon />}
-              </ListItemIcon>
-              <ListItemText>{t('pages titles.view best memes')}</ListItemText>
-            </ListItemButton>
-          </ListItem>
-        )}
-        {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key={routes.CreateMem.path}>
             <ListItemButton
               onClick={sidebarActions.close}

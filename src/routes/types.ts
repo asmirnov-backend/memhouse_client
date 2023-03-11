@@ -1,6 +1,5 @@
 enum Pages {
   Welcome = 'Welcome',
-  ViewBestMemes = 'ViewBestMemes',
   ViewMemes = 'ViewMemes',
   SignIn = 'SignIn',
   SignUp = 'SignUp',
