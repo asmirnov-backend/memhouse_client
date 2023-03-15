@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import InfoIcon from '@mui/icons-material/Info';
 import StarIcon from '@mui/icons-material/Star';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
@@ -79,6 +80,15 @@ export default function MemActionsBar(props: {
         <IconButton onClick={toggleDislike}>
           {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
           <Typography>{dislikes}</Typography>
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton
+          onClick={() => {
+            ('');
+          }}
+        >
+          <InfoIcon color="primary" />
         </IconButton>
       </Grid>
       <Grid item marginLeft="auto">
