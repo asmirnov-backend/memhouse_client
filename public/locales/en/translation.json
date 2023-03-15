@@ -11,6 +11,7 @@
   "error": "Error",
   "success": "Successful",
   "close": "Close",
+  "not implemented": "Not implemented",
   "create mem": "Create a meme",
   "mem text": "Meme caption",
   "mem tags": "Tags",

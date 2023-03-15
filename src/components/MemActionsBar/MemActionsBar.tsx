@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import InfoIcon from '@mui/icons-material/Info';
 import StarIcon from '@mui/icons-material/Star';
@@ -30,6 +31,7 @@ export default function MemActionsBar(props: {
   const { enqueueSnackbar } = useSnackbar();
   const [toggleLikeMutation] = useToggleLikeMutation();
   const [toggleDislikeMutation] = useToggleDislikeMutation();
+  const { t } = useTranslation();
 
   const [likes, setLikes] = useState(props.mem.likes);
   const [isCurrentUserHasSetLike, setIsCurrentUserHasSetLike] = useState(
@@ -85,7 +87,7 @@ export default function MemActionsBar(props: {
       <Grid item>
         <IconButton
           onClick={() => {
-            ('');
+            enqueueSnackbar(t('not implemented'), { variant: 'warning' });
           }}
         >
           <InfoIcon color="primary" />
