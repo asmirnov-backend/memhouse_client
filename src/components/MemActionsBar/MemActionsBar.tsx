@@ -79,18 +79,18 @@ export default function MemActionsBar(props: {
         </IconButton>
       </Grid>
       <Grid item>
-        <IconButton onClick={toggleDislike}>
-          {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
-          <Typography>{dislikes}</Typography>
-        </IconButton>
-      </Grid>
-      <Grid item>
         <IconButton
           onClick={() => {
             enqueueSnackbar(t('not implemented'), { variant: 'warning' });
           }}
         >
           <InfoIcon color="primary" />
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton onClick={toggleDislike}>
+          {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
+          <Typography>{dislikes}</Typography>
         </IconButton>
       </Grid>
       <Grid item marginLeft="auto">
