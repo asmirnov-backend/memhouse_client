@@ -27,7 +27,11 @@ function ViewMemes() {
           {data.mems.map((mem, index) => (
             <ImageListItem key={index}>
               <img src={mem.images[0].displayUrl} />
-              <ImageListItemBar title={<MemActionsBar mem={mem} />} position="below" />
+              <ImageListItemBar
+                title={<MemActionsBar mem={mem} />}
+                subtitle={mem.tags.map(e => (e.startsWith('#') ? `${e} ` : `#${e} `))}
+                position="below"
+              />
             </ImageListItem>
           ))}
         </ImageList>
