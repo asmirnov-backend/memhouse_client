@@ -5,6 +5,7 @@ import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import MemActionsBar from '../../components/MemActionsBar';
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
+import TagsBar from '../../components/TagsBar';
 import { CenteredFlexBox } from '../../components/styled';
 import { useGetMemsQuery } from '../../generated/graphql';
 
@@ -29,7 +30,7 @@ function ViewMemes() {
               <img src={mem.images[0].displayUrl} />
               <ImageListItemBar
                 title={<MemActionsBar mem={mem} />}
-                subtitle={mem.tags.map(e => (e.startsWith('#') ? `${e} ` : `#${e} `))}
+                subtitle={<TagsBar mem={mem} />}
                 position="below"
               />
             </ImageListItem>
