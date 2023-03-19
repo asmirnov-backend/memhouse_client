@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import jwtDecode from 'jwt-decode';
+import { isNull } from 'lodash';
 
 import { AUTH_TOKEN } from './constants/auth-token.constant';
 
@@ -10,11 +12,19 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem(AUTH_TOKEN);
+  if (isNull(token)) return { headers };
+
+  // Check if token is expired
+  const { exp } = jwtDecode<{ exp: number }>(token);
+  if (Date.now() > exp * 1000 - 60000) {
+    localStorage.clear();
+    return { headers };
+  }
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: `Bearer ${token}`,
     },
   };
 });
