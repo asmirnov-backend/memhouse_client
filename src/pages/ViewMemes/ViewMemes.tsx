@@ -1,9 +1,11 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { ImageList, ImageListItem } from '@mui/material';
+import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 
+import MemActionsBar from '../../components/MemActionsBar';
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
+import TagsBar from '../../components/TagsBar';
 import { CenteredFlexBox } from '../../components/styled';
 import { useGetMemsQuery } from '../../generated/graphql';
 
@@ -26,13 +28,10 @@ function ViewMemes() {
           {data.mems.map((mem, index) => (
             <ImageListItem key={index}>
               <img src={mem.images[0].displayUrl} />
-              <div
-                style={{
-                  width: '100%',
-                  height: '7px',
-                  margin: 'auto',
-                  background: '#181955',
-                }}
+              <ImageListItemBar
+                title={<MemActionsBar mem={mem} />}
+                subtitle={<TagsBar mem={mem} />}
+                position="below"
               />
             </ImageListItem>
           ))}

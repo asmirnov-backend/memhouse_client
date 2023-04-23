@@ -4,6 +4,7 @@
   "semi": true,
   "singleQuote": true,
   "printWidth": 100,
+  "arrowParens": "avoid",
   "trailingComma": "all",
   "importOrder": [
     "^(^react$|@react|react|^recoil$)",

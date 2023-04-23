@@ -9,6 +9,7 @@
   "change language": "Изменить язык",
   "install app": "Установить",
   "installing": "Установливается",
+  "not implemented": "Не реализовано",
   "error": "Ошибка",
   "success": "Успешно",
   "close": "Закрыть",
@@ -27,7 +28,7 @@
   "sign up title": "Регистрация",
   "sign up button": "Зарегистрироваться",
   "link to sign in": "Войти",
-  "mems end": "Мемы заакончились",
+  "mems end": "Мемы закончились",
   "reload": "Перезагрузить",
   "update to new version text": "Доступен новый контент, нажмите на кнопку перезагрузки, чтобы обновить.",
   "pages titles": {
@@ -43,5 +44,6 @@
   "logout": "Выйти",
   "settings": {
     "language": "Язык"
-  }
+  },
+  "file uploader text": "Прикрепить картинки"
 }

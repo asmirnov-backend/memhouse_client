@@ -9,6 +9,7 @@ import { encode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
+import ImagesCard from '../../components/ImagesCard';
 import { FullCenteredFlexBox } from '../../components/styled';
 import { CreateMemMutationVariables, useCreateMemMutation } from '../../generated/graphql';
 
@@ -40,9 +41,10 @@ function CreateMem() {
 
     if ('errors' in creationResult) {
       enqueueSnackbar(t('error') + creationResult.errors?.join('. '), { variant: 'error' });
+    } else {
+      enqueueSnackbar(t('success'), { variant: 'success' });
     }
 
-    enqueueSnackbar(t('success'), { variant: 'success' });
     reset();
   };
 
@@ -58,12 +60,17 @@ function CreateMem() {
             name="images"
             control={control}
             render={({ field }) => (
-              <FileUploader
-                multiple={true}
-                handleChange={field.onChange}
-                types={['png', 'jpeg', 'jpg']}
-                maxSize={10} // in mb
-              />
+              <>
+                <FileUploader
+                  multiple={true}
+                  label={t('file uploader text')}
+                  handleChange={field.onChange}
+                  fileOrFiles={field.value}
+                  types={['png', 'jpeg', 'jpg']}
+                  maxSize={10} // in mb
+                />
+                <ImagesCard images={field.value} />
+              </>
             )}
           />
 

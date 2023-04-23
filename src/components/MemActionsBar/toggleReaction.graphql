@@ -1,0 +1,11 @@
+mutation ToggleLike($memId: String!) {
+  toggleLike(ToggleReactionInputDto: { memId: $memId }) {
+    reactionAmount
+  }
+}
+
+mutation ToggleDislike($memId: String!) {
+  toggleDislike(ToggleReactionInputDto: { memId: $memId }) {
+    reactionAmount
+  }
+}
