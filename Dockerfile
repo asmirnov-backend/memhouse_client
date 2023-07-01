@@ -7,9 +7,6 @@ ENV TZ=Europe/Moscow
 COPY package*.json ./
 RUN npm ci
 
-ARG SERVER_BACKEND_URL
-ENV SERVER_BACKEND_URL=SERVER_BACKEND_URL
-
 COPY . .
 RUN npm run build
 
