@@ -6,7 +6,7 @@ import { isNull } from 'lodash';
 import { AUTH_TOKEN } from './constants/auth-token.constant';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: __SERVER_BACKEND_URL__ + '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
