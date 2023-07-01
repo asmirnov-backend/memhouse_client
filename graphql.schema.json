@@ -48,9 +48,13 @@
             "name": "skip",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "defaultValue": "0",
             "isDeprecated": false,
@@ -60,9 +64,13 @@
             "name": "take",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "defaultValue": "10",
             "isDeprecated": false,
@@ -74,8 +82,18 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "ID",
+        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
-        "name": "ImageDto",
+        "name": "ImageModel",
         "description": null,
         "fields": [
           {
@@ -236,7 +254,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "JwtToken",
+        "name": "JwtTokenModel",
         "description": null,
         "fields": [
           {
@@ -373,90 +391,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MemDto",
-        "description": null,
-        "fields": [
-          {
-            "name": "createdAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdUserId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "text",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MemFullDto",
+        "name": "MemFullModel",
         "description": null,
         "fields": [
           {
@@ -534,7 +469,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ImageDto",
+                    "name": "ImageModel",
                     "ofType": null
                   }
                 }
@@ -751,7 +686,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "MemFullDto",
+                "name": "MemFullModel",
                 "ofType": null
               }
             },
@@ -784,7 +719,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "JwtToken",
+                "name": "JwtTokenModel",
                 "ofType": null
               }
             },
@@ -817,7 +752,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "JwtToken",
+                "name": "JwtTokenModel",
                 "ofType": null
               }
             },
@@ -916,7 +851,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "MemFullDto",
+                "name": "MemFullModel",
                 "ofType": null
               }
             },
@@ -935,47 +870,6 @@
         "description": null,
         "fields": [
           {
-            "name": "bestMems",
-            "description": null,
-            "args": [
-              {
-                "name": "GetMemsInput",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "GetMemsInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MemFullDto",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "me",
             "description": null,
             "args": [],
@@ -984,7 +878,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "UserDto",
+                "name": "UserModel",
                 "ofType": null
               }
             },
@@ -1023,7 +917,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "MemFullDto",
+                    "name": "MemFullModel",
                     "ofType": null
                   }
                 }
@@ -1058,7 +952,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "UserDto",
+                "name": "UserModel",
                 "ofType": null
               }
             },
@@ -1267,7 +1161,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UserDto",
+        "name": "UserModel",
         "description": null,
         "fields": [
           {
@@ -1299,30 +1193,6 @@
             "deprecationReason": null
           },
           {
-            "name": "createdMems",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MemDto",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "email",
             "description": null,
             "args": [],
@@ -1347,7 +1217,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "ID",
                 "ofType": null
               }
             },
@@ -1413,30 +1283,6 @@
                 "kind": "SCALAR",
                 "name": "DateTime",
                 "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "viewedMemes",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MemDto",
-                    "ofType": null
-                  }
-                }
               }
             },
             "isDeprecated": false,
