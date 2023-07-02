@@ -5,9 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import { ApolloProvider } from '@apollo/client';
 
+import Pages from '@/app/router/Pages';
 import { withErrorHandler } from '@/error-handling';
 import AppErrorBoundaryFallback from '@/error-handling/fallbacks/App';
-import Pages from '@/routes/Pages';
 import Header from '@/sections/Header';
 import SW from '@/sections/SW';
 import Sidebar from '@/sections/Sidebar';

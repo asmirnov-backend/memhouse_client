@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { giphy404 } from '@/app/config';
 import { CenteredFlexBox, FullSizeCenteredFlexBox } from '@/components/styled';
-import { giphy404 } from '@/config';
 
 function NotFound() {
   const { t } = useTranslation();

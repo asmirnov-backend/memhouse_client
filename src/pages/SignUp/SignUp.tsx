@@ -16,13 +16,13 @@ import {
 
 import { useSnackbar } from 'notistack';
 
+import { AUTH_TOKEN } from '../../app/constants/auth-token.constant';
+import routes from '../../app/router/index';
+import { Pages } from '../../app/router/types';
 import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
 import { FullCenteredFlexBox } from '../../components/styled';
-import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 import { SignUpMutationVariables, useSignUpMutation } from '../../generated/graphql';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
-import routes from '../../routes/index';
-import { Pages } from '../../routes/types';
 
 function SignUp() {
   const {

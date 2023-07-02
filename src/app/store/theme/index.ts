@@ -1,6 +1,6 @@
 import { atom, useRecoilState } from 'recoil';
 
-import { Themes } from '@/theme/types';
+import { Themes } from '@/shared/theme/types';
 
 import type { AtomEffectParams } from '../types';
 import type { Actions } from './types';

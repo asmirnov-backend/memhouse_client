@@ -8,10 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
+import { repository } from '@/app/config';
+import useSidebar from '@/app/store/sidebar';
+import useTheme from '@/app/store/theme';
 import { FlexBox } from '@/components/styled';
-import { repository } from '@/config';
-import useSidebar from '@/store/sidebar';
-import useTheme from '@/store/theme';
 
 import InstallPWA from '../../components/InstallPwa';
 

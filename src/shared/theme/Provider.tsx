@@ -3,9 +3,9 @@ import { useRecoilValue } from 'recoil';
 import * as locales from '@mui/material/locale';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import useTheme from '@/store/theme';
+import { muiLocaleState } from '@/app/store/muiLocale';
+import useTheme from '@/app/store/theme';
 
-import { muiLocaleState } from '../store/muiLocale';
 import themes from './themes';
 import type { CustomThemeProviderProps } from './types';
 

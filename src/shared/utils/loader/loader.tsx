@@ -1,6 +1,6 @@
 import { FC, Suspense, lazy, useEffect, useState } from 'react';
 
-import sleep from '@/utils/sleep';
+import sleep from '@/shared/utils/sleep';
 
 import { AnyProps, LoadComponent, LoaderDefaultOptions } from './types';
 
@@ -57,7 +57,7 @@ const getLazyComponent = (loadComponent: LoadComponent, loaderOptions: LoaderDef
     // fix the moment of starting loading
     const start = performance.now();
     // start loading
-    return loadComponent().then((moduleExports) => {
+    return loadComponent().then(moduleExports => {
       // loading is finished
       const end = performance.now();
       const diff = end - start;

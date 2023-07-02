@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import { SnackbarProvider } from 'notistack';
 
-import ThemeProvider from '@/theme/Provider';
+import ThemeProvider from '@/shared/theme/Provider';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);

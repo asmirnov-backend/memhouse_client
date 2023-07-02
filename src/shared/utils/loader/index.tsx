@@ -1,6 +1,6 @@
-import { loader as loaderDefaultOptions } from '@/config';
+import { loader as loaderDefaultOptions } from '@/app/config';
+import SimpleLoader from '@/components/SimpleLoader';
 
-import SimpleLoader from '../../components/SimpleLoader';
 import asyncComponentLoader from './loader';
 import type { AnyProps, LoadComponent, LoaderDefaultOptions } from './types';
 

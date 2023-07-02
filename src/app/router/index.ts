@@ -6,7 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import PreviewIcon from '@mui/icons-material/Preview';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import asyncComponentLoader from '@/utils/loader';
+import asyncComponentLoader from '@/shared/utils/loader';
 
 import { Pages } from './types';
 

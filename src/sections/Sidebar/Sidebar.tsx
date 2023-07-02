@@ -12,10 +12,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-import routes from '@/routes';
-import useSidebar from '@/store/sidebar';
-
-import isAuthorized from '../../utils/is-authorized';
+import routes from '@/app/router';
+import useSidebar from '@/app/store/sidebar';
+import isAuthorized from '@/shared/utils/is-authorized';
 
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
@@ -33,8 +32,8 @@ function Sidebar() {
     >
       <List
         sx={{
-          width: (theme) => `${theme.mixins.toolbar.minWidth}px`,
-          pt: (theme) => `${theme.mixins.toolbar.minHeight}px`,
+          width: theme => `${theme.mixins.toolbar.minWidth}px`,
+          pt: theme => `${theme.mixins.toolbar.minHeight}px`,
         }}
       >
         <ListItem sx={{ p: 0 }} key="Title">
