@@ -15,7 +15,7 @@ import {
   MemFullDto,
   useToggleDislikeMutation,
   useToggleLikeMutation,
-} from '../../generated/graphql';
+} from '../../shared/generated/graphql';
 
 export default function MemActionsBar(props: {
   mem: Pick<

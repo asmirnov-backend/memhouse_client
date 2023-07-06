@@ -6,7 +6,7 @@ import isAuthorized from '@/shared/utils/is-authorized';
 
 import routes from '../../app/router';
 import { Pages } from '../../app/router/types';
-import { FullSizeCenteredFlexBox } from '../../components/styled';
+import { FullSizeCenteredFlexBox } from '../../shared/styled-components/styled';
 
 function Welcome() {
   const { t } = useTranslation();

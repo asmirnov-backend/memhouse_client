@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 
 import routes from '../../app/router';
 import { muiLocaleState } from '../../app/store/muiLocale';
-import { FullCenteredFlexBox } from '../../components/styled';
+import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
 
 type lngs = 'ru' | 'en';
 const i18nToMuiLocale = { en: 'enUS', ru: 'ruRU' } as const;

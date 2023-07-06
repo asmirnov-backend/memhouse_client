@@ -8,10 +8,10 @@ import { Box, Container } from '@mui/system';
 import { encode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 
-import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
-import ImagesCard from '../../components/ImagesCard';
-import { FullCenteredFlexBox } from '../../components/styled';
-import { CreateMemMutationVariables, useCreateMemMutation } from '../../generated/graphql';
+import ImagesCard from '../../entities/ImagesCard';
+import { CreateMemMutationVariables, useCreateMemMutation } from '../../shared/generated/graphql';
+import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
+import BlockPageWhileLoading from '../../widgets/BlockPageWhileLoading';
 
 type FormInput = Omit<CreateMemMutationVariables, 'imgsBuffers'> & { images: FileList };
 

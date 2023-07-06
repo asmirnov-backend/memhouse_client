@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { giphy404 } from '@/app/config';
-import { CenteredFlexBox, FullSizeCenteredFlexBox } from '@/components/styled';
+import { CenteredFlexBox, FullSizeCenteredFlexBox } from '@/shared/styled-components/styled';
 
 function NotFound() {
   const { t } = useTranslation();

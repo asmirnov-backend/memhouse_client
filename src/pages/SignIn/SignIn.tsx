@@ -10,10 +10,10 @@ import { useSnackbar } from 'notistack';
 import { AUTH_TOKEN } from '../../app/constants/auth-token.constant';
 import routes from '../../app/router/index';
 import { Pages } from '../../app/router/types';
-import BlockPageWhileLoading from '../../components/BlockPageWhileLoading';
-import { FullCenteredFlexBox } from '../../components/styled';
-import { LoginMutationVariables, useLoginMutation } from '../../generated/graphql';
-import { ErrorResponse } from '../../interfaces/error-response.interface';
+import { LoginMutationVariables, useLoginMutation } from '../../shared/generated/graphql';
+import { ErrorResponse } from '../../shared/interfaces/error-response.interface';
+import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
+import BlockPageWhileLoading from '../../widgets/BlockPageWhileLoading';
 
 function SignIn() {
   const {

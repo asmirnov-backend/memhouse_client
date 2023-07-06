@@ -11,9 +11,9 @@ import Tooltip from '@mui/material/Tooltip';
 import { repository } from '@/app/config';
 import useSidebar from '@/app/store/sidebar';
 import useTheme from '@/app/store/theme';
-import { FlexBox } from '@/components/styled';
+import { FlexBox } from '@/shared/styled-components/styled';
 
-import InstallPWA from '../../components/InstallPwa';
+import InstallPWA from '../../features/InstallPwa';
 
 function Header() {
   const [, sidebarActions] = useSidebar();

@@ -1,7 +1,7 @@
 import ErrorIcon from '@mui/icons-material/Error';
 import { Typography } from '@mui/material';
 
-import { FullCenteredFlexBox } from '../styled';
+import { FullCenteredFlexBox } from '@/shared/styled-components/styled';
 
 interface ErrorProps {
   text?: string;

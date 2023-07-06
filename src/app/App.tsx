@@ -6,11 +6,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ApolloProvider } from '@apollo/client';
 
 import Pages from '@/app/router/Pages';
-import { withErrorHandler } from '@/error-handling';
-import AppErrorBoundaryFallback from '@/error-handling/fallbacks/App';
-import Header from '@/sections/Header';
-import SW from '@/sections/SW';
-import Sidebar from '@/sections/Sidebar';
+import SW from '@/app/service-worker';
+import { withErrorHandler } from '@/features/error-handling';
+import AppErrorBoundaryFallback from '@/features/error-handling/fallbacks/App';
+import Header from '@/widgets/Header';
+import Sidebar from '@/widgets/Sidebar';
 
 import apolloClient from './graphql.client';
 

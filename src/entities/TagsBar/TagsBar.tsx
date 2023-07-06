@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import { MemFullDto } from '../../generated/graphql';
+import { MemFullDto } from '../../shared/generated/graphql';
 
 export default function TagsBar(props: { mem: Pick<MemFullDto, 'tags'> }) {
   const tags = props.mem.tags.map(e => (e.startsWith('#') ? `${e} ` : `#${e} `));

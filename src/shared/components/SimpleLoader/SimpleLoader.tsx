@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 
-import { FullCenteredFlexBox } from '../styled';
+import { FullCenteredFlexBox } from '@/shared/styled-components/styled';
 
 export default function SimpleLoader() {
   return (
