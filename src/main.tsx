@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import welcome from '@/utils/welcome';
+import welcome from '@/shared/utils/welcome';
 
-import './i18n';
+import './shared/lib/i18n/i18n';
 
 // Root contains the main dependencies and providers of the base app
 //  - React, ReactDom, RecoilRoot, HelmetProvider, ThemeProvider, MUI-core)
@@ -11,9 +11,11 @@ import './i18n';
 // Importing them with Promise.all (by using HTTP/2 multiplexing) we can load them in parallel
 // and achieve the best possible performance
 
-Promise.all([import('@/Root'), import('@/App')]).then(([{ default: render }, { default: App }]) => {
-  render(App);
-});
+Promise.all([import('@/app/Root'), import('@/app/App')]).then(
+  ([{ default: render }, { default: App }]) => {
+    render(App);
+  },
+);
 
 // welcome message for users in the console
 welcome();

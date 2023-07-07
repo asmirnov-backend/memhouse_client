@@ -6,8 +6,8 @@ import Container from '@mui/material/Container';
 
 import SimpleError from '../../components/SimpleError';
 import SimpleLoader from '../../components/SimpleLoader';
-import { FullCenteredFlexBox } from '../../components/styled';
-import { useProfileQuery } from '../../generated/graphql';
+import { useProfileQuery } from '../../shared/generated/graphql';
+import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
 
 function Profile() {
   const { data, error } = useProfileQuery();

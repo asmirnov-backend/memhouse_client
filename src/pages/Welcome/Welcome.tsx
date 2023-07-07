@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Container, Typography } from '@mui/material';
 
-import { FullSizeCenteredFlexBox } from '../../components/styled';
-import routes from '../../routes';
-import { Pages } from '../../routes/types';
-import isAuthorized from '../../utils/is-authorized';
+import isAuthorized from '@/shared/utils/is-authorized';
+
+import routes from '../../app/router';
+import { Pages } from '../../app/router/types';
+import { FullSizeCenteredFlexBox } from '../../shared/styled-components/styled';
 
 function Welcome() {
   const { t } = useTranslation();

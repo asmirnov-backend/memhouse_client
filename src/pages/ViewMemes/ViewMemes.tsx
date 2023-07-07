@@ -2,12 +2,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 
-import MemActionsBar from '../../components/MemActionsBar';
-import SimpleError from '../../components/SimpleError';
-import SimpleLoader from '../../components/SimpleLoader';
-import TagsBar from '../../components/TagsBar';
-import { CenteredFlexBox } from '../../components/styled';
-import { useGetMemsQuery } from '../../generated/graphql';
+import MemActionsBar from '@/entities/MemActionsBar';
+import TagsBar from '@/entities/TagsBar';
+import SimpleError from '@/shared/components/SimpleError';
+import SimpleLoader from '@/shared/components/SimpleLoader';
+import { useGetMemsQuery } from '@/shared/generated/graphql';
+import { CenteredFlexBox } from '@/shared/styled-components/styled';
 
 function ViewMemes() {
   const { error, data, fetchMore } = useGetMemsQuery();
