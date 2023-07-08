@@ -1,6 +1,6 @@
 import { Backdrop } from '@mui/material';
 
-import SimpleLoader from '../../components/SimpleLoader/SimpleLoader';
+import SimpleLoader from '../../shared/components/SimpleLoader';
 
 function BlockPageWhileLoading(props: { isLoading: boolean }) {
   return (
