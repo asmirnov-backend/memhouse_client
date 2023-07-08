@@ -4,8 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 
-import SimpleError from '../../components/SimpleError';
-import SimpleLoader from '../../components/SimpleLoader';
+import SimpleError from '../../shared/components/SimpleError';
+import SimpleLoader from '../../shared/components/SimpleLoader';
 import { useProfileQuery } from '../../shared/generated/graphql';
 import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
 
