@@ -1,42 +1,18 @@
-import { Fragment } from 'react';
-
-import { Box } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
-
-import { ApolloProvider } from '@apollo/client';
-
-import { withErrorHandler } from '@/app/providers/error-handling';
-import AppErrorBoundaryFallback from '@/app/providers/error-handling/fallbacks/App';
+import { withErrorHandler } from '@/app/error-handling';
 import Pages from '@/app/router/Pages';
-import SW from '@/app/service-worker';
-import Header from '@/widgets/Header';
-import Sidebar from '@/widgets/Sidebar';
 
-import apolloClient from './graphql.client';
+import { Layout } from './layout';
 import { withProviders } from './providers';
+import { useServiceWorker } from './service-worker';
 
 function App() {
+  useServiceWorker();
+
   return (
-    <Box>
-      <CssBaseline />
-      <Header />
-      <Sidebar />
+    <Layout>
       <Pages />
-    </Box>
+    </Layout>
   );
 }
 
-const Comp = withProviders(App);
-
-function App1() {
-  return (
-    <Fragment>
-      <SW />
-      <ApolloProvider client={apolloClient}>
-        <Comp />
-      </ApolloProvider>
-    </Fragment>
-  );
-}
-
-export default withErrorHandler(App1, AppErrorBoundaryFallback);
+export default withErrorHandler(withProviders(App));

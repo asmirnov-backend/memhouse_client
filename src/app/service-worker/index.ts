@@ -1,3 +1,1 @@
-import SW from './SW';
-
-export default SW;
+export { useServiceWorker } from './useServiceWorker';

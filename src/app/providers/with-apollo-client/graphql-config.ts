@@ -3,7 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import jwtDecode from 'jwt-decode';
 import { isNull } from 'lodash';
 
-import { AUTH_TOKEN } from './constants/auth-token.constant';
+import { AUTH_TOKEN } from '../../constants/auth-token.constant';
 
 const httpLink = createHttpLink({
   uri: __SERVER_BACKEND_URL__ + '/graphql',
