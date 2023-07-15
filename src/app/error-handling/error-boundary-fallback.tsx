@@ -9,7 +9,7 @@ import { email, messages } from '@/app/config';
 import { FullSizeCenteredFlexBox } from '@/shared/styled-components/styled';
 import resetApp from '@/shared/utils/reset-app';
 
-function AppErrorBoundaryFallback() {
+function ErrorBoundaryFallback() {
   return (
     <Box height={400}>
       <FullSizeCenteredFlexBox>
@@ -37,4 +37,4 @@ function AppErrorBoundaryFallback() {
   );
 }
 
-export default AppErrorBoundaryFallback;
+export default ErrorBoundaryFallback;

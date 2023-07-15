@@ -1,14 +1,16 @@
 import { FC } from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import ErrorBoundaryFallback from './error-boundary-fallback';
 
 function getDisplayName(WrappedComponent: FC) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-function withErrorHandler<P extends object>(Component: FC<P>, Fallback: FC<FallbackProps>) {
+function withErrorHandler<P extends object>(Component: FC<P>) {
   function ComponentWithErrorHandling(props: P) {
     return (
-      <ErrorBoundary FallbackComponent={Fallback}>
+      <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
         <Component {...(props as P)} />
       </ErrorBoundary>
     );
