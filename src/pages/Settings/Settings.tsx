@@ -4,9 +4,9 @@ import { useRecoilState } from 'recoil';
 import { Avatar, MenuItem, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 
-import routes from '../../app/router';
 import { muiLocaleState } from '../../app/store/muiLocale';
 import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
+import routes from '../routes';
 
 type lngs = 'ru' | 'en';
 const i18nToMuiLocale = { en: 'enUS', ru: 'ruRU' } as const;

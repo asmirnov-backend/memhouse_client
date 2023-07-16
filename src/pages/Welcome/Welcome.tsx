@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 
 import isAuthorized from '@/shared/utils/is-authorized';
 
@@ -12,11 +12,12 @@ function Welcome() {
   const { t } = useTranslation();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <FullSizeCenteredFlexBox>
         <Typography variant="h2" m={5}>
-          {t('title')}
+          {t('welcomePage.title')}
         </Typography>
+        <Box>{t('welcomePage.memhouseDescribe')}</Box>
         {!isAuthorized() && (
           <Button
             variant="contained"
