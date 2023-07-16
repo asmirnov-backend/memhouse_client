@@ -1,1 +1,1 @@
-export { useServiceWorker } from './useServiceWorker';
+export { ServiceWorker } from './ServiceWorker';

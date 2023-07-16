@@ -12,8 +12,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-import routes from '@/app/router';
 import useSidebar from '@/app/store/sidebar';
+import routes from '@/pages/routes';
 import isAuthorized from '@/shared/utils/is-authorized';
 
 function Sidebar() {

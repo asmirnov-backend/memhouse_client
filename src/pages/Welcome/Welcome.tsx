@@ -4,9 +4,9 @@ import { Button, Container, Typography } from '@mui/material';
 
 import isAuthorized from '@/shared/utils/is-authorized';
 
-import routes from '../../app/router';
-import { Pages } from '../../app/router/types';
 import { FullSizeCenteredFlexBox } from '../../shared/styled-components/styled';
+import routes from '../routes';
+import { PAGES } from '../types';
 
 function Welcome() {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ function Welcome() {
             fullWidth
             size="large"
             sx={{ my: 4 }}
-            href={routes[Pages.SignIn].path}
+            href={routes[PAGES.SignIn].path}
           >
             {t('sign in button')}
           </Button>
@@ -33,7 +33,7 @@ function Welcome() {
           fullWidth
           size="large"
           sx={{ my: 4 }}
-          href={routes[Pages.ViewMemes].path}
+          href={routes[PAGES.ViewMemes].path}
         >
           {t('to mems')}
         </Button>

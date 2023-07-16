@@ -1,7 +1,7 @@
 import { Box, CssBaseline } from '@mui/material';
 
-import Header from '@/widgets/Header';
-import Sidebar from '@/widgets/Sidebar';
+import Header from '@/app/layout/components/header';
+import Sidebar from '@/app/layout/components/sidebar';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

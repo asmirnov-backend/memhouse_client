@@ -1,4 +1,4 @@
-enum Pages {
+export enum PAGES {
   Welcome = 'Welcome',
   ViewMemes = 'ViewMemes',
   SignIn = 'SignIn',
@@ -8,5 +8,3 @@ enum Pages {
   CreateMem = 'CreateMem',
   Settings = 'Settings',
 }
-
-export { Pages };

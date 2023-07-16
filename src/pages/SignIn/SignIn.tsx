@@ -7,13 +7,13 @@ import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mu
 
 import { useSnackbar } from 'notistack';
 
-import { AUTH_TOKEN } from '../../app/constants/auth-token.constant';
-import routes from '../../app/router/index';
-import { Pages } from '../../app/router/types';
+import { AUTH_TOKEN } from '../../shared/constants/auth-costants';
 import { LoginMutationVariables, useLoginMutation } from '../../shared/generated/graphql';
 import { ErrorResponse } from '../../shared/interfaces/error-response.interface';
 import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
 import BlockPageWhileLoading from '../../widgets/BlockPageWhileLoading';
+import routes from '../routes';
+import { PAGES } from '../types';
 
 function SignIn() {
   const {
@@ -40,7 +40,7 @@ function SignIn() {
     if (data) {
       localStorage.setItem(AUTH_TOKEN, data.login.jwtToken);
       enqueueSnackbar('Вход успешен', { variant: 'success' });
-      navigate(routes[Pages.Profile].path);
+      navigate(routes[PAGES.Profile].path);
     }
     // client.resetStore() - for logout
   };
@@ -92,7 +92,7 @@ function SignIn() {
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             {t('sign in button')}
           </Button>
-          <Link href={routes[Pages.SignUp].path} variant="body2">
+          <Link href={routes[PAGES.SignUp].path} variant="body2">
             {t('link to sign up')}
           </Link>
         </Box>
