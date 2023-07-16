@@ -8,45 +8,45 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import asyncComponentLoader from '@/shared/utils/loader';
 
-import { Pages } from './types';
+import { PAGES } from './types';
 
 const routes = {
-  [Pages.Welcome]: {
+  [PAGES.Welcome]: {
     component: asyncComponentLoader(() => import('@/pages/Welcome')),
     path: '/',
     icon: HomeIcon,
   },
-  [Pages.ViewMemes]: {
+  [PAGES.ViewMemes]: {
     component: asyncComponentLoader(() => import('@/pages/ViewMemes')),
     path: '/view-memes',
     icon: PreviewIcon,
   },
-  [Pages.SignIn]: {
+  [PAGES.SignIn]: {
     component: asyncComponentLoader(() => import('@/pages/SignIn')),
     path: '/sign-in',
     icon: LoginIcon,
   },
-  [Pages.SignUp]: {
+  [PAGES.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/SignUp')),
     path: '/sign-up',
     icon: AddCircleIcon,
   },
-  [Pages.Profile]: {
+  [PAGES.Profile]: {
     component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
     icon: AccountCircleIcon,
   },
-  [Pages.CreateMem]: {
+  [PAGES.CreateMem]: {
     component: asyncComponentLoader(() => import('@/pages/CreateMem')),
     path: '/create-mem',
     icon: AddCircleOutlineIcon,
   },
-  [Pages.Settings]: {
+  [PAGES.Settings]: {
     component: asyncComponentLoader(() => import('@/pages/Settings')),
     path: '/settings',
     icon: SettingsIcon,
   },
-  [Pages.NotFound]: {
+  [PAGES.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),
     path: '*',
   },
