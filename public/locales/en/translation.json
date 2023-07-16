@@ -38,7 +38,8 @@
     "sign up": "Register",
     "profile": "Profile",
     "create mem": "Create meme",
-    "settings": "Settings"
+    "settings": "Settings",
+    "developers": "Developers"
   },
   "logout": "Log out",
   "settings": {
