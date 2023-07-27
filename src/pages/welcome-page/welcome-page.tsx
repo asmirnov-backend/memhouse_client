@@ -37,7 +37,7 @@ function Welcome() {
     <Grid container width={'100%'} height={'100%'}>
       <Grid md={6}>
         <Box display={'flex'} alignItems={'center'} justifyContent={'center'} height={'100%'}>
-          <Zoom in={animateTitle} timeout={{ appear: 1000, enter: 1000 }}>
+          <Zoom in={animateTitle} timeout={{ appear: 2500, enter: 1000 }}>
             <img style={{ filter: theme === 'dark' ? 'invert(100%)' : undefined }} src={Welcomes} />
           </Zoom>
         </Box>
