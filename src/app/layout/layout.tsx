@@ -5,7 +5,7 @@ import Sidebar from '@/app/layout/components/sidebar';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <Box>
+    <Box display={'grid'} gridTemplateRows={'64px 1fr'} height={'100svh'}>
       <CssBaseline />
       <Header />
       <Sidebar />

@@ -12,7 +12,7 @@ import { PAGES } from './types';
 
 const routes = {
   [PAGES.Welcome]: {
-    component: asyncComponentLoader(() => import('@/pages/Welcome')),
+    component: asyncComponentLoader(() => import('@/pages/welcome-page')),
     path: '/',
     icon: HomeIcon,
   },

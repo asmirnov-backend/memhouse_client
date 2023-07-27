@@ -44,5 +44,9 @@
   "settings": {
     "language": "Language"
   },
-  "file uploader text": "Drop images here"
+  "file uploader text": "Drop images here",
+  "welcomePage": {
+    "title": "Welcome to MemHouse!",
+    "memhouseDescribe": "MemHouse is a new social network that gives you the opportunity to see the most popular memes and share them with your friends, as well as create and promote your own."
+  }
 }
