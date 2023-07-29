@@ -1,8 +1,8 @@
 import { atom, useRecoilState } from 'recoil';
 
+import type { AtomEffectParams } from '@/shared/store/types';
 import { Themes } from '@/shared/theme/types';
 
-import type { AtomEffectParams } from '../types';
 import type { Actions } from './types';
 
 const themeModeState = atom({

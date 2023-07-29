@@ -1,4 +1,4 @@
-const title = 'asdasdMemHouse';
+const title = 'Welcome to MemHouse';
 
 const email = 'smirnov.andrew.1999@yandex.ru';
 

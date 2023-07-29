@@ -1,5 +1,8 @@
-enum Themes {
+export enum Themes {
   DARK = 'dark',
   LIGHT = 'light',
 }
-export { Themes };
+
+export type Actions = {
+  toggle: () => void;
+};
