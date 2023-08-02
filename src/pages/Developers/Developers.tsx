@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Grid } from '@mui/material';
 
 import DeveloperCard from '../../entities/DeveloperCard/DeveloperCard';
-import BackendRoleChip from '../../entities/DeveloperRolesChip/BackendRoleChip';
 import DevopsRoleChip from '../../entities/DeveloperRolesChip/DevopsRoleChip';
 import FrontendRoleChip from '../../entities/DeveloperRolesChip/FrontendRoleChip';
 import FullStackRoleChip from '../../entities/DeveloperRolesChip/FullStackRoleChip';
@@ -19,7 +18,7 @@ function Developers() {
           name={t('developer names.Andrew Smirnov')}
           telegramDeveloperLink="https://t.me/smirnovandrew1999"
           githubDeveloperLink="https://github.com/asmirnov-backend"
-          roles={[BackendRoleChip, DevopsRoleChip, FullStackRoleChip]}
+          roles={[FullStackRoleChip, DevopsRoleChip]}
         />
       </Grid>
       <Grid item>
