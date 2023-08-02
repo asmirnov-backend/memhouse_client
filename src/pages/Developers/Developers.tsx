@@ -6,6 +6,7 @@ import DeveloperCard from '../../entities/DeveloperCard/DeveloperCard';
 import BackendRoleChip from '../../entities/DeveloperRolesChip/BackendRoleChip';
 import DevopsRoleChip from '../../entities/DeveloperRolesChip/DevopsRoleChip';
 import FrontendRoleChip from '../../entities/DeveloperRolesChip/FrontendRoleChip';
+import FullStackRoleChip from '../../entities/DeveloperRolesChip/FullStackRoleChip';
 
 function Developers() {
   const { t } = useTranslation();
@@ -14,24 +15,27 @@ function Developers() {
     <Grid container direction="row" justifyContent="space-around" alignItems="center" spacing={3}>
       <Grid item>
         <DeveloperCard
-          image="developersPhoto/Andrew.jpg"
+          image="developersPhoto/Andrew.webp"
           name={t('developer names.Andrew Smirnov')}
+          telegramDeveloperLink="https://t.me/smirnovandrew1999"
           githubDeveloperLink="https://github.com/asmirnov-backend"
-          roles={[BackendRoleChip, DevopsRoleChip]}
+          roles={[BackendRoleChip, DevopsRoleChip, FullStackRoleChip]}
         />
       </Grid>
       <Grid item>
         <DeveloperCard
-          image="developersPhoto/Luka.jpg"
+          image="developersPhoto/Luka.webp"
           name={t('developer names.Luka Khergiani')}
+          telegramDeveloperLink="https://t.me/budda_42"
           githubDeveloperLink="https://github.com/Nash-G-jr"
           roles={[FrontendRoleChip]}
         />
       </Grid>
       <Grid item>
         <DeveloperCard
-          image="developersPhoto/Vladimir.jpg"
+          image="developersPhoto/Vladimir.webp"
           name={t('developer names.Vladimir Parasochka')}
+          telegramDeveloperLink="https://t.me/gori_yar4e"
           githubDeveloperLink="https://github.com/Vpar7907"
           roles={[FrontendRoleChip]}
         />
