@@ -38,11 +38,21 @@
     "sign up": "Register",
     "profile": "Profile",
     "create mem": "Create meme",
-    "settings": "Settings"
+    "settings": "Settings",
+    "developers": "Developers"
   },
   "logout": "Log out",
   "settings": {
     "language": "Language"
+  },
+  "welcomePage": {
+    "title": "Welcome to MemHouse!",
+    "memhouseDescribe": "MemHouse is a new social network that gives you the opportunity to see the most popular memes and share them with your friends, as well as create and promote your own."
+  },
+  "developer names": {
+    "Andrew Smirnov": "Andrew Smirnov",
+    "Luka Khergiani": "Luka Khergiani",
+    "Vladimir Parasochka": "Vladimir Parasochka"
   },
   "file uploader text": "Drop images here"
 }

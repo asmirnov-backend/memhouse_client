@@ -4,16 +4,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, TextField, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 
-import SimpleError from '../../components/SimpleError';
-import SimpleLoader from '../../components/SimpleLoader';
-import { FullCenteredFlexBox } from '../../components/styled';
-import { useProfileQuery } from '../../generated/graphql';
+import SimpleError from '../../shared/components/SimpleError';
+import SimpleLoader from '../../shared/components/SimpleLoader';
+import { useProfileQuery } from '../../shared/generated/graphql';
+import { FullCenteredFlexBox } from '../../shared/styled-components/styled';
 
 function Profile() {
   const { data, error } = useProfileQuery();
   const { t } = useTranslation();
 
-  if (error) return <SimpleError text={error?.message} />;
+  if (error) return <SimpleError text={error.message} />;
   if (!data) return <SimpleLoader />;
 
   return (

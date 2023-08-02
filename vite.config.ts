@@ -28,7 +28,7 @@ export default defineConfig(({ command, mode }) => {
         ],
         // switch to "true" to enable sw on development
         devOptions: {
-          enabled: true,
+          enabled: false,
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'],
