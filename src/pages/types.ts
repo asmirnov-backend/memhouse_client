@@ -7,4 +7,5 @@ export enum PAGES {
   NotFound = 'NotFound',
   CreateMem = 'CreateMem',
   Settings = 'Settings',
+  Developers = 'Developers',
 }

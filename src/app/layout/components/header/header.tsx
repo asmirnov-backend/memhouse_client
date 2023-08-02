@@ -1,4 +1,3 @@
-import GitHubIcon from '@mui/icons-material/GitHub';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
@@ -7,7 +6,6 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { repository } from '@/app/config';
 import useSidebar from '@/app/store/sidebar';
 import useTheme from '@/app/store/theme';
 import InstallPWA from '@/features/InstallPwa';
@@ -34,12 +32,6 @@ function Header() {
           <InstallPWA />
         </FlexBox>
         <FlexBox>
-          <Divider orientation="vertical" flexItem />
-          <Tooltip title="Author" arrow>
-            <IconButton color="info" size="large" component="a" href={repository} target="_blank">
-              <GitHubIcon />
-            </IconButton>
-          </Tooltip>
           <Divider orientation="vertical" flexItem />
           <Tooltip title="Switch theme" arrow>
             <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>

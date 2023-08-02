@@ -13,7 +13,7 @@ function Profile() {
   const { data, error } = useProfileQuery();
   const { t } = useTranslation();
 
-  if (error) return <SimpleError text={error?.message} />;
+  if (error) return <SimpleError text={error.message} />;
   if (!data) return <SimpleLoader />;
 
   return (

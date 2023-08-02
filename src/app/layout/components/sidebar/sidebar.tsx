@@ -158,6 +158,18 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         )}
+        <ListItem sx={{ p: 0 }} key={routes.Developers.path}>
+          <ListItemButton
+            onClick={sidebarActions.close}
+            component={Link}
+            to={routes.Developers.path}
+          >
+            <ListItemIcon>
+              {routes.Developers.icon ? <routes.Developers.icon /> : <DefaultIcon />}
+            </ListItemIcon>
+            <ListItemText>{t('pages titles.developers')}</ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
     </SwipeableDrawer>
   );
