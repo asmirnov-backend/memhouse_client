@@ -39,7 +39,7 @@ function SignUp() {
     const { data, errors } = await signUpMutation({ variables: params });
 
     if (errors) {
-      const response = errors[0].extensions.response as ErrorResponse;
+      const response = errors[0].extensions.originalError as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
