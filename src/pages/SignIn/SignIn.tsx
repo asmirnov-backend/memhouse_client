@@ -30,7 +30,7 @@ function SignIn() {
     const { data, errors } = await loginMutation({ variables: params });
 
     if (errors) {
-      const response = errors[0].extensions.response as ErrorResponse;
+      const response = errors[0].extensions.originalError as ErrorResponse;
       const message = Array.isArray(response.message)
         ? response.message.join('. ')
         : response.message;
