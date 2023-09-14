@@ -20,11 +20,14 @@ function synchronizeWithLocalStorage({ setSelf, onSet }: AtomEffectParams) {
 function useTheme(): [Themes, Actions] {
   const [themeMode, setThemeMode] = useRecoilState(themeModeState);
 
-  function toggle() {
-    setThemeMode((mode: Themes) => (mode === Themes.DARK ? Themes.LIGHT : Themes.DARK));
+  function setLightTheme() {
+    setThemeMode(() => Themes.LIGHT);
+  }
+  function setDarkTheme() {
+    setThemeMode(() => Themes.DARK);
   }
 
-  return [themeMode, { toggle }];
+  return [themeMode, { setLightTheme, setDarkTheme }];
 }
 
 export default useTheme;
