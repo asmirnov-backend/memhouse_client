@@ -43,7 +43,12 @@
   },
   "logout": "Log out",
   "settings": {
-    "language": "Language"
+    "language": "Language",
+    "theme": "Theme",
+    "themeStyles": {
+      "dark": "Dark",
+      "light": "Light"
+    }
   },
   "welcomePage": {
     "title": "Welcome to MemHouse!",

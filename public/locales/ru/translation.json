@@ -44,7 +44,12 @@
   },
   "logout": "Выйти",
   "settings": {
-    "language": "Язык"
+    "language": "Язык",
+    "theme": "Тема",
+    "themeStyles": {
+      "dark": "Темная",
+      "light": "Светлая"
+    }
   },
   "welcomePage": {
     "title": "Привет! Это социальная сеть MemHouse",
