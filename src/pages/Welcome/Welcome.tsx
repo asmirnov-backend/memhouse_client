@@ -6,9 +6,9 @@ import { Box, Button, Collapse, Fade, Grid, Slide, Typography, Zoom } from '@mui
 import useTheme from '@/app/store/theme';
 import isAuthorized from '@/shared/utils/is-authorized';
 
+import Welcomes from '../../../public/welcome.png';
 import routes from '../routes';
 import { PAGES } from '../types';
-import Welcomes from './welcome.png';
 
 function Welcome() {
   const { t } = useTranslation();

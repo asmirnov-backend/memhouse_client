@@ -1,5 +1,6 @@
 type Actions = {
-  toggle: () => void;
+  setLightTheme: () => void;
+  setDarkTheme: () => void;
 };
 
 export type { Actions };
