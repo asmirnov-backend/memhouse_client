@@ -77,7 +77,7 @@ function Welcome() {
                 </Button>
               )}
               <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 sx={{ my: 4 }}
                 href={routes[PAGES.ViewMemes].path}
