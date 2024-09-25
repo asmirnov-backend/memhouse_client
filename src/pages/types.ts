@@ -8,4 +8,5 @@ export enum PAGES {
   CreateMem = 'CreateMem',
   Settings = 'Settings',
   Developers = 'Developers',
+  Subscription = 'Subscription',
 }

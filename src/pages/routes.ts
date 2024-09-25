@@ -6,6 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PreviewIcon from '@mui/icons-material/Preview';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import asyncComponentLoader from '@/shared/utils/loader';
 
@@ -51,6 +52,11 @@ const routes = {
     component: asyncComponentLoader(() => import('@/pages/Developers')),
     path: '/developers',
     icon: ManageAccountsIcon,
+  },
+  [PAGES.Subscription]: {
+    component: asyncComponentLoader(() => import('@/pages/Subscription')),
+    path: '/subscription',
+    icon: ShoppingCartIcon,
   },
   [PAGES.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),

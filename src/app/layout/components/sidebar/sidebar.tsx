@@ -153,6 +153,18 @@ function Sidebar() {
             <ListItemText>{t('pages titles.developers')}</ListItemText>
           </ListItemButton>
         </ListItem>
+        <ListItem sx={{ p: 0 }} key={routes.Subscription.path}>
+          <ListItemButton
+            onClick={sidebarActions.close}
+            component={Link}
+            to={routes.Subscription.path}
+          >
+            <ListItemIcon>
+              {routes.Subscription.icon ? <routes.Subscription.icon /> : <DefaultIcon />}
+            </ListItemIcon>
+            <ListItemText>{t('pages titles.subscription')}</ListItemText>
+          </ListItemButton>
+        </ListItem>
         {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key="logout">
             <ListItemButton
