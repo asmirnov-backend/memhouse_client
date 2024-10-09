@@ -11,6 +11,9 @@ import SimpleLoader from '@/shared/components/SimpleLoader';
 import { GetMemsQuery, useGetMemsQuery } from '@/shared/generated/graphql';
 import { CenteredFlexBox } from '@/shared/styled-components/styled';
 
+import SubscriptionDialog from '../../entities/SubscriptionDialog';
+import useYMVersion from '../../shared/hooks/useYMVersion';
+
 // Мок, чтобы работало без бекенда
 const fetchMore = (...args: any) => ({});
 const data: GetMemsQuery = {
@@ -44,9 +47,11 @@ function ViewMemes() {
 
   // if (error) return <SimpleError text={error?.message} />;
   // if (!data) return <SimpleLoader />;
+  const versionYM = useYMVersion();
 
   return (
     <CenteredFlexBox flexDirection={'column'}>
+      {versionYM == 1 && <SubscriptionDialog />}
       <InfiniteScroll
         style={{ overflowY: 'hidden' }}
         dataLength={data.mems.length}
