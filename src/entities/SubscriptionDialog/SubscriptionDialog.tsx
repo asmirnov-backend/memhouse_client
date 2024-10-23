@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import CloseIcon from '@mui/icons-material/Close';
 import ShopIcon from '@mui/icons-material/Shop';
 import {
   Button,
@@ -8,6 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   styled,
 } from '@mui/material';
 
@@ -25,9 +27,14 @@ const BootstrapButton = styled(Button)({
 export const SubscriptionDialog = () => {
   const [open, setOpen] = useState(false);
 
-  setTimeout(() => {
-    setOpen(true);
-  }, 5000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 5000);
+
+    // Очистка таймера при размонтировании компонента
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -38,18 +45,31 @@ export const SubscriptionDialog = () => {
       open={open}
       fullWidth={true}
       maxWidth="md"
-      onClose={handleClose}
+      onClose={() => {}}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle>Приглашение о приобретении подписки</DialogTitle>
+      <IconButton
+        aria-label="close"
+        onClick={handleClose}
+        size="large"
+        sx={theme => ({
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: theme.palette.primary,
+        })}
+      >
+        <CloseIcon />
+      </IconButton>
       <DialogContent>
         <DialogContentText>
           Для улучшения качества и удобства использования нашего сервиса, рекомендуем приобрести
           подписку. Она откроет доступ к эксклюзивному контенту и расширенным функциям, делая ваш
           опыт еще более приятным и продуктивным.
         </DialogContentText>
-        <BootstrapButton endIcon={<ShopIcon />} variant="contained" href="/subscription">
+        <BootstrapButton autoFocus endIcon={<ShopIcon />} variant="contained" href="/subscription">
           Посмотреть варианты покупки
         </BootstrapButton>
       </DialogContent>
