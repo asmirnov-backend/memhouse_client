@@ -38,6 +38,7 @@ export const SubscriptionDialog = () => {
 
   const handleClose = () => {
     setOpen(false);
+    ym(98456879, 'reachGoal', 'qwdqwd21e2d');
   };
 
   return (
@@ -69,7 +70,15 @@ export const SubscriptionDialog = () => {
           подписку. Она откроет доступ к эксклюзивному контенту и расширенным функциям, делая ваш
           опыт еще более приятным и продуктивным.
         </DialogContentText>
-        <BootstrapButton autoFocus endIcon={<ShopIcon />} variant="contained" href="/subscription">
+        <BootstrapButton
+          autoFocus
+          endIcon={<ShopIcon />}
+          variant="contained"
+          href="/subscription"
+          onClick={() => {
+            ym(98456879, 'reachGoal', '3213123123');
+          }}
+        >
           Посмотреть варианты покупки
         </BootstrapButton>
       </DialogContent>

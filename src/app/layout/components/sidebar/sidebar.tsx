@@ -16,9 +16,12 @@ import useSidebar from '@/app/store/sidebar';
 import routes from '@/pages/routes';
 import isAuthorized from '@/shared/utils/is-authorized';
 
+import useYMVersion from '../../../../shared/hooks/useYMVersion';
+
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
   const { t } = useTranslation();
+  const versionYM = useYMVersion();
 
   return (
     <SwipeableDrawer
@@ -153,18 +156,25 @@ function Sidebar() {
             <ListItemText>{t('pages titles.developers')}</ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem sx={{ p: 0 }} key={routes.Subscription.path}>
-          <ListItemButton
-            onClick={sidebarActions.close}
-            component={Link}
-            to={routes.Subscription.path}
-          >
-            <ListItemIcon>
-              {routes.Subscription.icon ? <routes.Subscription.icon /> : <DefaultIcon />}
-            </ListItemIcon>
-            <ListItemText>{t('pages titles.subscription')}</ListItemText>
-          </ListItemButton>
-        </ListItem>
+        {versionYM != 1 && (
+          <ListItem sx={{ p: 0 }} key={routes.Subscription.path}>
+            <ListItemButton
+              onClick={() => {
+                if (versionYM == 0) {
+                  ym(98456879, 'reachGoal', 'f2iu8732hbj2');
+                }
+                sidebarActions.close();
+              }}
+              component={Link}
+              to={routes.Subscription.path}
+            >
+              <ListItemIcon>
+                {routes.Subscription.icon ? <routes.Subscription.icon /> : <DefaultIcon />}
+              </ListItemIcon>
+              <ListItemText>{t('pages titles.subscription')}</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
         {isAuthorized() && (
           <ListItem sx={{ p: 0 }} key="logout">
             <ListItemButton
