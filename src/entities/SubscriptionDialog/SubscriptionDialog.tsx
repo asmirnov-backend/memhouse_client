@@ -39,6 +39,7 @@ export const SubscriptionDialog = () => {
   const handleClose = () => {
     setOpen(false);
     ym(98456879, 'reachGoal', 'qwdqwd21e2d');
+    ym(98456879, 'params', { version: 1 });
   };
 
   return (
@@ -77,6 +78,7 @@ export const SubscriptionDialog = () => {
           href="/subscription"
           onClick={() => {
             ym(98456879, 'reachGoal', '3213123123');
+            ym(98456879, 'params', { version: 1 });
           }}
         >
           Посмотреть варианты покупки
