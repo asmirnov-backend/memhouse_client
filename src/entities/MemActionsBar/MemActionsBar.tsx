@@ -2,20 +2,24 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import InfoIcon from '@mui/icons-material/Info';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import StarIcon from '@mui/icons-material/Star';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Button, Grid, IconButton, Typography } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 
+import routes from '../../pages/routes';
+import { PAGES } from '../../pages/types';
 import {
   MemFullDto,
   useToggleDislikeMutation,
   useToggleLikeMutation,
 } from '../../shared/generated/graphql';
+import useYMVersion from '../../shared/hooks/useYMVersion';
 
 export default function MemActionsBar(props: {
   mem: Pick<
@@ -32,6 +36,7 @@ export default function MemActionsBar(props: {
   const [toggleLikeMutation] = useToggleLikeMutation();
   const [toggleDislikeMutation] = useToggleDislikeMutation();
   const { t } = useTranslation();
+  const versionYM = useYMVersion();
 
   const [likes, setLikes] = useState(props.mem.likes);
   const [isCurrentUserHasSetLike, setIsCurrentUserHasSetLike] = useState(
@@ -93,12 +98,27 @@ export default function MemActionsBar(props: {
           <Typography>{dislikes}</Typography>
         </IconButton>
       </Grid>
-      <Grid item marginLeft="auto">
+      <Grid item>
         <IconButton>
           <StarIcon />
           <Typography>{props.mem.rating?.toFixed(2) ?? 0}</Typography>
         </IconButton>
       </Grid>
+      {versionYM == 2 && (
+        <Grid item marginLeft="auto">
+          <Button
+            variant="outlined"
+            color="warning"
+            href={routes[PAGES.Subscription].path}
+            onClick={() => {
+              ym(98456879, 'reachGoal', 'SubscriptionButtonAfterMem');
+            }}
+            endIcon={<OpenInNewIcon />}
+          >
+            Купить подписку
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 }
