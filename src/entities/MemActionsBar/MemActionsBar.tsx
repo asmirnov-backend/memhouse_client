@@ -49,6 +49,7 @@ export default function MemActionsBar(props: {
 
   const toggleLike = async () => {
     ym(98456879,'reachGoal','LikeButton.click');
+    ym(98456879, 'params', { version: versionYM });
 
     const { data, errors } = await toggleLikeMutation({
       variables: { memId: props.mem.id },
@@ -65,6 +66,7 @@ export default function MemActionsBar(props: {
 
   const toggleDislike = async () => {
     ym(98456879,'reachGoal','DislikeButton.click');
+    ym(98456879, 'params', { version: versionYM });
 
     const { data, errors } = await toggleDislikeMutation({
       variables: { memId: props.mem.id },
