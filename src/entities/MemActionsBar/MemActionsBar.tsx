@@ -48,7 +48,7 @@ export default function MemActionsBar(props: {
   );
 
   const toggleLike = async () => {
-    ym(98456879,'reachGoal','LikeButton.click');
+    ym(98456879, 'reachGoal', 'LikeButton.click');
     ym(98456879, 'params', { version: versionYM });
 
     const { data, errors } = await toggleLikeMutation({
@@ -65,7 +65,7 @@ export default function MemActionsBar(props: {
   };
 
   const toggleDislike = async () => {
-    ym(98456879,'reachGoal','DislikeButton.click');
+    ym(98456879, 'reachGoal', 'DislikeButton.click');
     ym(98456879, 'params', { version: versionYM });
 
     const { data, errors } = await toggleDislikeMutation({
@@ -104,7 +104,7 @@ export default function MemActionsBar(props: {
           {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
           <Typography>{dislikes}</Typography>
           {versionYM === 3 && <Typography marginInlineStart={1}>Не нравится</Typography>}
-          </IconButton>
+        </IconButton>
       </Grid>
       <Grid item>
         <IconButton>
@@ -120,7 +120,7 @@ export default function MemActionsBar(props: {
             href={routes[PAGES.Subscription].path}
             onClick={() => {
               ym(98456879, 'reachGoal', 'SubscriptionButtonAfterMem');
-              ym(98456879, 'params', { version: versionYM });
+              ym(98456879, 'params', { version: 2 });
             }}
             endIcon={<OpenInNewIcon />}
           >
