@@ -48,6 +48,9 @@ export default function MemActionsBar(props: {
   );
 
   const toggleLike = async () => {
+    ym(98456879,'reachGoal','LikeButton.click');
+    ym(98456879, 'params', { version: versionYM });
+
     const { data, errors } = await toggleLikeMutation({
       variables: { memId: props.mem.id },
       errorPolicy: 'all',
@@ -62,6 +65,9 @@ export default function MemActionsBar(props: {
   };
 
   const toggleDislike = async () => {
+    ym(98456879,'reachGoal','DislikeButton.click');
+    ym(98456879, 'params', { version: versionYM });
+
     const { data, errors } = await toggleDislikeMutation({
       variables: { memId: props.mem.id },
       errorPolicy: 'all',
@@ -81,6 +87,7 @@ export default function MemActionsBar(props: {
         <IconButton onClick={toggleLike}>
           {isCurrentUserHasSetLike ? <ThumbUpAltIcon /> : <ThumbUpOffAltIcon />}
           <Typography>{likes}</Typography>
+          {versionYM === 3 && <Typography marginInlineStart={1}>Нравится</Typography>}
         </IconButton>
       </Grid>
       <Grid item>
@@ -96,7 +103,8 @@ export default function MemActionsBar(props: {
         <IconButton onClick={toggleDislike}>
           {isCurrentUserHasSetDislike ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
           <Typography>{dislikes}</Typography>
-        </IconButton>
+          {versionYM === 3 && <Typography marginInlineStart={1}>Не нравится</Typography>}
+          </IconButton>
       </Grid>
       <Grid item>
         <IconButton>
