@@ -51,34 +51,34 @@ export default function MemActionsBar(props: {
     ym(98456879, 'reachGoal', 'LikeButton.click');
     ym(98456879, 'params', { version: versionYM });
 
-    const { data, errors } = await toggleLikeMutation({
-      variables: { memId: props.mem.id },
-      errorPolicy: 'all',
-    });
+    // const { data, errors } = await toggleLikeMutation({
+    //   variables: { memId: props.mem.id },
+    //   errorPolicy: 'all',
+    // });
 
-    if (errors) {
-      enqueueSnackbar(errors[0].message, { variant: 'error' });
-    } else if (data?.toggleLike.reactionAmount !== undefined) {
-      setLikes(data.toggleLike.reactionAmount);
-      setIsCurrentUserHasSetLike(!isCurrentUserHasSetLike);
-    }
+    // if (errors) {
+    //   enqueueSnackbar(errors[0].message, { variant: 'error' });
+    // } else if (data?.toggleLike.reactionAmount !== undefined) {
+    //   setLikes(data.toggleLike.reactionAmount);
+    //   setIsCurrentUserHasSetLike(!isCurrentUserHasSetLike);
+    // }
   };
 
   const toggleDislike = async () => {
     ym(98456879, 'reachGoal', 'DislikeButton.click');
     ym(98456879, 'params', { version: versionYM });
 
-    const { data, errors } = await toggleDislikeMutation({
-      variables: { memId: props.mem.id },
-      errorPolicy: 'all',
-    });
+    // const { data, errors } = await toggleDislikeMutation({
+    //   variables: { memId: props.mem.id },
+    //   errorPolicy: 'all',
+    // });
 
-    if (errors) {
-      enqueueSnackbar(errors[0].message, { variant: 'error' });
-    } else if (data?.toggleDislike.reactionAmount !== undefined) {
-      setDislikes(data.toggleDislike.reactionAmount);
-      setIsCurrentUserHasSetDislike(!isCurrentUserHasSetDislike);
-    }
+    // if (errors) {
+    //   enqueueSnackbar(errors[0].message, { variant: 'error' });
+    // } else if (data?.toggleDislike.reactionAmount !== undefined) {
+    //   setDislikes(data.toggleDislike.reactionAmount);
+    //   setIsCurrentUserHasSetDislike(!isCurrentUserHasSetDislike);
+    // }
   };
 
   return (
