@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import InfoIcon from '@mui/icons-material/Info';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -33,6 +34,7 @@ export default function MemActionsBar(props: {
   >;
 }) {
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const [toggleLikeMutation] = useToggleLikeMutation();
   const [toggleDislikeMutation] = useToggleDislikeMutation();
   const { t } = useTranslation();
@@ -117,10 +119,10 @@ export default function MemActionsBar(props: {
           <Button
             variant="outlined"
             color="warning"
-            href={routes[PAGES.Subscription].path}
             onClick={() => {
               ym(98456879, 'reachGoal', 'SubscriptionButtonAfterMem');
               ym(98456879, 'params', { version: versionYM });
+              navigate(routes[PAGES.Subscription].path);
             }}
             endIcon={<OpenInNewIcon />}
           >

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import CloseIcon from '@mui/icons-material/Close';
 import ShopIcon from '@mui/icons-material/Shop';
@@ -29,6 +30,7 @@ const BootstrapButton = styled(Button)({
 export const SubscriptionDialog = () => {
   const [open, setOpen] = useState(false);
   const versionYM = useYMVersion();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -78,10 +80,10 @@ export const SubscriptionDialog = () => {
           autoFocus
           endIcon={<ShopIcon />}
           variant="contained"
-          href="/subscription"
           onClick={() => {
             ym(98456879, 'reachGoal', '3213123123');
             ym(98456879, 'params', { version: versionYM });
+            navigate('/subscription');
           }}
         >
           Посмотреть варианты покупки
