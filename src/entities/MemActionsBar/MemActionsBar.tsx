@@ -120,7 +120,7 @@ export default function MemActionsBar(props: {
             href={routes[PAGES.Subscription].path}
             onClick={() => {
               ym(98456879, 'reachGoal', 'SubscriptionButtonAfterMem');
-              ym(98456879, 'params', { version: 2 });
+              ym(98456879, 'params', { version: versionYM });
             }}
             endIcon={<OpenInNewIcon />}
           >

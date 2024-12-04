@@ -13,6 +13,8 @@ import {
   styled,
 } from '@mui/material';
 
+import useYMVersion from '../../shared/hooks/useYMVersion';
+
 const BootstrapButton = styled(Button)({
   textTransform: 'none',
   marginTop: '3rem',
@@ -26,6 +28,7 @@ const BootstrapButton = styled(Button)({
 
 export const SubscriptionDialog = () => {
   const [open, setOpen] = useState(false);
+  const versionYM = useYMVersion();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,7 +42,7 @@ export const SubscriptionDialog = () => {
   const handleClose = () => {
     setOpen(false);
     ym(98456879, 'reachGoal', 'qwdqwd21e2d');
-    ym(98456879, 'params', { version: 1 });
+    ym(98456879, 'params', { version: versionYM });
   };
 
   return (
@@ -78,7 +81,7 @@ export const SubscriptionDialog = () => {
           href="/subscription"
           onClick={() => {
             ym(98456879, 'reachGoal', '3213123123');
-            ym(98456879, 'params', { version: 1 });
+            ym(98456879, 'params', { version: versionYM });
           }}
         >
           Посмотреть варианты покупки

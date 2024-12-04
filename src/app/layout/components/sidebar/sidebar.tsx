@@ -162,7 +162,7 @@ function Sidebar() {
               onClick={() => {
                 if (versionYM == 0) {
                   ym(98456879, 'reachGoal', 'f2iu8732hbj2');
-                  ym(98456879, 'params', { version: 0 });
+                  ym(98456879, 'params', { version: versionYM });
                 }
                 sidebarActions.close();
               }}
