@@ -7,6 +7,7 @@ import useTheme from '@/app/store/theme';
 import isAuthorized from '@/shared/utils/is-authorized';
 
 import Welcomes from '../../../public/welcome.png';
+import useYMVersion from '../../shared/hooks/useYMVersion';
 import routes from '../routes';
 import { PAGES } from '../types';
 
@@ -16,7 +17,11 @@ function Welcome() {
   const [animateTitle, setAnimateTitle] = useState(false);
   const [animateButton, setAnimateButton] = useState(false);
   const [theme] = useTheme();
-  console.log(theme);
+  const versionYM = useYMVersion();
+
+  setTimeout(() => {
+    ym(98456879, 'params', { version: versionYM });
+  }, 2000);
 
   useEffect(() => {
     setAnimateTitle(true);
