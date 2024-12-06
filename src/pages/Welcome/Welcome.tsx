@@ -20,7 +20,15 @@ function Welcome() {
   const versionYM = useYMVersion();
 
   setTimeout(() => {
-    ym(98456879, 'params', { version: versionYM });
+    if (versionYM != null) {
+      ym(98456879, 'params', { version: versionYM });
+    } else {
+      setTimeout(() => {
+        if (versionYM != null) {
+          ym(98456879, 'params', { version: versionYM });
+        }
+      }, 2000);
+    }
   }, 2000);
 
   useEffect(() => {

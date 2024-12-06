@@ -1,5 +1,9 @@
 export default function useYMVersion() {
-  const version = parseInt((localStorage.getItem('_ym_uid')?.toString() ?? '55').slice(-2)) % 5;
+  if (localStorage.getItem('_ym_uid') == undefined || localStorage.getItem('_ym_uid') == null) {
+    return null;
+  }
+
+  const version = parseInt((localStorage.getItem('_ym_uid')?.toString() ?? '55').slice(-2));
 
   console.log('version: ', version);
 
