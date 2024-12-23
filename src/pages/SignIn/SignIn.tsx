@@ -7,6 +7,8 @@ import { Avatar, Box, Button, Container, Link, TextField, Typography } from '@mu
 
 import { useSnackbar } from 'notistack';
 
+import { AuthenticationControls } from '@/shared/components/AuthenticationControls/AuthenticationControls';
+
 import { AUTH_TOKEN } from '../../shared/constants/auth-costants';
 import { LoginMutationVariables, useLoginMutation } from '../../shared/generated/graphql';
 import { ErrorResponse } from '../../shared/interfaces/error-response.interface';
@@ -88,13 +90,7 @@ function SignIn() {
             error={formErrors.password ? true : false}
             helperText={formErrors.password?.message}
           />
-
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            {t('sign in button')}
-          </Button>
-          <Link href={routes[PAGES.SignUp].path} variant="body2">
-            {t('link to sign up')}
-          </Link>
+          <AuthenticationControls formType="signin" />
         </Box>
       </FullCenteredFlexBox>
     </Container>
