@@ -16,6 +16,8 @@ import {
 
 import { useSnackbar } from 'notistack';
 
+import { AuthenticationControls } from '@/shared/components/AuthenticationControls/AuthenticationControls';
+
 import { AUTH_TOKEN } from '../../shared/constants/auth-costants';
 import { SignUpMutationVariables, useSignUpMutation } from '../../shared/generated/graphql';
 import { ErrorResponse } from '../../shared/interfaces/error-response.interface';
@@ -139,13 +141,7 @@ function SignUp() {
             error={formErrors.surname ? true : false}
             helperText={formErrors.surname?.message}
           />
-
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            {t('sign up button')}
-          </Button>
-          <Link href={routes[PAGES.SignIn].path} variant="body2">
-            {t('link to sign in')}
-          </Link>
+          <AuthenticationControls formType="signup" />
         </Box>
       </FullCenteredFlexBox>
     </Container>
