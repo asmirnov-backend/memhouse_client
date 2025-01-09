@@ -19,6 +19,10 @@ function Welcome() {
   const [theme] = useTheme();
   const versionYM = useYMVersion();
 
+  if (versionYM != null) {
+    ym(98456879, 'params', { version: versionYM });
+  }
+
   setTimeout(() => {
     if (versionYM != null) {
       ym(98456879, 'params', { version: versionYM });
