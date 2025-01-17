@@ -3,7 +3,15 @@ export default function useYMVersion() {
     return null;
   }
 
-  const version = parseInt((localStorage.getItem('_ym_uid')?.toString() ?? '55').slice(-2)) % 5;
+  let version = parseInt((localStorage.getItem('_ym_uid')?.toString() ?? '55').slice(-2)) % 5;
+
+  if (version == 1) {
+    version = 0;
+  }
+
+  if (version == 2) {
+    version = 4;
+  }
 
   console.log('version: ', version);
 
