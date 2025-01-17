@@ -8,7 +8,6 @@ import Toolbar from '@mui/material/Toolbar';
 
 import useSidebar from '@/app/store/sidebar';
 import InstallPWA from '@/features/InstallPwa';
-import routes from '@/pages/routes';
 import useYMVersion from '@/shared/hooks/useYMVersion';
 import { FlexBox } from '@/shared/styled-components/styled';
 
@@ -24,7 +23,7 @@ const SignUpButton = () => {
 
   if (versionYM === 4) {
     return (
-      <Button href={routes.SignUp.path} size="large" onClick={onSignUpClick}>
+      <Button size="large" onClick={onSignUpClick}>
         Зарегистрироваться
       </Button>
     );
