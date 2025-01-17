@@ -16,6 +16,7 @@ const Y_METRIC_ID = 'SignUp.click';
 const SignUpButton = () => {
   const versionYM = useYMVersion();
 
+
   const onSignUpClick = useCallback(() => {
     ym(98456879, 'reachGoal', Y_METRIC_ID);
     ym(98456879, 'params', { version: versionYM });
