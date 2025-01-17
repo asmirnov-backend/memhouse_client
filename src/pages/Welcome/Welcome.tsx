@@ -7,57 +7,9 @@ import useTheme from '@/app/store/theme';
 import isAuthorized from '@/shared/utils/is-authorized';
 
 import Welcomes from '../../../public/welcome.png';
-import { getYMVersion } from '@/shared/hooks/useYMVersion';
 import routes from '../routes';
 import { PAGES } from '../types';
 
-const usePollYMetricInitialTracking = (ymId: number) => {
-  useEffect(() => {
-    const maxAttempts = 5; // Максимальное количество попыток
-    const pollingInterval = 1000; // Интервал поллинга (1 секунда)
-    let attempts = 0;
-
-    const trackVersion = () => {
-      const version = getYMVersion();
-      console.log(`[YMetric] Track attempt ${attempts + 1}, version: ${version}`);
-      if (version !== null) {
-        ym(ymId, 'params', { version });
-        console.log(`[YMetric] Successfully tracked version: ${version}`);
-        return true;
-      }
-      return false;
-    };
-
-    const startPolling = () => {
-      console.log('[YMetric] Starting polling...');
-      const interval = setInterval(() => {
-        attempts++;
-        if (trackVersion() || attempts >= maxAttempts) {
-          console.log(
-              attempts >= maxAttempts
-                  ? '[YMetric] Polling stopped: maximum attempts reached.'
-                  : '[YMetric] Polling stopped: version successfully tracked.'
-          );
-          clearInterval(interval); // Останавливаем поллинг, если версия найдена или превышен лимит попыток
-        }
-      }, pollingInterval);
-    };
-
-    // Задержка перед проверкой и возможным запуском поллинга
-    const timeout = setTimeout(() => {
-      console.log('[YMetric] Initial tracking attempt...');
-      const isVersionTracked = trackVersion(); // Проверяем наличие версии
-      if (!isVersionTracked) {
-        startPolling(); // Запускаем поллинг, если версия ещё не найдена
-      }
-    }, 3000);
-
-    return () => {
-      console.log('[YMetric] Cleaning up...');
-      clearTimeout(timeout); // Очищаем таймер при размонтировании
-    };
-  }, [ymId]); // Добавляем `ymId` как зависимость
-};
 
 function Welcome() {
   const { t } = useTranslation();
@@ -65,8 +17,6 @@ function Welcome() {
   const [animateTitle, setAnimateTitle] = useState(false);
   const [animateButton, setAnimateButton] = useState(false);
   const [theme] = useTheme();
-
-  usePollYMetricInitialTracking(98456879);
 
   useEffect(() => {
     setAnimateTitle(true);

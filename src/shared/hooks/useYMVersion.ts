@@ -5,10 +5,7 @@ export function getYMVersion(): number | null {
   }
 
   // Извлечение версии из _ym_uid
-  const version = parseInt(ymUid.slice(-2), 10) % 2 === 0 ? 4 : 0;
-  console.log('version:', version);
-
-  return version;
+  return parseInt(ymUid.slice(-2), 10) % 2 === 0 ? 4 : 0;
 }
 
 export default function useYMVersion() {
